@@ -11,7 +11,7 @@
         android:textSize="24.0dip"
         android:textStyle="bold"
         android:gravity="center_horizontal"
-        android:id="@id/textView"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10.0dip"
@@ -19,11 +19,11 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/button"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="register"
-        android:layout_above="@id/colorChange"
+        android:layout_above="@+id/colorChange"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -36,7 +36,7 @@
 
     <WebView
         android:textSize="60.0dip"
-        android:id="@id/descriptionwebview"
+        android:id="@+id/descriptionwebview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50.0dip"
@@ -45,7 +45,7 @@
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
-        android:id="@id/progressBar2"
+        android:id="@+id/progressBar2"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

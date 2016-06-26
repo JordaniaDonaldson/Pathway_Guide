@@ -10,7 +10,7 @@
     <TextView
         android:textSize="22.0dip"
         android:gravity="center"
-        android:id="@id/textView8"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please select any courses that you are currently taking."
@@ -26,13 +26,13 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:id="@id/linearLayout16"
+            android:id="@+id/linearLayout16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </ScrollView>
 
     <Button
-        android:id="@id/current"
+        android:id="@+id/current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"

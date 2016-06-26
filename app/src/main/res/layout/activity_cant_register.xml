@@ -9,13 +9,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ScrollView
-        android:id="@id/scrollView2"
+        android:id="@+id/scrollView2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
         <LinearLayout
             android:orientation="vertical"
-            android:id="@id/linearLayout3"
+            android:id="@+id/linearLayout3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
                 android:textSize="24.0dip"
                 android:textColor="#ffffffff"
                 android:gravity="center"
-                android:id="@id/textView5"
+                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cantRegHelp"
@@ -35,7 +35,7 @@
     </ScrollView>
 
     <Button
-        android:id="@id/other"
+        android:id="@+id/other"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/cantOther"
@@ -43,7 +43,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/cantKids"
+        android:id="@+id/cantKids"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/cantKids"
@@ -51,7 +51,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/cantMoney"
+        android:id="@+id/cantMoney"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/cantMoney"
