@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/cant"
+        android:id="@+id/cant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cant"
@@ -42,7 +42,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/this1"
+        android:id="@+id/this1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/later"
@@ -50,7 +50,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/button7"
+        android:id="@+id/button7"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/regNow"

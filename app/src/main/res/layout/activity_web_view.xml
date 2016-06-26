@@ -8,7 +8,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <WebView
-        android:id="@id/webView"
+        android:id="@+id/webView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/button8"
@@ -16,14 +16,14 @@
         android:layout_alignParentTop="true" />
 
     <Button
-        android:id="@id/button8"
+        android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
-        android:id="@id/progressBar"
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
