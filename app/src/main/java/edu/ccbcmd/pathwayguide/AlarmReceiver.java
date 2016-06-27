@@ -20,16 +20,17 @@ import fd.IncrementalChange;
 public class AlarmReceiver extends BroadcastReceiver {
     public AlarmReceiver() {}
 
-    AlarmReceiver(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException) {}
+    AlarmReceiver(Object[] paramArrayOfObject) {}
 
     public void onReceive(Context paramContext, Intent paramIntent)
     {
-        Object localObject = $change;
-        if (localObject != null)
+        //Object localObject = $change;
+     /*   if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onReceive.(Landroid/content/Context;Landroid/content/Intent;)V", new Object[] { this, paramContext, paramIntent });
             return;
         }
+        */
         paramIntent = new Intent(paramContext, NotificationActivity.class);
         localObject = TaskStackBuilder.create(paramContext);
         ((TaskStackBuilder)localObject).addParentStack(NotificationActivity.class);

@@ -68,7 +68,7 @@ public class alert
                 alert.this.startActivity(new Intent(alert.this, MainActivity.class));
             }
         });
-        paramBundle.setOnClickListener(new View.OnClickListener() {
+        paramBundle.setOnClickListener(new OnClickListener() {
             public void onClick(View paramAnonymousView) {
                 IncrementalChange localIncrementalChange = $change;
                 if (localIncrementalChange != null) {

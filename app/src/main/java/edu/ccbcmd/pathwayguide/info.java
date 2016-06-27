@@ -60,7 +60,7 @@ public class info
 
     public info() {}
 
-    info(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
+    info(Object[] paramArrayOfObject)
     {
         this();
     }
@@ -103,14 +103,14 @@ public class info
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968613);
+        setContentView(R.layout.activity_info); //2130968613
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final int i = this.prefs.getInt("pathwayID", -1);
         int j = this.prefs.getInt("pathwaysubID", -1);
         paramBundle = this.prefs.getString("choosenID", "0");
-        this.mPbar = ((ProgressBar)findViewById(2131624040));
+        this.mPbar = ((ProgressBar)findViewById(R.id.progressBar2)); //2131624040
         final int k = Integer.parseInt(paramBundle);
-        ((TextView)findViewById(2131624036)).setText(choosePathway.courseName[k]);
+        ((TextView)findViewById(R.id.textView)).setText(choosePathway.courseName[k]); //2131624036
         getSupportActionBar().setTitle(choosePathway.courseNum[k]);
         final int m = choosePathway.subpathwayCoursePath[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()][k];
         paramBundle = loadArrayInt("courseStat");
@@ -124,7 +124,7 @@ public class info
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayShowTitleEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
-            paramBundle = (Button)findViewById(2131624037);
+            paramBundle = (Button)findViewById(R.id.button); //2131624037
             if (choosePathway.pageSwitch[m] == 1) {
                 paramBundle.setText("Meet with an Adviser");
             }
