@@ -13,8 +13,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.TaskStackBuilder;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class BlackBoardAlarmReceiver
         extends BroadcastReceiver
@@ -25,7 +25,7 @@ public class BlackBoardAlarmReceiver
 
     public void onReceive(Context paramContext, Intent paramIntent)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onReceive.(Landroid/content/Context;Landroid/content/Intent;)V", new Object[] { this, paramContext, paramIntent });

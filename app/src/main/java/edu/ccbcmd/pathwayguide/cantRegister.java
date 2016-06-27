@@ -12,8 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class cantRegister
         extends AppCompatActivity
@@ -27,7 +27,7 @@ public class cantRegister
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -48,7 +48,7 @@ public class cantRegister
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -61,7 +61,7 @@ public class cantRegister
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -74,7 +74,7 @@ public class cantRegister
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });

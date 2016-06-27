@@ -12,10 +12,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.TaskStackBuilder;
-
 import fd.IncrementalChange;
-//import com.android.tools.fd.runtime.IncrementalChange;
-//import com.android.tools.fd.runtime.InstantReloadException;
+import fd.InstantReloadException;
 
 public class AlarmReceiver extends BroadcastReceiver {
     public AlarmReceiver() {}
@@ -24,7 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     public void onReceive(Context paramContext, Intent paramIntent)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onReceive.(Landroid/content/Context;Landroid/content/Intent;)V", new Object[] { this, paramContext, paramIntent });
@@ -40,7 +38,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         ((Notification.Builder)localObject).setLights(65280, 3000, 3000);
         ((Notification.Builder)localObject).setAutoCancel(true);
         ((Notification.Builder)localObject).setStyle(new Notification.BigTextStyle().bigText("It is finally time for you to register for your next semester classes. Update your progress and figure out what to take next semster!"));
-        paramIntent = ((Notification.Builder)localObject).setContentTitle("Register for classes").setContentText("It's time for you to register!").setTicker("It's time to register for classes!").setSmallIcon(R.drawable.appicon).setContentIntent(paramIntent).setAutoCancel(true).build();
+        paramIntent = ((Notification.Builder)localObject).setContentTitle("Register for classes").setContentText("It's time for you to register!").setTicker("It's time to register for classes!").setSmallIcon(2130837579).setContentIntent(paramIntent).setAutoCancel(true).build();
         ((NotificationManager)paramContext.getSystemService("notification")).notify(0, paramIntent);
     }
 }

@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.android.tools.fd.runtime.IncrementalChange;
 import com.android.tools.fd.runtime.InstantReloadException;
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView.Builder;
+import materialshowcaseview.MaterialShowcaseView.Builder;
 
 public class demo_info_2
         extends AppCompatActivity

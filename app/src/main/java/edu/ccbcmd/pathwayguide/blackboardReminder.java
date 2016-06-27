@@ -9,8 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class blackboardReminder
         extends AppCompatActivity
@@ -24,7 +24,7 @@ public class blackboardReminder
 
     public void onCreate(Bundle paramBundle)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -37,7 +37,7 @@ public class blackboardReminder
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -50,7 +50,7 @@ public class blackboardReminder
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });

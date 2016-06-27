@@ -16,8 +16,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public abstract class AppCompatPreferenceActivity
         extends PreferenceActivity
@@ -30,7 +30,7 @@ public abstract class AppCompatPreferenceActivity
 
     private AppCompatDelegate getDelegate()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return (AppCompatDelegate)localIncrementalChange.access$dispatch("getDelegate.()Landroid/support/v7/app/AppCompatDelegate;", new Object[] { this });
         }
@@ -42,7 +42,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void addContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("addContentView.(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V", new Object[] { this, paramView, paramLayoutParams });
@@ -53,7 +53,7 @@ public abstract class AppCompatPreferenceActivity
 
     public MenuInflater getMenuInflater()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return (MenuInflater)localIncrementalChange.access$dispatch("getMenuInflater.()Landroid/view/MenuInflater;", new Object[] { this });
         }
@@ -62,7 +62,7 @@ public abstract class AppCompatPreferenceActivity
 
     public ActionBar getSupportActionBar()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return (ActionBar)localIncrementalChange.access$dispatch("getSupportActionBar.()Landroid/support/v7/app/ActionBar;", new Object[] { this });
         }
@@ -71,7 +71,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void invalidateOptionsMenu()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("invalidateOptionsMenu.()V", new Object[] { this });
@@ -82,7 +82,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onConfigurationChanged(Configuration paramConfiguration)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onConfigurationChanged.(Landroid/content/res/Configuration;)V", new Object[] { this, paramConfiguration });
@@ -94,7 +94,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onCreate(Bundle paramBundle)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -107,7 +107,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onDestroy()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onDestroy.()V", new Object[] { this });
@@ -119,7 +119,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onPostCreate(Bundle paramBundle)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onPostCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -131,7 +131,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onPostResume()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onPostResume.()V", new Object[] { this });
@@ -143,7 +143,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onStop()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onStop.()V", new Object[] { this });
@@ -155,7 +155,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void onTitleChanged(CharSequence paramCharSequence, int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onTitleChanged.(Ljava/lang/CharSequence;I)V", new Object[] { this, paramCharSequence, new Integer(paramInt) });
@@ -167,7 +167,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void setContentView(@LayoutRes int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("setContentView.(I)V", new Object[] { this, new Integer(paramInt) });
@@ -178,7 +178,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void setContentView(View paramView)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("setContentView.(Landroid/view/View;)V", new Object[] { this, paramView });
@@ -189,7 +189,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("setContentView.(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V", new Object[] { this, paramView, paramLayoutParams });
@@ -200,7 +200,7 @@ public abstract class AppCompatPreferenceActivity
 
     public void setSupportActionBar(@Nullable Toolbar paramToolbar)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("setSupportActionBar.(Landroid/support/v7/widget/Toolbar;)V", new Object[] { this, paramToolbar });

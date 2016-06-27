@@ -1,8 +1,6 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
+
 
 
 import android.annotation.TargetApi;
@@ -18,6 +16,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -46,10 +45,10 @@ import com.android.tools.fd.runtime.InstantReloadException;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import java.net.InetAddress;
 import java.util.Calendar;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence.OnSequenceItemShownListener;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView.Builder;
+import materialshowcaseview.MaterialShowcaseSequence;
+import materialshowcaseview.MaterialShowcaseSequence.OnSequenceItemShownListener;
+import materialshowcaseview.MaterialShowcaseView;
+import materialshowcaseview.MaterialShowcaseView.Builder;
 
 public class demo_info
         extends AppCompatActivity
@@ -286,6 +285,7 @@ public class demo_info
             localWebView.getSettings().setLoadWithOverviewMode(true);
             localWebView.getSettings().setUseWideViewPort(true);
             localWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+
             label479:
             Integer localInteger = Integer.valueOf(this.prefs.getInt("internet", 1));
             Toast.makeText(this, String.valueOf(localInteger), 1);

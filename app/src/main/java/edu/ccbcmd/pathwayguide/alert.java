@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 
 public class alert
@@ -26,7 +26,7 @@ public class alert
     }
 
     public int[] loadArrayInt(String paramString) {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (int[]) ((IncrementalChange) localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[]{this, paramString});
         }
@@ -42,7 +42,7 @@ public class alert
     }
 
     public void onCreate(Bundle paramBundle) {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[]{this, paramBundle});
             return;
@@ -59,7 +59,7 @@ public class alert
         paramBundle = (Button) findViewById(R.id.buttonCollect); //2131624021
         ((Button) findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) { //2131624022
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[]{this, paramAnonymousView});
                     return;
@@ -70,7 +70,7 @@ public class alert
         });
         paramBundle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View paramAnonymousView) {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[]{this, paramAnonymousView});
                     return;
