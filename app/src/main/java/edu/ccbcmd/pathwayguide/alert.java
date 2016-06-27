@@ -1,8 +1,6 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
+
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import com.android.tools.runtime.InstantReloadException;
+
 
 public class alert
         extends Activity {
