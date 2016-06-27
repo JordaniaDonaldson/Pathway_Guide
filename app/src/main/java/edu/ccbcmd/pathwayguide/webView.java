@@ -48,10 +48,10 @@ public class webView
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968623);
+        setContentView(R.layout.activity_web_view); //2130968623
         paramBundle = getIntent().getStringExtra("url");
         getSupportActionBar().setHomeButtonEnabled(true);
-        localObject = (WebView)findViewById(2131624059);
+        localObject = (WebView)findViewById(R.id.webView); //2131624059
         ((WebView)localObject).setWebViewClient(new WebViewClient()
         {
             public void onReceivedError(WebView paramAnonymousWebView, int paramAnonymousInt, String paramAnonymousString1, String paramAnonymousString2)

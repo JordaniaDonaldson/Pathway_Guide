@@ -48,16 +48,17 @@ public class alert
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968601);
+
+        setContentView(R.layout.activity_alert);  //2130968601
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final int j = this.prefs.getInt("pathwayID", -1);
         int k = this.prefs.getInt("pathwaysubID", -1);
         final int i = Integer.parseInt(this.prefs.getString("choosenID", "0"));
         j = choosePathway.subpathwayCoursePath[Integer.valueOf(j).intValue()][Integer.valueOf(k).intValue()][i];
         j = loadArrayInt("courseStat")[j];
-        paramBundle = (Button) findViewById(2131624021);
-        ((Button) findViewById(2131624022)).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
+        paramBundle = (Button) findViewById(R.id.buttonCollect); //2131624021
+        ((Button) findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View paramAnonymousView) { //2131624022
                 IncrementalChange localIncrementalChange = $change;
                 if (localIncrementalChange != null) {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[]{this, paramAnonymousView});

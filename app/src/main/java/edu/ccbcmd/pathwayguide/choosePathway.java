@@ -142,11 +142,11 @@ public class choosePathway
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968606);
+        setContentView(R.layout.activity_choose_pathway); //2130968606
         getSupportActionBar().show();
         getSupportActionBar().setTitle("Choose Your Pathway");
         paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
+        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, R.drawable.header)); //2130837594
         getSupportActionBar().setBackgroundDrawable(paramBundle);
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         label149:
@@ -158,7 +158,7 @@ public class choosePathway
             saveArrayInt(this.courseStat, "courseStat");
             getSupportActionBar().setHomeButtonEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            paramBundle = (LinearLayout)findViewById(2131624024);
+            paramBundle = (LinearLayout)findViewById(R.id.linearLayout3); //2131624024
             int j = pathwayName.length;
             i = 0;
             if (i < j)

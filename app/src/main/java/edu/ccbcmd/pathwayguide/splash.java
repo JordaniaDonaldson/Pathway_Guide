@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,16 +38,16 @@ public class splash
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968622);
+        setContentView(R.layout.activity_splash); //2130968622
         paramBundle = new AnimationDrawable();
-        paramBundle.addFrame(getResources().getDrawable(2130837595), 2000);
-        paramBundle.addFrame(getResources().getDrawable(2130837602), 1500);
-        paramBundle.addFrame(getResources().getDrawable(2130837583), 1500);
-        paramBundle.addFrame(getResources().getDrawable(2130837600), 1500);
-        paramBundle.addFrame(getResources().getDrawable(2130837580), 1500);
-        paramBundle.addFrame(getResources().getDrawable(2130837601), 2000);
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.health), 2000); //2130837595
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.tech), 1500); //2130837602
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.business), 1500); //2130837583
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.social), 1500); //2130837600
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.arts), 1500); //2130837580
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.splash), 2000); //2130837601
         paramBundle.setOneShot(true);
-        localObject = (ImageView)findViewById(2131624058);
+        localObject = (ImageView)findViewById(R.id.imageView); //2131624058
         if (Build.VERSION.SDK_INT < 16) {
             ((ImageView)localObject).setImageDrawable(paramBundle);
         }

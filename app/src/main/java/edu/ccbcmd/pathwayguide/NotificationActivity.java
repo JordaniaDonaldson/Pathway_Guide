@@ -48,17 +48,17 @@ public class NotificationActivity
         }
         super.onCreate(paramBundle);
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        setContentView(2130968619);
+        setContentView(R.layout.activity_notification); //2130968619
         getSupportActionBar().show();
         getSupportActionBar().setTitle("It's time to register!");
         paramBundle = getResources();
         getSupportActionBar().setHomeButtonEnabled(true);
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
+        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, R.drawable.header));
         getSupportActionBar().setBackgroundDrawable(paramBundle);
-        ((Button)findViewById(2131624057)).setOnClickListener(new View.OnClickListener()
+        ((Button)findViewById(R.id.button7)).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
-            {
+            { //2131624057
                 IncrementalChange localIncrementalChange = $change;
                 if (localIncrementalChange != null)
                 {
@@ -68,10 +68,10 @@ public class NotificationActivity
                 NotificationActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd-bb.blackboard.com")));
             }
         });
-        ((Button)findViewById(2131624055)).setOnClickListener(new View.OnClickListener()
+        ((Button)findViewById(R.id.cant)).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
-            {
+            { //2131624055
                 IncrementalChange localIncrementalChange = $change;
                 if (localIncrementalChange != null)
                 {
@@ -81,10 +81,10 @@ public class NotificationActivity
                 NotificationActivity.this.startActivity(new Intent(NotificationActivity.this, cantRegister.class));
             }
         });
-        ((Button)findViewById(2131624056)).setOnClickListener(new View.OnClickListener()
+        ((Button)findViewById(R.id.this1)).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
-            {
+            { //2131624056
                 Object localObject = $change;
                 if (localObject != null)
                 {

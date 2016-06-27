@@ -6,6 +6,7 @@ package edu.ccbcmd.pathwayguide;
 
 
 import android.app.AlertDialog.Builder;
+import android.app.Notification;
 import android.app.Notification.BigTextStyle;
 import android.app.Notification.Builder;
 import android.app.NotificationManager;
@@ -20,6 +21,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.MenuItem;
@@ -53,21 +55,21 @@ public class Settings
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968621);
+        setContentView(R.layout.activity_settings); //2130968621
         getSupportActionBar().show();
         getSupportActionBar().setTitle("Menu");
         paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
+        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, R.drawable.header)); //2130837594
         getSupportActionBar().setBackgroundDrawable(paramBundle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        ((TextView)findViewById(2131624052)).setVisibility(4);
+        ((TextView)findViewById(R.id.settings)).setVisibility(4); //2131624052
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         int i = this.prefs.getInt("pathwayID", 0);
         int j = this.prefs.getInt("pathwaysubID", 0);
         paramBundle = choosePathway.sub_pathwayName[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()];
-        paramBundle = new ArrayAdapter(this, 2130968621, 2131624052, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" });
-        localObject = (ListView)findViewById(2131624050);
+        paramBundle = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" }); /* 2130968621, 2131624052*/
+        localObject = (ListView)findViewById(R.id.settingslist); //2131624050
         ((ListView)localObject).setAdapter(paramBundle);
         ((ListView)localObject).setClickable(true);
         ((ListView)localObject).setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -132,7 +134,7 @@ public class Settings
                                 ((Notification.Builder)localObject).setLights(65280, 3000, 3000);
                                 ((Notification.Builder)localObject).setAutoCancel(true);
                                 ((Notification.Builder)localObject).setStyle(new Notification.BigTextStyle().bigText("Remember to check blackboard for newly posted information and events."));
-                                paramAnonymousView = ((Notification.Builder)localObject).setContentTitle("Check Blackboard").setContentText("Remember to check blackboard for newly posted information and events.").setTicker("Remember to check blackboard for newly posted information and events.").setSmallIcon(2130837579).setContentIntent(paramAnonymousView).setAutoCancel(true).build();
+                                paramAnonymousView = ((Notification.Builder)localObject).setContentTitle("Check Blackboard").setContentText("Remember to check blackboard for newly posted information and events.").setTicker("Remember to check blackboard for newly posted information and events.").setSmallIcon(R.drawable.appicon).setContentIntent(paramAnonymousView).setAutoCancel(true).build(); //2130837579
                                 ((NotificationManager)paramAnonymousAdapterView.getSystemService("notification")).notify(0, paramAnonymousView);
                                 paramAnonymousAdapterView = Integer.valueOf(Settings.this.prefs.getInt("zoom", 0));
                                 if (paramAnonymousAdapterView.intValue() == 0)
@@ -156,7 +158,7 @@ public class Settings
                     ((Notification.Builder)localObject).setLights(65280, 3000, 3000);
                     ((Notification.Builder)localObject).setAutoCancel(true);
                     ((Notification.Builder)localObject).setStyle(new Notification.BigTextStyle().bigText("It is finally time for you to register for your next semester classes. Update your progress and figure out what to take next semster!"));
-                    paramAnonymousView = ((Notification.Builder)localObject).setContentTitle("Register for classes").setContentText("It's time for you to register!").setTicker("It's time to register for classes!").setSmallIcon(2130837579).setContentIntent(paramAnonymousView).setAutoCancel(true).build();
+                    paramAnonymousView = ((Notification.Builder)localObject).setContentTitle("Register for classes").setContentText("It's time for you to register!").setTicker("It's time to register for classes!").setSmallIcon(R.drawable.appicon).setContentIntent(paramAnonymousView).setAutoCancel(true).build();
                     ((NotificationManager)paramAnonymousAdapterView.getSystemService("notification")).notify(0, paramAnonymousView);
                     paramAnonymousAdapterView = Integer.valueOf(Settings.this.prefs.getInt("zoom", 0));
                     if (paramAnonymousAdapterView.intValue() == 0)
