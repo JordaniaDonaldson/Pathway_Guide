@@ -14,10 +14,13 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,89 +34,9 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 
-//
-// Decompiled by Procyon v0.5.30
-//
+import android.widget.TextView;
 
 
-
-import android.view.ContextThemeWrapper;
-import android.content.ContextWrapper;
-import android.annotation.TargetApi;
-import android.content.res.Resources;
-import android.content.SharedPreferences$Editor;
-import java.util.Date;
-import android.widget.ImageButton;
-import android.widget.TextView$BufferType;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.widget.Button;
-import android.util.TypedValue;
-import android.widget.LinearLayout$LayoutParams;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.os.Build$VERSION;
-import android.app.PendingIntent;
-import android.app.AlarmManager;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.util.Calendar;
-import android.util.Log;
-import android.database.DatabaseErrorHandler;
-import android.view.Display;
-import android.view.SearchEvent;
-import android.content.IntentFilter;
-import android.app.assist.AssistContent;
-import android.view.ViewGroup$LayoutParams;
-import android.content.ComponentName;
-import java.io.PrintWriter;
-import java.io.FileDescriptor;
-import android.view.WindowManager$LayoutParams;
-import android.content.res.Resources$Theme;
-import java.io.InputStream;
-import android.transition.TransitionManager;
-import android.graphics.drawable.Drawable;
-import android.graphics.Canvas;
-import android.database.sqlite.SQLiteDatabase$CursorFactory;
-import android.util.AttributeSet;
-import android.content.Context;
-import android.app.SharedElementCallback;
-import android.os.Handler;
-import android.content.ServiceConnection;
-import android.content.ComponentCallbacks;
-import android.view.ContextMenu$ContextMenuInfo;
-import android.view.ContextMenu;
-import android.app.ActivityManager$TaskDescription;
-import android.view.ActionMode;
-import android.content.BroadcastReceiver;
-import android.app.Fragment;
-import android.app.Dialog;
-import android.view.accessibility.AccessibilityEvent;
-import android.content.res.Configuration;
-import android.database.Cursor;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.net.Uri;
-import android.content.IntentSender;
-import android.app.TaskStackBuilder;
-import android.widget.Toolbar;
-import android.media.session.MediaController;
-import android.view.ActionMode$Callback;
-import android.os.UserHandle;
-import android.graphics.Bitmap;
-import android.os.PersistableBundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.View;
-import android.content.Intent;
-import android.os.Bundle;
-import com.android.tools.fd.runtime.InstantReloadException;
-import android.content.SharedPreferences;
-import com.android.tools.fd.runtime.IncrementalChange;
-import android.view.View.OnClickListener;
-import android.app.Activity;
 
 public class MainActivity extends Activity implements View.OnClickListener
 {
@@ -231,13 +154,13 @@ public class MainActivity extends Activity implements View.OnClickListener
             intent.addCategory("android.intent.category.DEFAULT");
              PendingIntent broadcast = PendingIntent.getBroadcast((Context)this, 100, intent, 134217728);
              Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            instance3.set(5, 1);
-            instance3.set(2, n3);
-            instance3.set(1, n2);
-            instance3.set(11, 10);
-            instance3.set(12, 0);
-            instance3.set(13, 0);
-            if (Build$VERSION.SDK_INT >= 19) {
+            instance3.set(Calendar.DATE, 1); //5
+            instance3.set(Calendar.MONTH, n3); //2
+            instance3.set(Calendar.YEAR, n2); //1
+            instance3.set(Calendar.HOUR_OF_DAY, 10); //11
+            instance3.set(Calendar.MINUTE, 0); //12
+            instance3.set(Calendar.SECOND, 0); //13
+            if (Build.VERSION.SDK_INT >= 19) {
                 alarmManager.setExact(0, instance3.getTimeInMillis(), broadcast);
             }
             else {
@@ -258,25 +181,26 @@ public class MainActivity extends Activity implements View.OnClickListener
          int[] loadArrayInt = this.loadArrayInt("courseStat");
         Integer.parseInt(this.prefs.getString("choosenID", "0"));
         new RelativeLayout((Context)this);
-         LinearLayout linearLayout = (LinearLayout)this.findViewById(2131624046);
-         ScrollView scrollView = (ScrollView)this.findViewById(2131624045);
+         LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
+        final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1); //2131624045
         scrollView.post((Runnable)new Runnable() {
-            public static volatile /* synthetic */ IncrementalChange $change;
+           // public static volatile /* synthetic */ IncrementalChange $change;
 
             @Override
             public void run() {
-                 IncrementalChange $change = MainActivity$1.$change;
+              /*   IncrementalChange $change = MainActivity$1.$change;
                 if ($change != null) {
                     $change.access$dispatch("run.()V", new Object[] { this });
                     return;
                 }
+                */
                 scrollView.fullScroll(130);
             }
         });
          ImageView imageView = new ImageView((Context)this);
-        imageView.setImageResource(2130837591);
-        imageView.setLayoutParams((ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -2));
-         LinearLayout linearLayout2 = (LinearLayout)this.findViewById(2131624046);
+        imageView.setImageResource(R.drawable.grad); //2130837591
+        imageView.setLayoutParams((ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -2));
+         LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); // 2131624046
          Resources resources = this.getResources();
         imageView.getLayoutParams().height = Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
@@ -289,7 +213,7 @@ public class MainActivity extends Activity implements View.OnClickListener
              Button button = new Button((Context)this);
              int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
             button.setText((CharSequence)choosePathway.courseNum[id]);
-             LinearLayout$LayoutParams layoutParams = new LinearLayout$LayoutParams(-2, -2);
+             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
             button.setGravity(1);
@@ -302,11 +226,11 @@ public class MainActivity extends Activity implements View.OnClickListener
             else {
                 layoutParams.setMargins(n9, (int)(5.0f * density), n9, n9);
             }
-            button.setLayoutParams((ViewGroup$LayoutParams)layoutParams);
+            button.setLayoutParams((ViewGroup.LayoutParams)layoutParams);
             button.setTag((Object)id);
             button.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
             button.setId(id);
-            button.setOnClickListener((View$OnClickListener)this);
+            button.setOnClickListener((View.OnClickListener)this);
              int length = choosePathway.coursePreRec[id].length;
             Log.w("Prereclangth:", String.valueOf(length));
              int n10 = loadArrayInt[id];
@@ -345,16 +269,16 @@ public class MainActivity extends Activity implements View.OnClickListener
                 }
             }
             linearLayout.addView((View)button);
-             LinearLayout$LayoutParams layoutParams2 = (LinearLayout$LayoutParams)button.getLayoutParams();
+             LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)button.getLayoutParams();
             layoutParams2.gravity = 17;
-            button.setLayoutParams((ViewGroup$LayoutParams)layoutParams2);
+            button.setLayoutParams((ViewGroup.LayoutParams)layoutParams2);
         }
          float density2 = this.getResources().getDisplayMetrics().density;
          int n13 = (int)(13 * density2);
          int n14 = (int)(2.2 * density2);
          NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView((Context)this);
-        nonBreakingPeriodTextView.setText((CharSequence)(choosePathway.sub_pathwayName[value][value2] + "\nPathway"), TextView$BufferType.EDITABLE);
-         LinearLayout$LayoutParams layoutParams3 = new LinearLayout$LayoutParams(-2, -2);
+        nonBreakingPeriodTextView.setText((CharSequence)(choosePathway.sub_pathwayName[value][value2] + "\nPathway"), TextView.BufferType.EDITABLE);
+         LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
         nonBreakingPeriodTextView.setPadding(n13, n13, n13, n13);
         nonBreakingPeriodTextView.setGravity(16);
         nonBreakingPeriodTextView.setGravity(1);
@@ -362,45 +286,33 @@ public class MainActivity extends Activity implements View.OnClickListener
         nonBreakingPeriodTextView.setTextSize(1, 14.0f);
         nonBreakingPeriodTextView.setTypeface((Typeface)null, 1);
         layoutParams3.setMargins(n14, n14, n14, n14);
-        nonBreakingPeriodTextView.setLayoutParams((ViewGroup$LayoutParams)layoutParams3);
+        nonBreakingPeriodTextView.setLayoutParams((ViewGroup.LayoutParams)layoutParams3);
         nonBreakingPeriodTextView.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
         nonBreakingPeriodTextView.setTextColor(Color.parseColor("#ffffff"));
         linearLayout.addView((View)nonBreakingPeriodTextView);
-         LinearLayout$LayoutParams layoutParams4 = (LinearLayout$LayoutParams)nonBreakingPeriodTextView.getLayoutParams();
-        layoutParams4.gravity = 17;
-        nonBreakingPeriodTextView.setLayoutParams((ViewGroup$LayoutParams)layoutParams4);
-        ((ImageButton)this.findViewById(2131624047)).setOnClickListener((View$OnClickListener)new View$OnClickListener() {
-            public static volatile /* synthetic */ IncrementalChange $change;
+         LinearLayout.LayoutParams layoutParams4 = (LinearLayout.LayoutParams)nonBreakingPeriodTextView.getLayoutParams();
+        layoutParams4.gravity = Gravity.CENTER; //17
+        nonBreakingPeriodTextView.setLayoutParams((ViewGroup.LayoutParams)layoutParams4);
+        ((ImageButton)this.findViewById(R.id.zoomout)).setOnClickListener((View.OnClickListener)new View.OnClickListener() { //2131624047
+
 
             public void onClick( View view) {
-                 IncrementalChange $change = MainActivity$2.$change;
-                if ($change != null) {
-                    $change.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, view });
-                    return;
-                }
+
                 MainActivity.this.startActivity(new Intent((Context)MainActivity.this, (Class)MainActivityZoomOut.class));
             }
         });
-        ((ImageButton)this.findViewById(2131624022)).setOnClickListener((View$OnClickListener)new View$OnClickListener() {
-            public static volatile /* synthetic */ IncrementalChange $change;
+        ((ImageButton)this.findViewById(R.id.button2)).setOnClickListener((View.OnClickListener)new View.OnClickListener() { //2131624022
+
 
             public void onClick( View view) {
-                 IncrementalChange $change = MainActivity$3.$change;
-                if ($change != null) {
-                    $change.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, view });
-                    return;
-                }
+
                 MainActivity.this.startActivity(new Intent((Context)MainActivity.this, (Class)Settings.class));
             }
         });
     }
 
     public void onResume() {
-         IncrementalChange $change = MainActivity.$change;
-        if ($change != null) {
-            $change.access$dispatch("onResume.()V", new Object[] { this });
-            return;
-        }
+
         super.onResume();
         if (this.getIntent().getIntExtra("intVariableName", 1) == 0) {
              int int1 = this.prefs.getInt("opencount", 1);
@@ -420,10 +332,10 @@ public class MainActivity extends Activity implements View.OnClickListener
         }
          String string = this.prefs.getString("notifydate", "00/00/0000");
          Calendar instance = Calendar.getInstance();
-        instance.set(11, 0);
-        instance.set(12, 0);
-        instance.set(13, 1);
-        instance.set(14, 0);
+        instance.set(Calendar.HOUR_OF_DAY, 0); //11
+        instance.set(Calendar.MINUTE, 0); //12
+        instance.set(Calendar.SECOND, 1); //13
+        instance.set(Calendar.MILLISECOND, 0); //14
          Date time = instance.getTime();
         instance.getTimeInMillis();
          String[] split = string.split("/");
@@ -433,19 +345,19 @@ public class MainActivity extends Activity implements View.OnClickListener
          int int2 = Integer.parseInt(s);
          int int3 = Integer.parseInt(s2);
          int int4 = Integer.parseInt(s3);
-        instance.set(1, int2);
-        instance.set(2, int3);
-        instance.set(5, int4 - 1);
+        instance.set(Calendar.YEAR, int2); //1
+        instance.set(Calendar.MONTH, int3); //2
+        instance.set(Calendar.DATE, int4 - 1); //5
          Date time2 = instance.getTime();
         if (time2.before(time)) {
-             SharedPreferences$Editor edit = this.prefs.edit();
+             SharedPreferences.Editor edit = this.prefs.edit();
              Calendar instance2 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            instance2.set(11, 0);
-            instance2.set(12, 0);
-            instance2.set(13, 0);
-            instance2.set(14, 0);
-             int value = Calendar.getInstance().get(2);
-             int value2 = Calendar.getInstance().get(1);
+            instance2.set(Calendar.HOUR_OF_DAY, 0); //11
+            instance2.set(Calendar.MINUTE, 0); //12
+            instance2.set(Calendar.SECOND, 0); //13
+            instance2.set(Calendar.MILLISECOND, 0); //14
+             int value = Calendar.getInstance().get(Calendar.MONTH); //2
+             int value2 = Calendar.getInstance().get(Calendar.YEAR); //1
             int n2 = 0;
             int n3 = 0;
             Log.w("THIS YEAR", String.valueOf(value));
@@ -469,20 +381,20 @@ public class MainActivity extends Activity implements View.OnClickListener
             intent.addCategory("android.intent.category.DEFAULT");
              PendingIntent broadcast = PendingIntent.getBroadcast((Context)this, 100, intent, 134217728);
              Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            instance3.set(5, 1);
-            instance3.set(2, n2);
-            instance3.set(1, n3);
-            instance3.set(11, 10);
-            instance3.set(12, 0);
-            instance3.set(13, 0);
-            if (Build$VERSION.SDK_INT >= 19) {
+            instance3.set(Calendar.DATE, 1); //5
+            instance3.set(Calendar.MONTH, n2); //2
+            instance3.set(Calendar.YEAR, n3); //1
+            instance3.set(Calendar.HOUR_OF_DAY, 10); //11
+            instance3.set(Calendar.MINUTE, 0); //12
+            instance3.set(Calendar.SECOND, 0); //13
+            if (Build.VERSION.SDK_INT >= 19) {
                 alarmManager.setExact(0, instance3.getTimeInMillis(), broadcast);
             }
             else {
                 alarmManager.set(0, instance3.getTimeInMillis(), broadcast);
             }
              Calendar instance4 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            int value3 = Calendar.getInstance().get(2);
+            int value3 = Calendar.getInstance().get(Calendar.MONTH); //2
             switch (value3) {
                 case 0: {
                     ++value3;
@@ -534,15 +446,15 @@ public class MainActivity extends Activity implements View.OnClickListener
                 }
             }
             Log.w("Cmonth", String.valueOf(value3));
-            instance4.set(5, 1);
-            instance4.set(2, value3);
-            instance4.set(11, 10);
-            instance4.set(12, 0);
-            instance4.set(13, 0);
+            instance4.set(Calendar.DATE, 1); //5
+            instance4.set(Calendar.MONTH, value3); //2
+            instance4.set(Calendar.HOUR_OF_DAY, 10); //11
+            instance4.set(Calendar.MINUTE, 0); //12
+            instance4.set(Calendar.SECOND, 0); //13
              Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent2.addCategory("android.intent.category.DEFAULT");
              PendingIntent broadcast2 = PendingIntent.getBroadcast((Context)this, 100, intent2, 134217728);
-            if (Build$VERSION.SDK_INT >= 19) {
+            if (Build.VERSION.SDK_INT >= 19) {
                 alarmManager.setExact(0, instance4.getTimeInMillis(), broadcast2);
             }
             else {
@@ -557,7 +469,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         }
          AlarmManager alarmManager2 = (AlarmManager)this.getSystemService("alarm");
          Calendar instance5 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-        int value4 = Calendar.getInstance().get(2);
+        int value4 = Calendar.getInstance().get(Calendar.MONTH); //2
         switch (value4) {
             case 0: {
                 ++value4;
@@ -609,15 +521,15 @@ public class MainActivity extends Activity implements View.OnClickListener
             }
         }
         Log.w("Cmonth", String.valueOf(value4));
-        instance5.set(5, 1);
-        instance5.set(2, value4);
-        instance5.set(11, 10);
-        instance5.set(12, 0);
-        instance5.set(13, 0);
+        instance5.set(Calendar.DATE, 1); //5
+        instance5.set(Calendar.MONTH, value4); //2
+        instance5.set(Calendar.YEAR, 10); //11
+        instance5.set(Calendar.MINUTE, 0); //12
+        instance5.set(Calendar.SECOND, 0); //13
          Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
         intent3.addCategory("android.intent.category.DEFAULT_Blackboard");
          PendingIntent broadcast3 = PendingIntent.getBroadcast((Context)this, 100, intent3, 134217728);
-        if (Build$VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= 19) {
             alarmManager2.setExact(0, instance5.getTimeInMillis(), broadcast3);
             return;
         }
