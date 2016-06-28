@@ -4,208 +4,147 @@ package edu.ccbcmd.pathwayguide;
  * Created by dixo8 on 6/24/2016.
  */
 
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
 
-public abstract class AppCompatPreferenceActivity
-        extends PreferenceActivity
+
+        import android.support.annotation.Nullable;
+        import android.support.annotation.LayoutRes;
+        import android.support.v7.app.ActionBar;
+        import android.view.MenuInflater;
+        import android.support.v7.app.AppCompatCallback;
+
+        import android.view.ViewGroup;
+
+        import android.content.res.Configuration;
+
+        import android.app.Activity;
+
+        import android.view.View;
+
+        import android.os.Bundle;
+
+        import android.support.v7.app.AppCompatDelegate;
+
+        import android.preference.PreferenceActivity;
+
+public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 {
+
     private AppCompatDelegate mDelegate;
-
-    public AppCompatPreferenceActivity() {}
-
-    AppCompatPreferenceActivity(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException) {}
-
-    private AppCompatDelegate getDelegate()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null) {
-            return (AppCompatDelegate)localIncrementalChange.access$dispatch("getDelegate.()Landroid/support/v7/app/AppCompatDelegate;", new Object[] { this });
+/*
+    public AppCompatPreferenceActivity() {
+        final IncrementalChange .change = AppCompatPreferenceActivity..change;
+        if (.change != null) {
+            final Object[] array = { null };
+            array[0] = array;
+            this((Object[]).change.access.dispatch("init.args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
         }
+        else {}
+        if (.change != null) {
+            .change.access.dispatch("init.body.(Lcom/example/nicholas/buttontest/AppCompatPreferenceActivity;)V", new Object[] { this });
+        }
+    }
+
+    AppCompatPreferenceActivity(final Object[] array, final InstantReloadException ex) {
+        final String s = (String)array[0];
+        switch (s.hashCode()) {
+            default: {
+                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/AppCompatPreferenceActivity"));
+            }
+            case -1269620170: {
+                this();
+            }
+            case 1824235717: {}
+        }
+    }
+*/
+    private AppCompatDelegate getDelegate() {
+
         if (this.mDelegate == null) {
-            this.mDelegate = AppCompatDelegate.create(this, null);
+            this.mDelegate = AppCompatDelegate.create((Activity)this, (AppCompatCallback)null);
         }
         return this.mDelegate;
     }
 
-    public void addContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("addContentView.(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V", new Object[] { this, paramView, paramLayoutParams });
-            return;
-        }
-        getDelegate().addContentView(paramView, paramLayoutParams);
+    public void addContentView(final View view, final ViewGroup.LayoutParams viewGroupParams) {
+
+        this.getDelegate().addContentView(view, viewGroupParams);
     }
 
-    public MenuInflater getMenuInflater()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null) {
-            return (MenuInflater)localIncrementalChange.access$dispatch("getMenuInflater.()Landroid/view/MenuInflater;", new Object[] { this });
-        }
-        return getDelegate().getMenuInflater();
+    public MenuInflater getMenuInflater() {
+
+        return this.getDelegate().getMenuInflater();
     }
 
-    public ActionBar getSupportActionBar()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null) {
-            return (ActionBar)localIncrementalChange.access$dispatch("getSupportActionBar.()Landroid/support/v7/app/ActionBar;", new Object[] { this });
-        }
-        return getDelegate().getSupportActionBar();
+    public ActionBar getSupportActionBar() {
+
+        return this.getDelegate().getSupportActionBar();
     }
 
-    public void invalidateOptionsMenu()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("invalidateOptionsMenu.()V", new Object[] { this });
-            return;
-        }
-        getDelegate().invalidateOptionsMenu();
+    public void invalidateOptionsMenu() {
+
+        this.getDelegate().invalidateOptionsMenu();
     }
 
-    public void onConfigurationChanged(Configuration paramConfiguration)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onConfigurationChanged.(Landroid/content/res/Configuration;)V", new Object[] { this, paramConfiguration });
-            return;
-        }
-        super.onConfigurationChanged(paramConfiguration);
-        getDelegate().onConfigurationChanged(paramConfiguration);
+    public void onConfigurationChanged(final Configuration configuration) {
+
+        super.onConfigurationChanged(configuration);
+        this.getDelegate().onConfigurationChanged(configuration);
     }
 
-    public void onCreate(Bundle paramBundle)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        getDelegate().installViewFactory();
-        getDelegate().onCreate(paramBundle);
-        super.onCreate(paramBundle);
+    public void onCreate(final Bundle bundle) {
+
+        this.getDelegate().installViewFactory();
+        this.getDelegate().onCreate(bundle);
+        super.onCreate(bundle);
     }
 
-    public void onDestroy()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onDestroy.()V", new Object[] { this });
-            return;
-        }
+    public void onDestroy() {
+
         super.onDestroy();
-        getDelegate().onDestroy();
+        this.getDelegate().onDestroy();
     }
 
-    public void onPostCreate(Bundle paramBundle)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onPostCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onPostCreate(paramBundle);
-        getDelegate().onPostCreate(paramBundle);
+    public void onPostCreate(final Bundle bundle) {
+
+        super.onPostCreate(bundle);
+        this.getDelegate().onPostCreate(bundle);
     }
 
-    public void onPostResume()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onPostResume.()V", new Object[] { this });
-            return;
-        }
+    public void onPostResume() {
+
         super.onPostResume();
-        getDelegate().onPostResume();
+        this.getDelegate().onPostResume();
     }
 
-    public void onStop()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onStop.()V", new Object[] { this });
-            return;
-        }
+    public void onStop() {
+
         super.onStop();
-        getDelegate().onStop();
+        this.getDelegate().onStop();
     }
 
-    public void onTitleChanged(CharSequence paramCharSequence, int paramInt)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onTitleChanged.(Ljava/lang/CharSequence;I)V", new Object[] { this, paramCharSequence, new Integer(paramInt) });
-            return;
-        }
-        super.onTitleChanged(paramCharSequence, paramInt);
-        getDelegate().setTitle(paramCharSequence);
+    public void onTitleChanged(final CharSequence title, final int n) {
+
+        super.onTitleChanged(title, n);
+        this.getDelegate().setTitle(title);
     }
 
-    public void setContentView(@LayoutRes int paramInt)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("setContentView.(I)V", new Object[] { this, new Integer(paramInt) });
-            return;
-        }
-        getDelegate().setContentView(paramInt);
+    public void setContentView(@LayoutRes final int contentView) {
+
+        this.getDelegate().setContentView(contentView);
     }
 
-    public void setContentView(View paramView)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("setContentView.(Landroid/view/View;)V", new Object[] { this, paramView });
-            return;
-        }
-        getDelegate().setContentView(paramView);
+    public void setContentView(final View contentView) {
+
+        this.getDelegate().setContentView(contentView);
     }
 
-    public void setContentView(View paramView, ViewGroup.LayoutParams paramLayoutParams)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("setContentView.(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V", new Object[] { this, paramView, paramLayoutParams });
-            return;
-        }
-        getDelegate().setContentView(paramView, paramLayoutParams);
+    public void setContentView(final View view, final ViewGroup.LayoutParams viewGroupLayoutParams) {
+
+        this.getDelegate().setContentView(view, viewGroupLayoutParams);
     }
 
-    public void setSupportActionBar(@Nullable Toolbar paramToolbar)
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("setSupportActionBar.(Landroid/support/v7/widget/Toolbar;)V", new Object[] { this, paramToolbar });
-            return;
-        }
-        getDelegate().setSupportActionBar(paramToolbar);
+    public void setSupportActionBar(@Nullable final android.support.v7.widget.Toolbar supportActionBar) {
+
+        this.getDelegate().setSupportActionBar(supportActionBar);
     }
 }
