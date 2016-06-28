@@ -5,492 +5,397 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.Uri;
-import android.os.Build.VERSION;
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.webkit.CookieManager;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
-import java.net.InetAddress;
-import java.util.Calendar;
 
-public class info
-        extends AppCompatActivity
+import java.net.InetAddress;
+import android.graphics.PorterDuff;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
+import android.webkit.CookieManager;
+import android.webkit.WebSettings;
+import android.widget.Toast;
+        import android.annotation.TargetApi;
+
+        import android.webkit.WebResourceError;
+
+        import android.webkit.WebResourceRequest;
+
+        import android.webkit.WebViewClient;
+        import android.webkit.WebView;
+        import java.util.Calendar;
+
+        import android.content.DialogInterface;
+
+        import android.widget.Button;
+        import android.graphics.drawable.ColorDrawable;
+        import android.graphics.Color;
+        import android.util.Log;
+        import android.widget.TextView;
+        import android.graphics.Point;
+
+        import android.graphics.drawable.Drawable;
+
+        import android.view.MenuItem;
+
+        import android.net.Uri;
+
+        import android.graphics.Bitmap;
+
+        import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+
+        import android.content.SharedPreferences;
+        import android.widget.ProgressBar;
+        import android.content.Context;
+
+        import android.support.v7.app.AppCompatActivity;
+
+import fd.IncrementalChange;
+
+public class info extends AppCompatActivity
 {
+
     private Context c;
     private boolean isConnected;
     private ProgressBar mPbar;
     public SharedPreferences prefs;
 
-    public info() {}
+    public info() {
 
-    info(Object[] paramArrayOfObject)
-    {
-        this();
+        this.mPbar = null;
+        this.isConnected = true;
+        this.prefs = null;
+    }
+/*
+    info(final Object[] array, final InstantReloadException ex) {
+        final String s = (String)array[0];
+        switch (s.hashCode()) {
+            default: {
+                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/info"));
+            }
+            case -2089128195: {}
+            case 1642888083: {
+                this();
+            }
+        }
+    }
+    */
+
+
+
+    private int getScale() {
+
+        final Point point = new Point();
+        this.getWindowManager().getDefaultDisplay().getSize(point);
+        return (int)(Object)((point.x / 355.0) * 100.0);
     }
 
-    private int getScale()
-    {
-        Object localObject = $change;
-        if (localObject != null) {
-            return ((Number)((IncrementalChange)localObject).access$dispatch("getScale.()I", new Object[] { this })).intValue();
+    public int[] loadArrayInt(final String s) {
+
+        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
+        final int int1 = sharedPreferences.getInt(s + "_size", 0);
+        final int[] array = new int[int1];
+        for (int i = 0; i < int1; ++i) {
+            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
         }
-        localObject = new Point();
-        getWindowManager().getDefaultDisplay().getSize((Point)localObject);
-        return Double.valueOf(Double.valueOf(new Double(((Point)localObject).x).doubleValue() / new Double(355.0D).doubleValue()).doubleValue() * 100.0D).intValue();
+        return array;
     }
 
-    public int[] loadArrayInt(String paramString)
-    {
-        Object localObject = $change;
-        if (localObject != null) {
-            return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_info); //2130968613
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final int int1 = this.prefs.getInt("pathwayID", -1);
+        final int int2 = this.prefs.getInt("pathwaysubID", -1);
+        final String string = this.prefs.getString("choosenID", "0");
+        this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
+        final int int3 = Integer.parseInt(string);
+        ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[int3]); //2131624036
+        this.getSupportActionBar().setTitle(choosePathway.courseNum[int3]);
+        final int n = choosePathway.subpathwayCoursePath[int1][int2][int3];
+        final int[] loadArrayInt = this.loadArrayInt("courseStat");
+        final int length = choosePathway.coursePreRec[n].length;
+        Log.w("Prereclangth:", String.valueOf(length));
+        final int n2 = loadArrayInt[n];
+        final int n3;
+        if (n2 == 0) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a")));
+            n3 = 0;
         }
-        localObject = getSharedPreferences("preferencename", 0);
-        int j = ((SharedPreferences)localObject).getInt(paramString + "_size", 0);
-        int[] arrayOfInt = new int[j];
-        int i = 0;
-        while (i < j)
-        {
-            arrayOfInt[i] = ((SharedPreferences)localObject).getInt(paramString + "_" + i, 1);
-            i += 1;
+        else if (n2 == 1 || n2 == 4) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181")));
+            n3 = 1;
         }
-        return arrayOfInt;
-    }
-
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = $change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
+        else if (n2 == 3) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
+            n3 = 2;
         }
-        super.onCreate(paramBundle);
-        setContentView(R.layout.activity_info); //2130968613
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final int i = this.prefs.getInt("pathwayID", -1);
-        int j = this.prefs.getInt("pathwaysubID", -1);
-        paramBundle = this.prefs.getString("choosenID", "0");
-        this.mPbar = ((ProgressBar)findViewById(R.id.progressBar2)); //2131624040
-        final int k = Integer.parseInt(paramBundle);
-        ((TextView)findViewById(R.id.textView)).setText(choosePathway.courseName[k]); //2131624036
-        getSupportActionBar().setTitle(choosePathway.courseNum[k]);
-        final int m = choosePathway.subpathwayCoursePath[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()][k];
-        paramBundle = loadArrayInt("courseStat");
-        int i1 = choosePathway.coursePreRec[m].length;
-        Log.w("Prereclangth:", String.valueOf(i1));
-        final int n = paramBundle[m];
-        if (n == 0)
-        {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a")));
-            i = 0;
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            paramBundle = (Button)findViewById(R.id.button); //2131624037
-            if (choosePathway.pageSwitch[m] == 1) {
-                paramBundle.setText("Meet with an Adviser");
-            }
-            paramBundle.setOnClickListener(new View.OnClickListener()
-            {
-                public void onClick(View paramAnonymousView)
-                {
-                    IncrementalChange localIncrementalChange = $change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                        return;
-                    }
-                    paramAnonymousView = choosePathway.courseNum[k].replace(" ", "/");
-                    if (choosePathway.pageSwitch[m] == 1)
-                    {
-                        info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
-                        return;
-                    }
-                    info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/" + paramAnonymousView)));
-                }
-            });
-            localObject = (Button)findViewById(2131624038);
-            if (i != 0) {
-                break label949;
-            }
-            paramBundle.setVisibility(4);
-            ((Button)localObject).setText("I have not successfully completed this class");
-            label339:
-            ((Button)localObject).setOnClickListener(new View.OnClickListener()
-            {
-                public void onClick(View paramAnonymousView)
-                {
-                    IncrementalChange localIncrementalChange = $change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                        return;
-                    }
-                    if (i == 0)
-                    {
-                        info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + k, 2).commit();
-                        info.this.startActivity(new Intent(info.this, MainActivity.class));
-                        return;
-                    }
-                    if (i == 1)
-                    {
-                        info.this.startActivity(new Intent(info.this, alert.class));
-                        return;
-                    }
-                    if (i == 1)
-                    {
-                        paramAnonymousView = new AlertDialog.Builder(info.this);
-                        paramAnonymousView.setPositiveButton("Class Passed", new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface paramAnonymous2DialogInterface, int paramAnonymous2Int)
-                            {
-                                IncrementalChange localIncrementalChange = $change;
-                                if (localIncrementalChange != null)
-                                {
-                                    localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
-                                    return;
-                                }
-                                info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + info.2.this.val$arrayID, 0).commit();
-                                info.this.startActivity(new Intent(info.this, MainActivity.class));
-                            }
-                        });
-                        paramAnonymousView.setNegativeButton("Class Failed", new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface paramAnonymous2DialogInterface, int paramAnonymous2Int)
-                            {
-                                IncrementalChange localIncrementalChange = $change;
-                                if (localIncrementalChange != null)
-                                {
-                                    localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
-                                    return;
-                                }
-                                paramAnonymous2DialogInterface = info.this.getSharedPreferences("preferencename", 0).edit();
-                                if (info.2.this.val$currentCourseStatus == 4) {
-                                paramAnonymous2DialogInterface.putInt("courseStat_" + info.2.this.val$arrayID, 3).commit();
-                            }
-                                for (;;)
-                                {
-                                    info.this.startActivity(new Intent(info.this, MainActivity.class));
-                                    return;
-                                    paramAnonymous2DialogInterface.putInt("courseStat_" + info.2.this.val$arrayID, 2).commit();
-                                }
-                            }
-                        });
-                        paramAnonymousView.setMessage("How did you finish the class?").setTitle("Class Result");
-                        paramAnonymousView.create().show();
-                        return;
-                    }
-                    if (i == 3)
-                    {
-                        info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + k, 3).commit();
-                        info.this.startActivity(new Intent(info.this, MainActivity.class));
-                        return;
-                    }
-                    paramAnonymousView = info.this.getSharedPreferences("preferencename", 0).edit();
-                    if (n == 3) {
-                        paramAnonymousView.putInt("courseStat_" + k, 4).commit();
-                    }
-                    for (;;)
-                    {
-                        info.this.startActivity(new Intent(info.this, MainActivity.class));
-                        return;
-                        paramAnonymousView.putInt("courseStat_" + k, 1).commit();
-                    }
-                }
-            });
-            paramBundle = Calendar.getInstance();
-            j = paramBundle.get(1);
-            i = paramBundle.get(1) % 100;
-            if (paramBundle.get(2) < 5) {
-                break label997;
-            }
-            i += 1;
-            label390:
-            paramBundle = choosePathway.courseNum[k].replace(" ", "&code=");
-            paramBundle = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + j + "-" + i + "&prefix=" + paramBundle);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            localObject = (WebView)findViewById(2131624039);
-            ((WebView)localObject).loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
-            ((WebView)localObject).setWebViewClient(new WebViewClient()
-            {
-                public void onPageFinished(WebView paramAnonymousWebView, String paramAnonymousString)
-                {
-                    IncrementalChange localIncrementalChange = $change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onPageFinished.(Landroid/webkit/WebView;Ljava/lang/String;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousString });
-                        return;
-                    }
-                    info.access$100(info.this).setVisibility(8);
-                }
-
-                public void onPageStarted(WebView paramAnonymousWebView, String paramAnonymousString, Bitmap paramAnonymousBitmap)
-                {
-                    IncrementalChange localIncrementalChange = $change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onPageStarted.(Landroid/webkit/WebView;Ljava/lang/String;Landroid/graphics/Bitmap;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousString, paramAnonymousBitmap });
-                        return;
-                    }
-                    info.access$100(info.this).getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
-                    info.access$100(info.this).setVisibility(0);
-                }
-
-                public void onReceivedError(WebView paramAnonymousWebView, int paramAnonymousInt, String paramAnonymousString1, String paramAnonymousString2)
-                {
-                    IncrementalChange localIncrementalChange = $change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;ILjava/lang/String;Ljava/lang/String;)V", new Object[] { this, paramAnonymousWebView, new Integer(paramAnonymousInt), paramAnonymousString1, paramAnonymousString2 });
-                        return;
-                    }
-                    paramAnonymousWebView.loadData("<h1 style='font-size:40px'>Connection Time Out</h1><h3>Course Description could not be loaded. Please check your internet connection and try again.</h3>", "text/html", "utf-8");
-                }
-
-                @TargetApi(23)
-                public void onReceivedError(WebView paramAnonymousWebView, WebResourceRequest paramAnonymousWebResourceRequest, WebResourceError paramAnonymousWebResourceError)
-                {
-                    IncrementalChange localIncrementalChange = $change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;Landroid/webkit/WebResourceError;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousWebResourceRequest, paramAnonymousWebResourceError });
-                        return;
-                    }
-                    onReceivedError(paramAnonymousWebView, paramAnonymousWebResourceError.getErrorCode(), paramAnonymousWebResourceError.getDescription().toString(), paramAnonymousWebResourceRequest.getUrl().toString());
-                }
-
-                public boolean shouldOverrideUrlLoading(WebView paramAnonymousWebView, String paramAnonymousString)
-                {
-                    Object localObject = $change;
-                    if (localObject != null) {
-                        return ((Boolean)((IncrementalChange)localObject).access$dispatch("shouldOverrideUrlLoading.(Landroid/webkit/WebView;Ljava/lang/String;)Z", new Object[] { this, paramAnonymousWebView, paramAnonymousString })).booleanValue();
-                    }
-                    localObject = Calendar.getInstance();
-                    int j = ((Calendar)localObject).get(1);
-                    int i = ((Calendar)localObject).get(1) % 100;
-                    if (((Calendar)localObject).get(2) >= 5) {
-                        i += 1;
-                    }
-                    for (;;)
-                    {
-                        localObject = choosePathway.courseNum[k].replace(" ", "&code=");
-                        localObject = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + j + "-" + i + "&prefix=" + (String)localObject);
-                        Integer localInteger = Integer.valueOf(info.this.prefs.getInt("internet", 1));
-                        Toast.makeText(info.this, String.valueOf(localInteger), 1);
-                        if (localInteger.intValue() != 1) {
-                            break label277;
-                        }
-                        if (Uri.parse(paramAnonymousString).getHost().equals(localObject)) {
-                            break;
-                        }
-                        Log.w("Url GOT", paramAnonymousString);
-                        Log.w("Url3", (String)localObject);
-                        return true;
-                        j -= 1;
-                    }
-                    Log.w("Url GOT", paramAnonymousString);
-                    Log.w("Url3", (String)localObject);
-                    if (info.access$000(info.this)) {
-                        return false;
-                    }
-                    paramAnonymousWebView.loadData("<h1 style='font-size:40px'>No Internet Connection</h1><h3>Course Description could not be loaded. Please check your internet connection and try again.</h3>", "text/html", "utf-8");
-                    return true;
-                    label277:
-                    paramAnonymousWebView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
-                    return true;
-                }
-            });
-            CookieManager.getInstance().setAcceptCookie(false);
-            ((WebView)localObject).getSettings().setJavaScriptEnabled(true);
-            ((WebView)localObject).getSettings().setUserAgentString("User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
-            ((WebView)localObject).getSettings();
-            getResources();
-            float f = getResources().getDisplayMetrics().density;
-            i = (int)(6 * f);
-            ((WebView)localObject).setFocusableInTouchMode(false);
-            ((WebView)localObject).setFocusable(false);
-            ((WebView)localObject).setScrollContainer(false);
-            ((WebView)localObject).getSettings().setSupportZoom(true);
-            ((WebView)localObject).getSettings().setBuiltInZoomControls(true);
-            ((WebView)localObject).getSettings().setDisplayZoomControls(false);
-            ((WebView)localObject).setScrollbarFadingEnabled(false);
-            if (Build.VERSION.SDK_INT < 19) {
-                break label1006;
-            }
-            ((WebView)localObject).getSettings().setLoadWithOverviewMode(true);
-            ((WebView)localObject).getSettings().setUseWideViewPort(true);
-            ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        else if (length == 0) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
+            n3 = 2;
+            Log.w("if/else", "=0");
         }
-        for (;;)
-        {
-            i = this.prefs.getInt("internet", 1);
-            if (choosePathway.pageSwitch[m] != 1) {
-                break label1020;
-            }
-            ((WebView)localObject).setInitialScale(getScale());
-            ((WebView)localObject).getSettings().setLoadWithOverviewMode(false);
-            ((WebView)localObject).getSettings().setUseWideViewPort(false);
-            ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-            ((WebView)localObject).loadDataWithBaseURL("", choosePathway.courseInfo[k], "text/html", "utf-8", "");
-            return;
-            if ((n == 1) || (n == 4))
-            {
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181")));
-                i = 1;
-                break;
-            }
-            if (n == 3)
-            {
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
-                i = 2;
-                break;
-            }
-            if (i1 == 0)
-            {
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
-                i = 2;
-                Log.w("if/else", "=0");
-                break;
-            }
+        else {
             Log.w("if/else", "!=0");
-            j = 1;
-            i = 0;
-            while (i < i1)
-            {
-                int i2 = paramBundle[choosePathway.coursePreRec[m][i]];
-                if ((i2 == 2) || (i2 == 3)) {
-                    j = 0;
+            int n4 = 1;
+            for (int i = 0; i < length; ++i) {
+                final int n5 = loadArrayInt[choosePathway.coursePreRec[n][i]];
+                if (n5 == 2 || n5 == 3) {
+                    n4 = 0;
                 }
-                i += 1;
             }
-            if (j == 1)
-            {
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
-                i = 2;
-                break;
+            if (n4 == 1) {
+                this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
+                n3 = 2;
             }
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#893f4e")));
-            i = 3;
-            break;
-            label949:
-            if (i == 1)
-            {
-                ((Button)localObject).setText("Class End Results");
-                break label339;
+            else {
+                this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#893f4e")));
+                n3 = 3;
             }
-            if (i == 2)
-            {
-                ((Button)localObject).setText("I am currently taking this class");
-                break label339;
-            }
-            if (i != 3) {
-                break label339;
-            }
-            ((Button)localObject).setText("I have permission to take this class");
-            break label339;
-            label997:
-            j -= 1;
-            break label390;
-            label1006:
-            ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
-        label1020:
-        if (Integer.valueOf(i).intValue() == 1)
-        {
-            ((WebView)localObject).loadUrl(paramBundle);
-            Log.w("url:", paramBundle);
-            return;
+        this.getSupportActionBar().setDisplayShowTitleEnabled(false);
+        this.getSupportActionBar().setDisplayShowTitleEnabled(true);
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        final Button button = (Button)this.findViewById(R.id.button); //2131624037
+        if (choosePathway.pageSwitch[n] == 1) {
+            button.setText("Meet with an Adviser");
         }
-        ((WebView)localObject).setInitialScale(getScale());
-        ((WebView)localObject).getSettings().setLoadWithOverviewMode(false);
-        ((WebView)localObject).getSettings().setUseWideViewPort(false);
-        ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        ((WebView)localObject).loadDataWithBaseURL("", "<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8", "");
-    }
+        button.setOnClickListener(new View.OnClickListener() {
 
-    public boolean onOptionsItemSelected(MenuItem paramMenuItem)
-    {
-        boolean bool = true;
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null) {
-            bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
-        }
-        do
-        {
-            return bool;
-            switch (paramMenuItem.getItemId())
-            {
-                default:
-                    return super.onOptionsItemSelected(paramMenuItem);
+            public void onClick(final View view) {
+
+                final String replace = choosePathway.courseNum[int3].replace(" ", "/");
+                if (choosePathway.pageSwitch[n] == 1) {
+                    info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
+                    return;
+                }
+                info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/" + replace)));
             }
-            paramMenuItem = Integer.valueOf(this.prefs.getInt("zoom", 0));
-            if (paramMenuItem.intValue() == 0)
-            {
-                startActivity(new Intent(this, MainActivity.class));
+        });
+        final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
+        if (n3 == 0) {
+            button.setVisibility(View.INVISIBLE); //4
+            button2.setText("I have not successfully completed this class");
+
+        }
+        else if (n3 == 1) {
+            button2.setText("Class End Results");
+        }
+        else if (n3 == 2) {
+            button2.setText("I am currently taking this class");
+        }
+        else if (n3 == 3) {
+            button2.setText("I have permission to take this class");
+        }
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(final View view) {
+
+                if (n3 == 0) {
+                    info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 2).commit();
+                    info.this.startActivity(new Intent((Context)info.this, (Class)MainActivity.class));
+                    return;
+                }
+                if (n3 == 1) {
+                    info.this.startActivity(new Intent((Context)info.this, (Class)alert.class));
+                    return;
+                }
+                if (n3 == 1) {
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(info.this);
+                    alertDialogBuilder.setPositiveButton("Class Passed", new DialogInterface.OnClickListener() {
+
+
+                        public void onClick(final DialogInterface dialogInterface, final int n) {
+
+                            info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
+                            info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
+                        }
+                    });
+                    alertDialogBuilder.setNegativeButton("Class Failed", new DialogInterface.OnClickListener() {
+
+
+                        public void onClick(final DialogInterface dialogInterface, final int n) {
+
+                            final SharedPreferences.Editor edit = info.this.getSharedPreferences("preferencename", 0).edit();
+                            if (n2 == 4) {
+                                edit.putInt("courseStat_" + int3, 3).commit();
+                            }
+                            else {
+                                edit.putInt("courseStat_" + int3, 2).commit();
+                            }
+                            info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
+                        }
+                    });
+                    alertDialogBuilder.setMessage("How did you finish the class?").setTitle("Class Result");
+                    alertDialogBuilder.create().show();
+                    return;
+                }
+                if (n3 == 3) {
+                    info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 3).commit();
+                    info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
+                    return;
+                }
+                final SharedPreferences.Editor edit = info.this.getSharedPreferences("preferencename", 0).edit();
+                if (n2 == 3) {
+                    edit.putInt("courseStat_" + int3, 4).commit();
+                }
+                else {
+                    edit.putInt("courseStat_" + int3, 1).commit();
+                }
+                info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
+            }
+        });
+        final Calendar instance = Calendar.getInstance();
+        int value = instance.get(Calendar.YEAR); //1
+        int n6 = instance.get(Calendar.YEAR) % 100;
+        if (instance.get(Calendar.MONTH) >= 5) { //5
+            ++n6;
+        }
+        else {
+            --value;
+        }
+        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n6 + "&prefix=" + choosePathway.courseNum[int3].replace(" ", "&code="));
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
+        webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
+        webView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(final WebView webView, final String s) {
+
+                info.access$100(info.this).setVisibility(8);
+            }
+
+            public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) {
+
+                info.access$100(info.this).getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
+                info.access$100(info.this).setVisibility(0);
+            }
+
+            public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {
+
+                webView.loadData("<h1 style='font-size:40px'>Connection Time Out</h1><h3>Course Description could not be loaded. Please check your internet connection and try again.</h3>", "text/html", "utf-8");
+            }
+
+            @TargetApi(23)
+            public void onReceivedError(final WebView webView, final WebResourceRequest webResourceRequest, final WebResourceError webResourceError) {
+
+                this.onReceivedError(webView, webResourceError.getErrorCode(), webResourceError.getDescription().toString(), webResourceRequest.getUrl().toString());
+            }
+
+            public boolean shouldOverrideUrlLoading(final WebView webView, final String s) {
+
+                final Calendar instance = Calendar.getInstance();
+                int value = instance.get(Calendar.YEAR); //1
+                int n = instance.get(Calendar.YEAR) % 100; //1
+                if (instance.get(Calendar.MONTH) >= 5) {  //2
+                    ++n;
+                }
+                else {
+                    --value;
+                }
+                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[int3].replace(" ", "&code="));
+                final Integer value3 = info.this.prefs.getInt("internet", 1);
+                Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG);
+                if (value3 != 1) {
+                    webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
+                    return true;
+                }
+                if (!Uri.parse(s).getHost().equals(value2)) {
+                    Log.w("Url GOT", s);
+                    Log.w("Url3", value2);
+                    return true;
+                }
+                Log.w("Url GOT", s);
+                Log.w("Url3", value2);
+                if (info.access$000(info.this)) {
+                    return false;
+                }
+                webView.loadData("<h1 style='font-size:40px'>No Internet Connection</h1><h3>Course Description could not be loaded. Please check your internet connection and try again.</h3>", "text/html", "utf-8");
                 return true;
             }
-        } while (paramMenuItem.intValue() != 1);
-        startActivity(new Intent(this, MainActivityZoomOut.class));
-        return true;
+        });
+        CookieManager.getInstance().setAcceptCookie(false);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setUserAgentString("User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
+        webView.getSettings();
+        this.getResources();
+        final int n7 = (int)(6 * this.getResources().getDisplayMetrics().density);
+        webView.setFocusableInTouchMode(false);
+        webView.setFocusable(false);
+        webView.setScrollContainer(false);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+        webView.setScrollbarFadingEnabled(false);
+        if (Build.VERSION.SDK_INT >= 19) {
+            webView.getSettings().setLoadWithOverviewMode(true);
+            webView.getSettings().setUseWideViewPort(true);
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        }
+        else {
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        }
+        final int int4 = this.prefs.getInt("internet", 1);
+        if (choosePathway.pageSwitch[n] == 1) {
+            webView.setInitialScale(this.getScale());
+            webView.getSettings().setLoadWithOverviewMode(false);
+            webView.getSettings().setUseWideViewPort(false);
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+            webView.loadDataWithBaseURL("", choosePathway.courseInfo[int3], "text/html", "utf-8", "");
+            return;
+        }
+        if (int4 == 1) {
+            webView.loadUrl(value2);
+            Log.w("url:", value2);
+            return;
+        }
+        webView.setInitialScale(this.getScale());
+        webView.getSettings().setLoadWithOverviewMode(false);
+        webView.getSettings().setUseWideViewPort(false);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.loadDataWithBaseURL("", "<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8", "");
     }
 
-    public void onResume()
-    {
-        IncrementalChange localIncrementalChange = $change;
-        if (localIncrementalChange != null) {
-            localIncrementalChange.access$dispatch("onResume.()V", new Object[] { this });
-        }
-        for (;;)
-        {
-            return;
+    public boolean onOptionsItemSelected(final MenuItem menuItem) {
+        boolean booleanValue = true;
+
+
+            switch (menuItem.getItemId()) {
+                default: {
+                    return super.onOptionsItemSelected(menuItem);
+                }
+
+                case 16908332: {    // FIXME: 6/27/2016
+                    final Integer value = this.prefs.getInt("zoom", 0);
+                    if (value == 0) {
+                        this.startActivity(new Intent(this, (Class)MainActivity.class));
+                        return true;
+                    }
+                    if (value == 1) {
+                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
+                        return true;
+                    }
+                    break;
+                }
+            }
+
+        return booleanValue;
+    }
+
+    public void onResume() {
+
+
             super.onResume();
             this.c = this;
-            if ((ConnectivityManager)this.c.getSystemService("connectivity") != null) {
-                try
-                {
-                    boolean bool = InetAddress.getByName("google.com").equals("");
-                    if (bool) {}
+            if (this.c.getSystemService("connectivity") != null) {
+                try {
+                    if (InetAddress.getByName("google.com").equals("")) {
+                        return;
+                    }
                 }
-                catch (Exception localException) {}
+                catch (Exception ex) {}
             }
-        }
+
     }
 }
