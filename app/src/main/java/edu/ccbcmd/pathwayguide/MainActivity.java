@@ -1,8 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -22,7 +19,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -81,7 +77,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
     public void onClick(View view) {
 
-        Intent intent = new Intent((Context)this, (Class)info.class);
+        Intent intent = new Intent(this, info.class);
         this.prefs.edit().putString("choosenID", String.valueOf(view.getId())).commit();
         this.startActivity(intent);
     }
@@ -149,10 +145,10 @@ public class MainActivity extends Activity implements View.OnClickListener
                 n3 = n5;
                 n2 = n6;
             }
-             AlarmManager alarmManager = (AlarmManager)this.getSystemService("alarm");
+             AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
              Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent.addCategory("android.intent.category.DEFAULT");
-             PendingIntent broadcast = PendingIntent.getBroadcast((Context)this, 100, intent, 134217728);
+             PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
              Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
             instance3.set(Calendar.DATE, 1); //5
             instance3.set(Calendar.MONTH, n3); //2
@@ -174,16 +170,19 @@ public class MainActivity extends Activity implements View.OnClickListener
             Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
         }
         if (value2 == -1) {
-            this.startActivity(new Intent((Context)this, (Class)choosePathway.class));
+            this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
         this.load2DArray("courseName");
          int[] loadArrayInt = this.loadArrayInt("courseStat");
         Integer.parseInt(this.prefs.getString("choosenID", "0"));
-        new RelativeLayout((Context)this);
-         LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
+        new RelativeLayout(this);
+
+        /*Refactored linearLayout2, was originally named linearLayout but it calls the same obj
+        * as the commented out line a page down. just making note in case of problems*/
+        LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
         final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1); //2131624045
-        scrollView.post((Runnable)new Runnable() {
+        scrollView.post(new Runnable() {
            // public static volatile /* synthetic */ IncrementalChange $change;
 
             @Override
@@ -197,40 +196,40 @@ public class MainActivity extends Activity implements View.OnClickListener
                 scrollView.fullScroll(130);
             }
         });
-         ImageView imageView = new ImageView((Context)this);
+         ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.grad); //2130837591
-        imageView.setLayoutParams((ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -2));
-         LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); // 2131624046
+        imageView.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+         //LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); // 2131624046
          Resources resources = this.getResources();
         imageView.getLayoutParams().height = Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
-        linearLayout2.addView((View)imageView);
+        linearLayout2.addView(imageView);
         int i;
         for (int n7 = i = choosePathway.subpathwayCoursePath[value][value2].length; i > 0; --i) {
              float density = this.getResources().getDisplayMetrics().density;
              int n8 = (int)(13 * density);
              int n9 = (int)(2.2 * density);
-             Button button = new Button((Context)this);
+             Button button = new Button(this);
              int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
-            button.setText((CharSequence)choosePathway.courseNum[id]);
+            button.setText(choosePathway.courseNum[id]);
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
             button.setGravity(1);
             button.setGravity(17);
             button.setTextSize(1, 14.0f);
-            button.setTypeface((Typeface)null, 1);
+            button.setTypeface(null, 1);
             if (i != n7) {
                 layoutParams.setMargins(n9, n9, n9, n9);
             }
             else {
                 layoutParams.setMargins(n9, (int)(5.0f * density), n9, n9);
             }
-            button.setLayoutParams((ViewGroup.LayoutParams)layoutParams);
-            button.setTag((Object)id);
+            button.setLayoutParams(layoutParams);
+            button.setTag(id);
             button.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
             button.setId(id);
-            button.setOnClickListener((View.OnClickListener)this);
+            button.setOnClickListener(this);
              int length = choosePathway.coursePreRec[id].length;
             Log.w("Prereclangth:", String.valueOf(length));
              int n10 = loadArrayInt[id];
@@ -268,45 +267,45 @@ public class MainActivity extends Activity implements View.OnClickListener
                     button.setBackgroundColor(Color.parseColor("#893f4e"));
                 }
             }
-            linearLayout.addView((View)button);
+            linearLayout2.addView(button);
              LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)button.getLayoutParams();
-            layoutParams2.gravity = 17;
-            button.setLayoutParams((ViewGroup.LayoutParams)layoutParams2);
+            layoutParams2.gravity = Gravity.CENTER; //17
+            button.setLayoutParams(layoutParams2);
         }
          float density2 = this.getResources().getDisplayMetrics().density;
          int n13 = (int)(13 * density2);
          int n14 = (int)(2.2 * density2);
-         NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView((Context)this);
-        nonBreakingPeriodTextView.setText((CharSequence)(choosePathway.sub_pathwayName[value][value2] + "\nPathway"), TextView.BufferType.EDITABLE);
+         NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView(this);
+        nonBreakingPeriodTextView.setText((choosePathway.sub_pathwayName[value][value2] + "\nPathway"), TextView.BufferType.EDITABLE);
          LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
         nonBreakingPeriodTextView.setPadding(n13, n13, n13, n13);
         nonBreakingPeriodTextView.setGravity(16);
         nonBreakingPeriodTextView.setGravity(1);
         nonBreakingPeriodTextView.setGravity(17);
         nonBreakingPeriodTextView.setTextSize(1, 14.0f);
-        nonBreakingPeriodTextView.setTypeface((Typeface)null, 1);
+        nonBreakingPeriodTextView.setTypeface(null, 1);
         layoutParams3.setMargins(n14, n14, n14, n14);
-        nonBreakingPeriodTextView.setLayoutParams((ViewGroup.LayoutParams)layoutParams3);
+        nonBreakingPeriodTextView.setLayoutParams(layoutParams3);
         nonBreakingPeriodTextView.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
         nonBreakingPeriodTextView.setTextColor(Color.parseColor("#ffffff"));
-        linearLayout.addView((View)nonBreakingPeriodTextView);
+        linearLayout2.addView(nonBreakingPeriodTextView);
          LinearLayout.LayoutParams layoutParams4 = (LinearLayout.LayoutParams)nonBreakingPeriodTextView.getLayoutParams();
         layoutParams4.gravity = Gravity.CENTER; //17
-        nonBreakingPeriodTextView.setLayoutParams((ViewGroup.LayoutParams)layoutParams4);
-        ((ImageButton)this.findViewById(R.id.zoomout)).setOnClickListener((View.OnClickListener)new View.OnClickListener() { //2131624047
+        nonBreakingPeriodTextView.setLayoutParams(layoutParams4);
+        (this.findViewById(R.id.zoomout)).setOnClickListener(new View.OnClickListener() { //2131624047
 
 
             public void onClick( View view) {
 
-                MainActivity.this.startActivity(new Intent((Context)MainActivity.this, (Class)MainActivityZoomOut.class));
+                MainActivity.this.startActivity(new Intent(MainActivity.this, (Class)MainActivityZoomOut.class));
             }
         });
-        ((ImageButton)this.findViewById(R.id.button2)).setOnClickListener((View.OnClickListener)new View.OnClickListener() { //2131624022
+        (this.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() { //2131624022
 
 
             public void onClick( View view) {
 
-                MainActivity.this.startActivity(new Intent((Context)MainActivity.this, (Class)Settings.class));
+                MainActivity.this.startActivity(new Intent(MainActivity.this, (Class)Settings.class));
             }
         });
     }
@@ -319,7 +318,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             Log.w("counter", String.valueOf(int1));
             int n;
             if (int1 == 5) {
-                this.startActivity(new Intent((Context)this, (Class)blackboardReminder.class));
+                this.startActivity(new Intent(this, (Class)blackboardReminder.class));
                 n = 1;
             }
             else {
@@ -328,7 +327,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             this.prefs.edit().putInt("opencount", n).commit();
         }
         if (this.prefs.getBoolean("firstrun", true)) {
-            this.startActivity(new Intent((Context)this, (Class)choosePathway.class));
+            this.startActivity(new Intent(this, (Class)choosePathway.class));
         }
          String string = this.prefs.getString("notifydate", "00/00/0000");
          Calendar instance = Calendar.getInstance();
@@ -376,10 +375,10 @@ public class MainActivity extends Activity implements View.OnClickListener
                 n3 = value2 + 1;
                 Log.w("THIS YEAR (bottom)", "True" + n3);
             }
-             AlarmManager alarmManager = (AlarmManager)this.getSystemService("alarm");
+             AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
              Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent.addCategory("android.intent.category.DEFAULT");
-             PendingIntent broadcast = PendingIntent.getBroadcast((Context)this, 100, intent, 134217728);
+             PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
              Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
             instance3.set(Calendar.DATE, 1); //5
             instance3.set(Calendar.MONTH, n2); //2
@@ -453,7 +452,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             instance4.set(Calendar.SECOND, 0); //13
              Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent2.addCategory("android.intent.category.DEFAULT");
-             PendingIntent broadcast2 = PendingIntent.getBroadcast((Context)this, 100, intent2, 134217728);
+             PendingIntent broadcast2 = PendingIntent.getBroadcast(this, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
             if (Build.VERSION.SDK_INT >= 19) {
                 alarmManager.setExact(0, instance4.getTimeInMillis(), broadcast2);
             }
@@ -467,7 +466,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         else {
             Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
         }
-         AlarmManager alarmManager2 = (AlarmManager)this.getSystemService("alarm");
+         AlarmManager alarmManager2 = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
          Calendar instance5 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
         int value4 = Calendar.getInstance().get(Calendar.MONTH); //2
         switch (value4) {
@@ -528,7 +527,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         instance5.set(Calendar.SECOND, 0); //13
          Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
         intent3.addCategory("android.intent.category.DEFAULT_Blackboard");
-         PendingIntent broadcast3 = PendingIntent.getBroadcast((Context)this, 100, intent3, 134217728);
+         PendingIntent broadcast3 = PendingIntent.getBroadcast(this, 100, intent3, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
         if (Build.VERSION.SDK_INT >= 19) {
             alarmManager2.setExact(0, instance5.getTimeInMillis(), broadcast3);
             return;
