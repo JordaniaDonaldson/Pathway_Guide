@@ -4,150 +4,156 @@ package edu.ccbcmd.pathwayguide;
  * Created by dixo8 on 6/24/2016.
  */
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Build.VERSION;
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
-public class NotificationActivity
-        extends AppCompatActivity
+
+        import android.content.res.Resources;
+        import android.app.PendingIntent;
+        import android.app.AlarmManager;
+        import android.os.Build;
+        import android.util.Log;
+        import java.util.Calendar;
+        import java.util.Locale;
+        import java.util.TimeZone;
+
+        import android.widget.Button;
+        import android.graphics.drawable.BitmapDrawable;
+        import android.graphics.BitmapFactory;
+
+        import android.graphics.drawable.Drawable;
+
+        import android.content.Context;
+
+        import android.view.MenuItem;
+
+        import android.net.Uri;
+
+        import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+
+        import android.content.SharedPreferences;
+
+        import android.support.v7.app.AppCompatActivity;
+
+        import fd.IncrementalChange;
+
+public class NotificationActivity extends AppCompatActivity
 {
+
     public SharedPreferences prefs;
-
-    public NotificationActivity() {}
-
-    NotificationActivity(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
-
-    public void onCreate(Bundle paramBundle)
-    {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+/*
+    public NotificationActivity() {
+        final IncrementalChange $change = NotificationActivity.$change;
+        if ($change != null) {
+            final Object[] array = { null };
+            array[0] = array;
+            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
+        }
+        else {}
+        if ($change != null) {
+            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/NotificationActivity;)V", new Object[] { this });
             return;
         }
-        super.onCreate(paramBundle);
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        setContentView(R.layout.activity_notification); //2130968619
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("It's time to register!");
-        paramBundle = getResources();
-        getSupportActionBar().setHomeButtonEnabled(true);
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, R.drawable.header));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        ((Button)findViewById(R.id.button7)).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            { //2131624057
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
+        this.prefs = null;
+    }
+*/
+    /*
+    NotificationActivity(final Object[] array, final InstantReloadException ex) {
+        final String s = (String)array[0];
+        switch (s.hashCode()) {
+            default: {
+                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/NotificationActivity"));
+            }
+            case -2089128195: {}
+            case -1975292385: {
+                this();
+            }
+        }
+    }
+*/
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        this.setContentView(R.layout.activity_notification); //2130968619
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("It's time to register!");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
+        ((Button)this.findViewById(R.id.button7)).setOnClickListener(new View.OnClickListener() { //2131624057
+
+
+            public void onClick(final View view) {
+
                 NotificationActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd-bb.blackboard.com")));
             }
         });
-        ((Button)findViewById(R.id.cant)).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            { //2131624055
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
-                NotificationActivity.this.startActivity(new Intent(NotificationActivity.this, cantRegister.class));
+        ((Button)this.findViewById(R.id.cant)).setOnClickListener(new View.OnClickListener() { //2131624055
+
+
+            public void onClick(final View view) {
+
+                NotificationActivity.this.startActivity(new Intent(NotificationActivity.this, (Class)cantRegister.class));
             }
         });
-        ((Button)findViewById(R.id.this1)).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            { //2131624056
-                Object localObject = IncrementalChange.$change;
-                if (localObject != null)
-                {
-                    ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
-                paramAnonymousView = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-                paramAnonymousView.set(1, Calendar.getInstance().get(1));
-                paramAnonymousView.set(2, Calendar.getInstance().get(2));
-                paramAnonymousView.set(5, Calendar.getInstance().get(5));
-                paramAnonymousView.add(5, 1);
-                int i = paramAnonymousView.get(2);
-                int j = paramAnonymousView.get(1);
-                int k = paramAnonymousView.get(5);
-                Log.w("Notify Cal", i + "/" + k + "/" + j);
-                paramAnonymousView = (AlarmManager)NotificationActivity.this.getSystemService("alarm");
-                localObject = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                ((Intent)localObject).addCategory("android.intent.category.DEFAULT");
-                localObject = PendingIntent.getBroadcast(NotificationActivity.this, 100, (Intent)localObject, 134217728);
-                Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-                localCalendar.set(5, k);
-                localCalendar.set(2, i);
-                localCalendar.set(1, j);
-                localCalendar.set(11, 10);
-                localCalendar.set(12, 0);
-                localCalendar.set(13, 0);
+        ((Button)this.findViewById(R.id.this1)).setOnClickListener(new View.OnClickListener() { //2131624056
+           
+            public void onClick(final View view) {
+              
+                final Calendar instance = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+                instance.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR)); //1, 1
+                instance.set(Calendar.MONTH, Calendar.getInstance().get(Calendar.MONTH)); //2, 2
+                instance.set(Calendar.DATE, Calendar.getInstance().get(Calendar.DATE)); //5, 5
+                instance.add(Calendar.DATE, 1); //5
+                final int value = instance.get(Calendar.MONTH); //2
+                final int value2 = instance.get(Calendar.YEAR); //1
+                final int value3 = instance.get(Calendar.DATE); //5
+                Log.w("Notify Cal", value + "/" + value3 + "/" + value2);
+                final AlarmManager alarmManager = (AlarmManager)NotificationActivity.this.getSystemService(Context.ALARM_SERVICE); //"alarm"
+                final Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+                intent.addCategory("android.intent.category.DEFAULT");
+                final PendingIntent broadcast = PendingIntent.getBroadcast(NotificationActivity.this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
+                final Calendar instance2 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+                instance2.set(Calendar.DATE, value3); //5
+                instance2.set(Calendar.MONTH, value); //2
+                instance2.set(Calendar.YEAR, value2); //1
+                instance2.set(Calendar.HOUR_OF_DAY, 10); //11
+                instance2.set(Calendar.MINUTE, 0); //12
+                instance2.set(Calendar.SECOND, 0); //13
                 if (Build.VERSION.SDK_INT >= 19) {
-                    paramAnonymousView.setExact(0, localCalendar.getTimeInMillis(), (PendingIntent)localObject);
+                    alarmManager.setExact(0, instance2.getTimeInMillis(), broadcast);
                 }
-                for (;;)
-                {
-                    NotificationActivity.this.startActivity(new Intent(NotificationActivity.this, MainActivity.class));
-                    return;
-                    paramAnonymousView.set(0, localCalendar.getTimeInMillis(), (PendingIntent)localObject);
+                else {
+                    alarmManager.set(0, instance2.getTimeInMillis(), broadcast);
                 }
+                NotificationActivity.this.startActivity(new Intent(NotificationActivity.this, (Class)MainActivity.class));
             }
         });
     }
 
-    public boolean onOptionsItemSelected(MenuItem paramMenuItem)
-    {
-        boolean bool = true;
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
-        }
-        do
-        {
-            return bool;
-            switch (paramMenuItem.getItemId())
-            {
-                default:
-                    return super.onOptionsItemSelected(paramMenuItem);
+    public boolean onOptionsItemSelected(final MenuItem menuItem) {
+        boolean booleanValue = true;
+        
+        
+            switch (menuItem.getItemId()) {
+                default: {
+                    return super.onOptionsItemSelected(menuItem);
+                }
+                case 16908332: { // FIXME: 6/27/2016
+                    final Integer value = this.prefs.getInt("zoom", 0);
+                    if (value == 0) {
+                        this.startActivity(new Intent(this, (Class)MainActivity.class));
+                        return true;
+                    }
+                    if (value == 1) {
+                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
+                        return true;
+                    }
+                    break;
+                }
             }
-            paramMenuItem = Integer.valueOf(this.prefs.getInt("zoom", 0));
-            if (paramMenuItem.intValue() == 0)
-            {
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            }
-        } while (paramMenuItem.intValue() != 1);
-        startActivity(new Intent(this, MainActivityZoomOut.class));
-        return true;
+        
+        return booleanValue;
     }
 }

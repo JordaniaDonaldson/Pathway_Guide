@@ -2,84 +2,60 @@ package edu.ccbcmd.pathwayguide;
 
 
 
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class cantRegister
-        extends AppCompatActivity
+        import android.content.res.Resources;
+
+        import android.widget.Button;
+        import android.graphics.drawable.BitmapDrawable;
+        import android.graphics.BitmapFactory;
+
+        import android.net.Uri;
+
+        import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+
+        import android.support.v7.app.AppCompatActivity;
+
+public class cantRegister extends AppCompatActivity
 {
-    public cantRegister() {}
 
-    cantRegister(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
 
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(2130968603);
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("What's the issue?");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        paramBundle = (Button)findViewById(2131624028);
-        localObject = (Button)findViewById(2131624027);
-        Button localButton = (Button)findViewById(2131624026);
-        paramBundle.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
+
+
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_cant_register); //2130968603
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("What's the issue?");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header ))); //2130837594
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        final Button button = (Button)this.findViewById(R.id.cantMoney); //2131624028
+        final Button button2 = (Button)this.findViewById(R.id.cantKids); //2131624027
+        final Button button3 = (Button)this.findViewById(R.id.other); //2131624026
+        button.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
                 cantRegister.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/financialaid")));
             }
         });
-        ((Button)localObject).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
+        button2.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
                 cantRegister.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Childcare-Services.aspx")));
             }
         });
-        localButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
+        button3.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
                 cantRegister.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/resources-for-students")));
             }
         });

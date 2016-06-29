@@ -2,88 +2,98 @@ package edu.ccbcmd.pathwayguide;
 
 
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
 
-public class alert
-        extends Activity {
+        import android.widget.Button;
+
+        import android.content.Context;
+
+        import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+
+        import android.content.SharedPreferences;
+
+        import android.app.Activity;
+
+        import fd.IncrementalChange;
+
+public class alert extends Activity
+{
+   // public static volatile /* synthetic */ IncrementalChange $change;
     public SharedPreferences prefs;
-
+/*
     public alert() {
-    }
-
-    alert(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException) {
-        this();
-    }
-
-    public int[] loadArrayInt(String paramString) {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null) {
-            return (int[]) ((IncrementalChange) localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[]{this, paramString});
+        final IncrementalChange $change = alert.$change;
+        if ($change != null) {
+            final Object[] array = { null };
+            array[0] = array;
+            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
         }
-        localObject = getSharedPreferences("preferencename", 0);
-        int j = ((SharedPreferences) localObject).getInt(paramString + "_size", 0);
-        int[] arrayOfInt = new int[j];
-        int i = 0;
-        while (i < j) {
-            arrayOfInt[i] = ((SharedPreferences) localObject).getInt(paramString + "_" + i, 1);
-            i += 1;
-        }
-        return arrayOfInt;
-    }
-
-    public void onCreate(Bundle paramBundle) {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[]{this, paramBundle});
+        else {}
+        if ($change != null) {
+            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/alert;)V", new Object[] { this });
             return;
         }
-        super.onCreate(paramBundle);
+        this.prefs = null;
+    }
 
-        setContentView(R.layout.activity_alert);  //2130968601
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final int j = this.prefs.getInt("pathwayID", -1);
-        int k = this.prefs.getInt("pathwaysubID", -1);
-        final int i = Integer.parseInt(this.prefs.getString("choosenID", "0"));
-        j = choosePathway.subpathwayCoursePath[Integer.valueOf(j).intValue()][Integer.valueOf(k).intValue()][i];
-        j = loadArrayInt("courseStat")[j];
-        paramBundle = (Button) findViewById(R.id.buttonCollect); //2131624021
-        ((Button) findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) { //2131624022
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[]{this, paramAnonymousView});
-                    return;
-                }
-                alert.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + i, 0).commit();
-                alert.this.startActivity(new Intent(alert.this, MainActivity.class));
+    alert(final Object[] array, final InstantReloadException ex) {
+        final String s = (String)array[0];
+        switch (s.hashCode()) {
+            default: {
+                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/alert"));
+            }
+            case -1230767868: {}
+            case 1037210181: {
+                this();
+            }
+        }
+    }
+*/
+    public int[] loadArrayInt(final String s) {
+
+        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
+        final int int1 = sharedPreferences.getInt(s + "_size", 0);
+        final int[] array = new int[int1];
+        for (int i = 0; i < int1; ++i) {
+            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
+        }
+        return array;
+    }
+
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_alert); //2130968601
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final int int1 = this.prefs.getInt("pathwayID", -1);
+        final int int2 = this.prefs.getInt("pathwaysubID", -1);
+        final int int3 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
+        final int n = this.loadArrayInt("courseStat")[choosePathway.subpathwayCoursePath[int1][int2][int3]];
+        final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
+        ((Button)this.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() { //2131624022
+
+
+            public void onClick(final View view) {
+
+                alert.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
+                alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });
-        paramBundle.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View paramAnonymousView) {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[]{this, paramAnonymousView});
-                    return;
+        button.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
+                final SharedPreferences.Editor edit = alert.this.getSharedPreferences("preferencename", 0).edit();
+                if (n == 4) {
+                    edit.putInt("courseStat_" + int3, 3).commit();
                 }
-                paramAnonymousView = alert.this.getSharedPreferences("preferencename", 0).edit();
-                if (j == 4) {
-                    paramAnonymousView.putInt("courseStat_" + i, 3).commit();
+                else {
+                    edit.putInt("courseStat_" + int3, 2).commit();
                 }
-                for (; ; ) {
-                    alert.this.startActivity(new Intent(alert.this, MainActivity.class));
-                    return;
-                    paramAnonymousView.putInt("courseStat_" + i, 2).commit();
-                }
+                alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });
     }
