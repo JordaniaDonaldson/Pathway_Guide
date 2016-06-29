@@ -78,21 +78,16 @@ public class demo_info extends AppCompatActivity
 
 
 
-  // public static /* synthetic */ boolean access.000(final demo_info demo_info) {
-  //     final IncrementalChange .change = demo_info..change;
- //      if (.change != null) {
- //          return (boolean).change.access.dispatch("access.000.(Lcom/example/nicholas/buttontest/demo_info;)Z", new Object[] { demo_info });
- //      }
- //      return demo_info.isConnected;
- //  }
-    public boolean isThisConnected(){return isConnected;}
- //   public static /* synthetic */ ProgressBar access.100(final demo_info demo_info) {
-//        final IncrementalChange .change = demo_info..change;
-//        if (.change != null) {
- //           return (ProgressBar).change.access.dispatch("access.100.(Lcom/example/nicholas/buttontest/demo_info;)Landroid/widget/ProgressBar;", new Object[] { demo_info });
-//        }
- //       return demo_info.mPbar;
- //   }
+   public static /* synthetic */ boolean access$000(final demo_info demo_info) {
+
+       return demo_info.isConnected;
+  }
+    public boolean isThisConnected(){return isConnected;} // TODO: 6/29/2016 is this necessary? why not just check variable directly?
+
+   public static /* synthetic */ ProgressBar access$100(final demo_info demo_info) {
+
+       return demo_info.mPbar;
+}
 
     private int getScale() {
 
@@ -175,14 +170,16 @@ public class demo_info extends AppCompatActivity
 
 
             public void onPageFinished(final WebView webView, final String s) {
-
-                this.setVisibility(8); // FIXME: 6/28/2016
+                /* I _think_ the line I added is what was needed. */
+                webView.setVisibility(View.GONE); //8
+               // this.setVisibility(); //8 // FIXME: 6/28/2016
             }
 
             public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) { // FIXME: 6/28/2016
+/* changed <this> to <mPbar>. see if it works. */
+                mPbar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
+                mPbar.setVisibility(View.VISIBLE); //0
 
-                this.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
-                this.setVisibility(0);
             }
 
             public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {
@@ -209,7 +206,7 @@ public class demo_info extends AppCompatActivity
                 }
                 final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[int1].replace(" ", "&code="));
                 final Integer value3 = demo_info.this.prefs.getInt("internet", 1);
-                Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1
+                Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1 // FIXME: 6/29/2016 When is this meant to be displayed?
                 if (value3 != 1) {
                     webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet setting's found in the menu.</h3>", "text/html", "utf-8");
                     return true;
@@ -250,7 +247,7 @@ public class demo_info extends AppCompatActivity
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
         final Integer value3 = this.prefs.getInt("internet", 1);
-        Toast.makeText(this, String.valueOf(value3), Toast.LENGTH_LONG); //1
+        Toast.makeText(this, String.valueOf(value3), Toast.LENGTH_LONG); //1 // FIXME: 6/29/2016 when is this meant to be displayed?
         if (value3 == 1) {
             webView.loadUrl(value2);
             Log.w("url:", value2);
@@ -270,8 +267,9 @@ public class demo_info extends AppCompatActivity
                 new MaterialShowcaseView.Builder(demo_info.this).setTarget(demo_info.this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText("Update Course Status").setDismissOnTargetTouch(true).setDismissOnTouch(true).setTargetTouchable(true).setContentText("Click the button to update the course status").show(); //2131624038
             }
         });
-        final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
-        button2.setText("Class End Results");
+       final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
+
+        button2.setText("Class End Results"); // FIXME: 6/29/2016 text bs
         button2.setOnClickListener(new View.OnClickListener() {
 
 
@@ -298,7 +296,7 @@ public class demo_info extends AppCompatActivity
             default: {
                 return super.onOptionsItemSelected(menuItem);
             }
-            case 16908332: { // FIXME: 6/28/2016
+            case 16908332: { // FIXME: 6/28/2016 is this correct?
                 this.finish();
                 return true;
             }

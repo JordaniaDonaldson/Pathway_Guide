@@ -54,7 +54,7 @@ public class webView extends AppCompatActivity
             public boolean shouldOverrideUrlLoading(final WebView webView, final String s) {
                 boolean booleanValue = false;
 
-               if (!webView.access$000(webView.this)) { // FIXME: 6/29/2016
+               if (!access$000(webView.this)) { // FIXME: 6/29/2016 was originally <webView.access$000(etc)>, verify correct.
                     webView.loadData("<h1>MESSAGE 1</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
                     return true;
                 }

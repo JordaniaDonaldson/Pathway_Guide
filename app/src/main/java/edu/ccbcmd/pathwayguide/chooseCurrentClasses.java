@@ -136,7 +136,7 @@ public class chooseCurrentClasses extends AppCompatActivity
 
             public void onClick(final View view) {
                 // FIXME: 6/29/2016
-                chooseCurrentClasses.access.000(chooseCurrentClasses.this, (ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16))//2131624032
+                chooseCurrentClasses.access$000(chooseCurrentClasses.this, (ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16)); //2131624032
             }
         });
     }

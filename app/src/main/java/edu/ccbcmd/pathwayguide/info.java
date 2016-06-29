@@ -50,7 +50,6 @@ import android.widget.Toast;
 
         import android.support.v7.app.AppCompatActivity;
 
-import fd.IncrementalChange;
 
 public class info extends AppCompatActivity
 {
@@ -66,21 +65,16 @@ public class info extends AppCompatActivity
         this.isConnected = true;
         this.prefs = null;
     }
-/*
-    info(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/info"));
-            }
-            case -2089128195: {}
-            case 1642888083: {
-                this();
-            }
-        }
-    }
-    */
 
+    public static /* synthetic */ boolean access$000(final info info) {
+
+        return info.isConnected;
+    }
+
+    public static /* synthetic */ ProgressBar access$100(final info info) {
+
+        return info.mPbar;
+    }
 
 
     private int getScale() {
@@ -263,13 +257,13 @@ public class info extends AppCompatActivity
 
             public void onPageFinished(final WebView webView, final String s) {
 
-                info.access$100(info.this).setVisibility(8);
+                info.access$100(info.this).setVisibility(View.GONE); //8
             }
 
             public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) {
 
                 info.access$100(info.this).getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
-                info.access$100(info.this).setVisibility(0);
+                info.access$100(info.this).setVisibility(View.VISIBLE); //0
             }
 
             public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {
@@ -296,7 +290,7 @@ public class info extends AppCompatActivity
                 }
                 final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[int3].replace(" ", "&code="));
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
-                Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG);
+                Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG); // FIXME: 6/29/2016 display when?
                 if (value3 != 1) {
                     webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
                     return true;
@@ -366,7 +360,7 @@ public class info extends AppCompatActivity
                     return super.onOptionsItemSelected(menuItem);
                 }
 
-                case 16908332: {    // FIXME: 6/27/2016
+                case 16908332: {    // FIXME: 6/27/2016 is this correct?
                     final Integer value = this.prefs.getInt("zoom", 0);
                     if (value == 0) {
                         this.startActivity(new Intent(this, (Class)MainActivity.class));
@@ -388,7 +382,7 @@ public class info extends AppCompatActivity
 
             super.onResume();
             this.c = this;
-            if (this.c.getSystemService("connectivity") != null) {
+            if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
                 try {
                     if (InetAddress.getByName("google.com").equals("")) {
                         return;

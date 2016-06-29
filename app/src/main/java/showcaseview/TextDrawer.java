@@ -28,6 +28,8 @@ import android.text.TextUtils;
 import android.text.style.MetricAffectingSpan;
 import android.text.style.TextAppearanceSpan;
 
+import edu.ccbcmd.pathwayguide.R;
+
 /**
  * Draws the text as required by the ShowcaseView
  */
