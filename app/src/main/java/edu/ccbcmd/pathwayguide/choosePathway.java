@@ -67,7 +67,13 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         }
         this.prefs = null;
         this.courseStat = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+    } */
+    public choosePathway() {
+        this.prefs = null;
+        this.courseStat = new int []{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
     }
+
+        /*
 
     choosePathway(final Object[] array, final InstantReloadException ex) {
         final String s = (String)array[0];

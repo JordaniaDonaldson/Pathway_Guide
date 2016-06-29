@@ -41,10 +41,7 @@ public class chooseCurrentClasses extends AppCompatActivity
     public SharedPreferences prefs;
 
 
-    public static /* synthetic */ void access$000(final chooseCurrentClasses chooseCurrentClasses, final ViewGroup viewGroup) {
 
-        chooseCurrentClasses.loopQuestions(viewGroup);
-    }
 
     public static int getColor(final Context context, final int n) {
 
@@ -64,7 +61,7 @@ public class chooseCurrentClasses extends AppCompatActivity
                 if (n >= length) {
                     break Label_0182;
                 }
-                while (true) {
+                while (n < length) {
                     try {
                         final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(n);
                         int n2;
@@ -80,14 +77,16 @@ public class chooseCurrentClasses extends AppCompatActivity
                         }
                         ++n;
                         continue Label_0170_Outer;
-                        this.startActivity(new Intent(this, (Class)MainActivity.class));
+
                     }
                     catch (Exception ex) {
                         continue;
                     }
-                    break;
+
                 }
+
             }
+            this.startActivity(new Intent(this, (Class)MainActivity.class));
         }
     }
 
@@ -135,8 +134,8 @@ public class chooseCurrentClasses extends AppCompatActivity
 
 
             public void onClick(final View view) {
-                // FIXME: 6/29/2016
-                chooseCurrentClasses.access$000(chooseCurrentClasses.this, (ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16)); //2131624032
+
+                loopQuestions((ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16));//2131624032
             }
         });
     }
