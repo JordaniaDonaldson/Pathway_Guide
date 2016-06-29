@@ -116,6 +116,7 @@ public class chooseCompletedClasses extends AppCompatActivity
 
             public void onClick(final View view) {
                 // FIXME: 6/28/2016
+
                 chooseCompletedClasses.access.000(chooseCompletedClasses.this, (ViewGroup)chooseCompletedClasses.this.findViewById(R.id.linearLayout15))//2131624031
             }
         });
