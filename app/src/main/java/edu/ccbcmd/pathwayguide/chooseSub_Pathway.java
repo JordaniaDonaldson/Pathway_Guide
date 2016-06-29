@@ -60,11 +60,11 @@ public class chooseSub_Pathway
                     return;
                 }
             }
-            catch (ArrayIndexOutOfBoundsException paramView)
+            catch (ArrayIndexOutOfBoundsException parameView)
             {
                 this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
                 this.prefs.getInt("pathwayID", -1);
-                Toast.makeText(this, "The Sub-Pathway you selected is not currently available in this app. Please visit ccbcmd.edu/pathways to view more info on this pathway.", 1).show();
+                Toast.makeText(this, "The Sub-Pathway you selected is not currently available in this app. Please visit ccbcmd.edu/pathways to view more info on this pathway.", Toast.LENGTH_LONG).show();
                 return;
             }
             localObject = new Intent(this, MainActivity.class);
