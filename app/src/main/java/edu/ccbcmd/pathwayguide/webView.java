@@ -49,7 +49,7 @@ public class webView
         }
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_web_view); //2130968623
-        paramBundle = getIntent().getStringExtra("url");
+        String _paramBundle = getIntent().getStringExtra("url");
         getSupportActionBar().setHomeButtonEnabled(true);
         localObject = findViewById(R.id.webView); //2131624059
         ((WebView)localObject).setWebViewClient(new WebViewClient()
@@ -106,8 +106,8 @@ public class webView
         for (;;)
         {
             ((WebView)localObject).getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/4.0");
-            ((WebView)localObject).loadUrl(paramBundle);
-            Log.w("url:", paramBundle);
+            ((WebView)localObject).loadUrl(_paramBundle);
+            Log.w("url:", _paramBundle);
             return;
             ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
@@ -115,10 +115,7 @@ public class webView
 
     public void onResume()
     {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            localIncrementalChange.access$dispatch("onResume.()V", this);
-        }
+
         do
         {
             return;

@@ -85,7 +85,7 @@ public class demo_info extends AppCompatActivity
  //      }
  //      return demo_info.isConnected;
  //  }
-
+    public boolean isThisConnected(){return isConnected;}
  //   public static /* synthetic */ ProgressBar access.100(final demo_info demo_info) {
 //        final IncrementalChange .change = demo_info..change;
 //        if (.change != null) {
@@ -176,13 +176,13 @@ public class demo_info extends AppCompatActivity
 
             public void onPageFinished(final WebView webView, final String s) {
 
-                demo_info.access.100(demo_info.this).setVisibility(8); // FIXME: 6/28/2016
+                this.setVisibility(8); // FIXME: 6/28/2016
             }
 
             public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) { // FIXME: 6/28/2016
 
-                demo_info.access.100(demo_info.this).getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
-                demo_info.access.100(demo_info.this).setVisibility(0);
+                this.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
+                this.setVisibility(0);
             }
 
             public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {
@@ -221,7 +221,7 @@ public class demo_info extends AppCompatActivity
                 }
                 Log.w("Url GOT", s);
                 Log.w("Url3", value2);
-                if (demo_info.access.000(demo_info.this)) { // FIXME: 6/28/2016
+                if (!isThisConnected()) {
                     return false;
                 }
                 webView.loadData("<h1 style='font-size:40px'>No Internet Connection</h1><h3>Course Description could not be loaded. Please check your internet connection and try again</h3>", "text/html", "utf-8");

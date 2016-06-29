@@ -39,7 +39,7 @@ public class splash
             return;
         }
         super.onCreate(_paramBundle);
-        setContentView(2130968622);
+        setContentView(R.layout.activity_splash); //2130968622);
         AnimationDrawable paramBundle =  new AnimationDrawable();
         paramBundle.addFrame(getResources().getDrawable(R.drawable.splash), 2000);
         paramBundle.addFrame(getResources().getDrawable(R.drawable.social), 1500);
