@@ -51,7 +51,7 @@ public class blackboardReminder extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_blackboard_reminder); //2130968602
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
-        ((Button)this.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() { //2131624022
+        this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
 
             public void onClick(final View view) {

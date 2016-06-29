@@ -51,7 +51,7 @@ public class Settings
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
@@ -63,13 +63,13 @@ public class Settings
         getSupportActionBar().setBackgroundDrawable(paramBundle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        ((TextView)findViewById(R.id.settings)).setVisibility(4); //2131624052
+        findViewById(R.id.settings).setVisibility(4); //2131624052
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         int i = this.prefs.getInt("pathwayID", 0);
         int j = this.prefs.getInt("pathwaysubID", 0);
         paramBundle = choosePathway.sub_pathwayName[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()];
         paramBundle = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" }); /* 2130968621, 2131624052*/
-        localObject = (ListView)findViewById(R.id.settingslist); //2131624050
+        localObject = findViewById(R.id.settingslist); //2131624050
         ((ListView)localObject).setAdapter(paramBundle);
         ((ListView)localObject).setClickable(true);
         ((ListView)localObject).setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -78,7 +78,7 @@ public class Settings
             {
                 Object localObject = IncrementalChange.$change;
                 if (localObject != null) {
-                    ((IncrementalChange)localObject).access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", new Object[] { this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong) });
+                    ((IncrementalChange)localObject).access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong));
                 }
                 do
                 {
@@ -109,7 +109,7 @@ public class Settings
                                         IncrementalChange localIncrementalChange = IncrementalChange.$change;
                                         if (localIncrementalChange != null)
                                         {
-                                            localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
+                                            localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int));
                                             return;
                                         }
                                         paramAnonymous2DialogInterface = Settings.this.prefs.edit();
@@ -177,7 +177,7 @@ public class Settings
         boolean bool = true;
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
+            bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", this, paramMenuItem)).booleanValue();
         }
         do
         {

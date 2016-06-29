@@ -35,7 +35,7 @@ public class internet_setting
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
-            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
@@ -61,7 +61,7 @@ public class internet_setting
                     IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
-                        localIncrementalChange.access$dispatch("onCheckedChanged.(Landroid/widget/CompoundButton;Z)V", new Object[] { this, paramAnonymousCompoundButton, new Boolean(paramAnonymousBoolean) });
+                        localIncrementalChange.access$dispatch("onCheckedChanged.(Landroid/widget/CompoundButton;Z)V", this, paramAnonymousCompoundButton, new Boolean(paramAnonymousBoolean));
                         return;
                     }
                     if (paramAnonymousBoolean)

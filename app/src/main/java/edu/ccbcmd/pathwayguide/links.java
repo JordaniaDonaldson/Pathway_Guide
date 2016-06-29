@@ -39,7 +39,7 @@ public class links
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
@@ -51,13 +51,13 @@ public class links
         getSupportActionBar().setBackgroundDrawable(paramBundle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        ((TextView)findViewById(2131624052)).setVisibility(4);
+        findViewById(2131624052).setVisibility(4);
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         int i = this.prefs.getInt("pathwayID", 0);
         int j = this.prefs.getInt("pathwaysubID", 0);
         paramBundle = choosePathway.sub_pathwayName[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()];
         paramBundle = new ArrayAdapter(this, 2130968621, 2131624052, new String[] { "CCBC", "Blackboard", "My CCBC", "Simon", "Book Store", "Meet With An Advisor", "Resources For Students", "Course Catalog", "Flex-Reg", "Tutoring and Academic Coaching", "Disability Programs and Services" });
-        localObject = (ListView)findViewById(2131624050);
+        localObject = findViewById(2131624050);
         ((ListView)localObject).setAdapter(paramBundle);
         ((ListView)localObject).setClickable(true);
         ((ListView)localObject).setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -67,7 +67,7 @@ public class links
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", new Object[] { this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong) });
+                    localIncrementalChange.access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong));
                     return;
                 }
                 switch (paramAnonymousInt)

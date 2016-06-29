@@ -44,14 +44,14 @@ public class webView
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_web_view); //2130968623
         paramBundle = getIntent().getStringExtra("url");
         getSupportActionBar().setHomeButtonEnabled(true);
-        localObject = (WebView)findViewById(R.id.webView); //2131624059
+        localObject = findViewById(R.id.webView); //2131624059
         ((WebView)localObject).setWebViewClient(new WebViewClient()
         {
             public void onReceivedError(WebView paramAnonymousWebView, int paramAnonymousInt, String paramAnonymousString1, String paramAnonymousString2)
@@ -59,7 +59,7 @@ public class webView
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;ILjava/lang/String;Ljava/lang/String;)V", new Object[] { this, paramAnonymousWebView, new Integer(paramAnonymousInt), paramAnonymousString1, paramAnonymousString2 });
+                    localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;ILjava/lang/String;Ljava/lang/String;)V", this, paramAnonymousWebView, new Integer(paramAnonymousInt), paramAnonymousString1, paramAnonymousString2);
                     return;
                 }
                 paramAnonymousWebView.loadData("<h1 style='font-size:40px'>MESSAGE 2</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
@@ -71,7 +71,7 @@ public class webView
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;Landroid/webkit/WebResourceError;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousWebResourceRequest, paramAnonymousWebResourceError });
+                    localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;Landroid/webkit/WebResourceError;)V", this, paramAnonymousWebView, paramAnonymousWebResourceRequest, paramAnonymousWebResourceError);
                     return;
                 }
                 onReceivedError(paramAnonymousWebView, paramAnonymousWebResourceError.getErrorCode(), paramAnonymousWebResourceError.getDescription().toString(), paramAnonymousWebResourceRequest.getUrl().toString());
@@ -82,7 +82,7 @@ public class webView
                 boolean bool = false;
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
-                    bool = ((Boolean)localIncrementalChange.access$dispatch("shouldOverrideUrlLoading.(Landroid/webkit/WebView;Ljava/lang/String;)Z", new Object[] { this, paramAnonymousWebView, paramAnonymousString })).booleanValue();
+                    bool = ((Boolean)localIncrementalChange.access$dispatch("shouldOverrideUrlLoading.(Landroid/webkit/WebView;Ljava/lang/String;)Z", this, paramAnonymousWebView, paramAnonymousString)).booleanValue();
                 }
                 while (webView.access$000(webView.this)) {
                     return bool;
@@ -117,14 +117,14 @@ public class webView
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            localIncrementalChange.access$dispatch("onResume.()V", new Object[] { this });
+            localIncrementalChange.access$dispatch("onResume.()V", this);
         }
         do
         {
             return;
             super.onResume();
             this.c = this;
-        } while ((ConnectivityManager)this.c.getSystemService("connectivity") == null);
+        } while (this.c.getSystemService("connectivity") == null);
         try
         {
             if (InetAddress.getByName("google.com").equals(""))

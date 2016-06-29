@@ -30,7 +30,7 @@ public class ShowNotification
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            return (IBinder)localIncrementalChange.access$dispatch("onBind.(Landroid/content/Intent;)Landroid/os/IBinder;", new Object[] { this, paramIntent });
+            return (IBinder)localIncrementalChange.access$dispatch("onBind.(Landroid/content/Intent;)Landroid/os/IBinder;", this, paramIntent);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class ShowNotification
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.()V", new Object[] { this });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.()V", this);
             return;
         }
         super.onCreate();

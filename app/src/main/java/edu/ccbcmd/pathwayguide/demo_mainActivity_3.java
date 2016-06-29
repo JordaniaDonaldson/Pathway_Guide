@@ -46,7 +46,7 @@ public class demo_mainActivity_3
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("presentShowcaseSequence.(I)V", new Object[] { this, new Integer(paramInt) });
+            ((IncrementalChange)localObject).access$dispatch("presentShowcaseSequence.(I)V", this, new Integer(paramInt));
             return;
         }
         localObject = new MaterialShowcaseSequence(this);
@@ -56,7 +56,7 @@ public class demo_mainActivity_3
             {
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onShow.(Luk/co/deanwild/materialshowcaseview/MaterialShowcaseView;I)V", new Object[] { this, paramAnonymousMaterialShowcaseView, new Integer(paramAnonymousInt) });
+                    localIncrementalChange.access$dispatch("onShow.(Luk/co/deanwild/materialshowcaseview/MaterialShowcaseView;I)V", this, paramAnonymousMaterialShowcaseView, new Integer(paramAnonymousInt));
                 }
             }
         });
@@ -69,7 +69,7 @@ public class demo_mainActivity_3
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Object[] { new Integer(paramInt) })).intValue();
+            return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Integer(paramInt))).intValue();
         }
         return (int)(paramInt * Resources.getSystem().getDisplayMetrics().density);
     }
@@ -79,7 +79,7 @@ public class demo_mainActivity_3
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
-            localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
+            localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramView);
             return;
         }
         new MaterialShowcaseView.Builder(this).setTarget(this.b1).withRectangleShape().setDismissText("Okay").setTitleText("Click Here").setContentText("Click on <put class name here> to open the classes detail window.").setShapePadding(pxToDp(5)).setMaskColour(Color.parseColor("#F1335075")).setDelay(100).show();
@@ -90,15 +90,15 @@ public class demo_mainActivity_3
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
         setContentView(2130968611);
         getSupportActionBar().hide();
         paramBundle = getResources();
-        localObject = (LinearLayout)findViewById(2131624046);
-        ((Button)findViewById(2131624022)).setOnClickListener(this);
+        localObject = findViewById(2131624046);
+        findViewById(2131624022).setOnClickListener(this);
         float f = getResources().getDisplayMetrics().density;
         int i = (int)(13 * f);
         int j = (int)(2.2D * f);
@@ -141,7 +141,7 @@ public class demo_mainActivity_3
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                     return;
                 }
                 demo_mainActivity_3.this.startActivity(new Intent(demo_mainActivity_3.this, demo_info_2.class));
@@ -200,7 +200,7 @@ public class demo_mainActivity_3
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
-            localIncrementalChange.access$dispatch("onResume.()V", new Object[] { this });
+            localIncrementalChange.access$dispatch("onResume.()V", this);
             return;
         }
         super.onResume();

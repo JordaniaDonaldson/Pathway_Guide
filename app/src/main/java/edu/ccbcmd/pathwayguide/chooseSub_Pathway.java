@@ -41,7 +41,7 @@ public class chooseSub_Pathway
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
+            ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", this, paramView);
             return;
         }
         for (;;)
@@ -75,7 +75,7 @@ public class chooseSub_Pathway
     {
         Object localObject = IncrementalChange.$change;
         if (localObject != null) {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
         }
         for (;;)
         {
@@ -90,7 +90,7 @@ public class chooseSub_Pathway
             getSupportActionBar().setBackgroundDrawable(paramBundle);
             this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
             paramBundle = Integer.valueOf(this.prefs.getInt("pathwayID", -1));
-            localObject = (LinearLayout)findViewById(2131624035);
+            localObject = findViewById(2131624035);
             int j = choosePathway.sub_pathwayName[paramBundle.intValue()].length;
             int i = 0;
             while (i < j)

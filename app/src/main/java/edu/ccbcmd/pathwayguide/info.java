@@ -194,11 +194,11 @@ public class info extends AppCompatActivity
 
                 if (n3 == 0) {
                     info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 2).commit();
-                    info.this.startActivity(new Intent((Context)info.this, (Class)MainActivity.class));
+                    info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
                 if (n3 == 1) {
-                    info.this.startActivity(new Intent((Context)info.this, (Class)alert.class));
+                    info.this.startActivity(new Intent(info.this, (Class)alert.class));
                     return;
                 }
                 if (n3 == 1) {

@@ -43,7 +43,7 @@ public class demo_info_2
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Object[] { new Integer(paramInt) })).intValue();
+            return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Integer(paramInt))).intValue();
         }
         return (int)(paramInt * Resources.getSystem().getDisplayMetrics().density);
     }
@@ -52,7 +52,7 @@ public class demo_info_2
     {
         Object localObject = IncrementalChange.$change;
         if (localObject != null) {
-            return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
+            return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", this, paramString);
         }
         localObject = getSharedPreferences("preferencename", 0);
         int j = ((SharedPreferences)localObject).getInt(paramString + "_size", 0);
@@ -71,7 +71,7 @@ public class demo_info_2
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
-            localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
+            localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramView);
             return;
         }
         new MaterialShowcaseView.Builder(this).setTarget(findViewById(2131624038)).setDismissText("Okay").setTitleText("Click Here").withRectangleShape().setShapePadding(pxToDp(5)).setMaskColour(Color.parseColor("#F1335075")).setContentText("Click on 'I'm currently taking this class' to update the course status to indicate that your are currently taking the class.").setDelay(100).show();
@@ -82,7 +82,7 @@ public class demo_info_2
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
-            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
@@ -98,8 +98,8 @@ public class demo_info_2
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        ((Button)findViewById(2131624037)).setOnClickListener(this);
-        ((Button)findViewById(2131624041)).setOnClickListener(this);
+        findViewById(2131624037).setOnClickListener(this);
+        findViewById(2131624041).setOnClickListener(this);
         paramBundle = (Button)findViewById(2131624038);
         paramBundle.setText("I'm currently taking this class");
         paramBundle.setOnClickListener(new View.OnClickListener()
@@ -109,7 +109,7 @@ public class demo_info_2
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                     return;
                 }
                 demo_info_2.this.startActivity(new Intent(demo_info_2.this, demo_mainActivity_3.class));
@@ -121,7 +121,7 @@ public class demo_info_2
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            return ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
+            return ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", this, paramMenuItem)).booleanValue();
         }
         switch (paramMenuItem.getItemId())
         {

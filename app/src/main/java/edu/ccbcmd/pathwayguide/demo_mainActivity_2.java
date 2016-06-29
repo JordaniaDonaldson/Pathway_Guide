@@ -50,7 +50,7 @@ public class demo_mainActivity_2
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("presentShowcaseSequence.(I)V", new Object[] { this, new Integer(paramInt) });
+            ((IncrementalChange)localObject).access$dispatch("presentShowcaseSequence.(I)V", this, new Integer(paramInt));
             return;
         }
         localObject = new MaterialShowcaseSequence(this);
@@ -60,7 +60,7 @@ public class demo_mainActivity_2
             {
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onShow.(Luk/co/deanwild/materialshowcaseview/MaterialShowcaseView;I)V", new Object[] { this, paramAnonymousMaterialShowcaseView, new Integer(paramAnonymousInt) });
+                    localIncrementalChange.access$dispatch("onShow.(Luk/co/deanwild/materialshowcaseview/MaterialShowcaseView;I)V", this, paramAnonymousMaterialShowcaseView, new Integer(paramAnonymousInt));
                 }
             }
         });
@@ -72,7 +72,7 @@ public class demo_mainActivity_2
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Object[] { new Integer(paramInt) })).intValue();
+            return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Integer(paramInt))).intValue();
         }
         return (int)(paramInt * Resources.getSystem().getDisplayMetrics().density);
     }
@@ -81,7 +81,7 @@ public class demo_mainActivity_2
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
+            localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramView);
         }
     }
 
@@ -90,31 +90,31 @@ public class demo_mainActivity_2
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
         setContentView(2130968611);
         getSupportActionBar().hide();
         paramBundle = getResources();
-        localObject = (LinearLayout)findViewById(2131624046);
-        ((ImageButton)findViewById(2131624047)).setOnClickListener(new View.OnClickListener()
+        localObject = findViewById(2131624046);
+        findViewById(2131624047).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
             {
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                 }
             }
         });
-        ((ImageButton)findViewById(2131624022)).setOnClickListener(new View.OnClickListener()
+        findViewById(2131624022).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
             {
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                 }
             }
         });
@@ -160,7 +160,7 @@ public class demo_mainActivity_2
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                     return;
                 }
                 demo_mainActivity_2.this.startActivity(new Intent(demo_mainActivity_2.this, demo_info_2.class));
@@ -213,13 +213,13 @@ public class demo_mainActivity_2
         this.b3.setLayoutParams(paramBundle);
         this.b3.setOnClickListener(this);
         presentShowcaseSequence(500);
-        ((TextView)findViewById(2131624083)).setOnClickListener(new View.OnClickListener()
+        findViewById(2131624083).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
             {
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                 }
                 do
                 {

@@ -30,7 +30,7 @@ public class demo_alert
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onBackPressed.()V", new Object[] { this });
+            ((IncrementalChange)localObject).access$dispatch("onBackPressed.()V", this);
             return;
         }
         localObject = new Intent();
@@ -44,13 +44,13 @@ public class demo_alert
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
             return;
         }
         super.onCreate(paramBundle);
         setContentView(2130968608);
         paramBundle = (Button)findViewById(2131624021);
-        localObject = (Button)findViewById(2131624022);
+        localObject = findViewById(2131624022);
         paramBundle.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
@@ -58,7 +58,7 @@ public class demo_alert
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                     return;
                 }
                 paramAnonymousView = Toast.makeText(demo_alert.this, "For this walkthrough, please select 'I Passed'", 0);
@@ -73,7 +73,7 @@ public class demo_alert
                 IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
+                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
                     return;
                 }
                 demo_alert.this.startActivity(new Intent(demo_alert.this, demo_mainActivity_2.class));
@@ -85,7 +85,7 @@ public class demo_alert
     {
         IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
-            return ((Boolean)localIncrementalChange.access$dispatch("onKeyDown.(ILandroid/view/KeyEvent;)Z", new Object[] { this, new Integer(paramInt), paramKeyEvent })).booleanValue();
+            return ((Boolean)localIncrementalChange.access$dispatch("onKeyDown.(ILandroid/view/KeyEvent;)Z", this, new Integer(paramInt), paramKeyEvent)).booleanValue();
         }
         if ((Integer.parseInt(Build.VERSION.SDK) > 5) && (paramInt == 4) && (paramKeyEvent.getRepeatCount() == 0))
         {

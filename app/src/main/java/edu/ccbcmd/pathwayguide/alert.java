@@ -72,7 +72,7 @@ public class alert extends Activity
         final int int3 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
         final int n = this.loadArrayInt("courseStat")[choosePathway.subpathwayCoursePath[int1][int2][int3]];
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
-        ((Button)this.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() { //2131624022
+        this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
 
             public void onClick(final View view) {

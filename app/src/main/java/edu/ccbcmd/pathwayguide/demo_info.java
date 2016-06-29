@@ -111,12 +111,12 @@ public class demo_info extends AppCompatActivity
 
             }
         });
-        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder((Activity)this).setDelay(n).setTarget(this.findViewById(R.id.descriptionwebview)).setDismissText((CharSequence)"Next").setTitleText((CharSequence)"Course Info").setContentText((CharSequence)"Shown here will be the CCBC Catalog listing for the course.").withRectangleShape().build()); //2131624039
-        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder((Activity)this).setDelay(n).setTarget(new View((Context)this)).setDismissText((CharSequence)"Next").setTitleText((CharSequence)"Course Info").setContentText((CharSequence)"Displaying the course info requires data. You may disable this feature in the menu to prevent using any data. Please note however that the course info will not be displayed.").withRectangleShape().build());
-        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder((Activity)this).setTarget(this.findViewById(R.id.button)).withRectangleShape().setDismissText((CharSequence)"Next").setContentText((CharSequence)"This button will take you to the CCBC registration page for the course.").build()); //2131624037
-        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder((Activity)this).setTarget(this.findViewById(R.id.colorChange)).withRectangleShape().setDismissText((CharSequence)"Next").setContentText((CharSequence)"This button will update the course status accordingly. Because this course is currently purple (you are currently taking this course), the course update is asking how you did in the course.").build()); //2131624038
-        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder((Activity)this).setTarget(new View((Context)this)).withRectangleShape().setDismissText((CharSequence)"Let's Go").setContentText((CharSequence)"Now let's try updating this course to indicate that you passed the course!").build());
-        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder((Activity)this).setTarget(this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText((CharSequence)"Update Course Status").setDismissOnTargetTouch(true).setTargetTouchable(true).setContentText((CharSequence)"Click the button to update the course status").build()); //2131624038
+        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder(this).setDelay(n).setTarget(this.findViewById(R.id.descriptionwebview)).setDismissText("Next").setTitleText("Course Info").setContentText("Shown here will be the CCBC Catalog listing for the course.").withRectangleShape().build()); //2131624039
+        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder(this).setDelay(n).setTarget(new View(this)).setDismissText("Next").setTitleText("Course Info").setContentText("Displaying the course info requires data. You may disable this feature in the menu to prevent using any data. Please note however that the course info will not be displayed.").withRectangleShape().build());
+        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder(this).setTarget(this.findViewById(R.id.button)).withRectangleShape().setDismissText("Next").setContentText("This button will take you to the CCBC registration page for the course.").build()); //2131624037
+        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder(this).setTarget(this.findViewById(R.id.colorChange)).withRectangleShape().setDismissText("Next").setContentText("This button will update the course status accordingly. Because this course is currently purple (you are currently taking this course), the course update is asking how you did in the course.").build()); //2131624038
+        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder(this).setTarget(new View(this)).withRectangleShape().setDismissText("Let's Go").setContentText("Now let's try updating this course to indicate that you passed the course!").build());
+        materialShowcaseSequence.addSequenceItem(new MaterialShowcaseView.Builder(this).setTarget(this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText("Update Course Status").setDismissOnTargetTouch(true).setTargetTouchable(true).setContentText("Click the button to update the course status").build()); //2131624038
         materialShowcaseSequence.start();
     }
 
@@ -130,7 +130,7 @@ public class demo_info extends AppCompatActivity
 
             super.onActivityResult(n, n2, intent);
             if (n == 2 && n2 == -1) {
-                new MaterialShowcaseView.Builder((Activity)this).setTarget(this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText((CharSequence)"Update Course Status").setDismissOnTargetTouch(true).setDismissOnTouch(true).setTargetTouchable(true).setContentText((CharSequence)"Click the button to update the course status").show(); //2131624038
+                new MaterialShowcaseView.Builder(this).setTarget(this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText("Update Course Status").setDismissOnTargetTouch(true).setDismissOnTouch(true).setTargetTouchable(true).setContentText("Click the button to update the course status").show(); //2131624038
             }
 
     }
@@ -151,9 +151,9 @@ public class demo_info extends AppCompatActivity
         (this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0)).getInt("pathwayID", -1);
         this.prefs.getInt("pathwaysubID", -1);
         final int int1 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
-        ((TextView)this.findViewById(R.id.textView)).setText((CharSequence)"Introduction to College Writing"); //2131624036
-        this.getSupportActionBar().setTitle((CharSequence)"ENGL 101");
-        this.getSupportActionBar().setBackgroundDrawable((Drawable)new ColorDrawable(Color.parseColor("#644181")));
+        ((TextView)this.findViewById(R.id.textView)).setText("Introduction to College Writing"); //2131624036
+        this.getSupportActionBar().setTitle("ENGL 101");
+        this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181")));
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
@@ -171,7 +171,7 @@ public class demo_info extends AppCompatActivity
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview); //2131624039
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
-        webView.setWebViewClient((WebViewClient)new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient() {
 
 
             public void onPageFinished(final WebView webView, final String s) {
@@ -209,7 +209,7 @@ public class demo_info extends AppCompatActivity
                 }
                 final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[int1].replace(" ", "&code="));
                 final Integer value3 = demo_info.this.prefs.getInt("internet", 1);
-                Toast.makeText((Context)demo_info.this, (CharSequence)String.valueOf(value3), Toast.LENGTH_LONG); //1
+                Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1
                 if (value3 != 1) {
                     webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet setting's found in the menu.</h3>", "text/html", "utf-8");
                     return true;
@@ -250,7 +250,7 @@ public class demo_info extends AppCompatActivity
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
         final Integer value3 = this.prefs.getInt("internet", 1);
-        Toast.makeText((Context)this, (CharSequence)String.valueOf(value3), Toast.LENGTH_LONG); //1
+        Toast.makeText(this, String.valueOf(value3), Toast.LENGTH_LONG); //1
         if (value3 == 1) {
             webView.loadUrl(value2);
             Log.w("url:", value2);
@@ -262,22 +262,22 @@ public class demo_info extends AppCompatActivity
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             webView.loadDataWithBaseURL("", "<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet setting's found in the menu.</h3>", "text/html", "utf-8", "");
         }
-        button.setOnClickListener((View.OnClickListener)new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
 
 
             public void onClick(final View view) {
 
-                new MaterialShowcaseView.Builder((Activity)demo_info.this).setTarget(demo_info.this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText((CharSequence)"Update Course Status").setDismissOnTargetTouch(true).setDismissOnTouch(true).setTargetTouchable(true).setContentText((CharSequence)"Click the button to update the course status").show(); //2131624038
+                new MaterialShowcaseView.Builder(demo_info.this).setTarget(demo_info.this.findViewById(R.id.colorChange)).withRectangleShape().setTargetTouchable(true).setTitleText("Update Course Status").setDismissOnTargetTouch(true).setDismissOnTouch(true).setTargetTouchable(true).setContentText("Click the button to update the course status").show(); //2131624038
             }
         });
         final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
-        button2.setText((CharSequence)"Class End Results");
-        button2.setOnClickListener((View.OnClickListener)new View.OnClickListener() {
+        button2.setText("Class End Results");
+        button2.setOnClickListener(new View.OnClickListener() {
 
 
             public void onClick(final View view) {
 
-                demo_info.this.startActivityForResult(new Intent((Context)demo_info.this, (Class)demo_alert.class), 2);
+                demo_info.this.startActivityForResult(new Intent(demo_info.this, (Class)demo_alert.class), 2);
             }
         });
         this.presentShowcaseSequence(500);
@@ -309,7 +309,7 @@ public class demo_info extends AppCompatActivity
 
 
             super.onResume();
-            this.c = (Context)this;
+            this.c = this;
             if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
                 try {
                     if (InetAddress.getByName("google.com").equals("")) {

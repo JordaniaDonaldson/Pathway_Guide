@@ -4,168 +4,136 @@ package edu.ccbcmd.pathwayguide;
  * Created by dixo8 on 6/24/2016.
  */
 
+
+
+
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+
 import android.os.Build;
-import android.os.Build.VERSION;
-import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.graphics.Color;
+
+import android.content.res.ColorStateList;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
-import materialshowcaseview.MaterialShowcaseView;
-import materialshowcaseview.MaterialShowcaseView.Builder;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
+import android.widget.CheckBox;
+import android.support.v4.content.ContextCompat;
 
-public class chooseCurrentClasses
-        extends AppCompatActivity
+import android.content.Context;
+
+import android.view.View;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.ViewGroup;
+
+import android.content.SharedPreferences;
+
+import android.support.v7.app.AppCompatActivity;
+
+import materialshowcaseview.MaterialShowcaseView;
+
+public class chooseCurrentClasses extends AppCompatActivity
 {
+
     public SharedPreferences prefs;
 
-    public chooseCurrentClasses() {}
 
-    chooseCurrentClasses(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
 
-    public static final int getColor(Context paramContext, int paramInt)
-    {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            return ((Number)localIncrementalChange.access$dispatch("getColor.(Landroid/content/Context;I)I", new Object[] { paramContext, new Integer(paramInt) })).intValue();
-        }
+
+    public static int getColor(final Context context, final int n) {
+
         if (Build.VERSION.SDK_INT >= 23) {
-            return ContextCompat.getColor(paramContext, paramInt);
+            return ContextCompat.getColor(context, n);
         }
-        return paramContext.getResources().getColor(paramInt);
+        return context.getResources().getColor(n);
     }
 
-    private void loopQuestions(ViewGroup paramViewGroup)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("loopQuestions.(Landroid/view/ViewGroup;)V", new Object[] { this, paramViewGroup });
-            return;
-        }
-        int i = this.prefs.getInt("pathwayID", 0);
-        int j = this.prefs.getInt("pathwaysubID", 0);
-        int k = choosePathway.subpathwayCoursePath[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()].length;
-        i = 0;
-        if (i < k) {
-            for (;;)
-            {
-                try
-                {
-                    localObject = (CheckBox)paramViewGroup.getChildAt(i);
-                    if (!((CheckBox)localObject).isChecked()) {
+    private void loopQuestions(final ViewGroup viewGroup) {
+
+        final int length = choosePathway.subpathwayCoursePath[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)].length;
+        int n = 0;
+        Label_0170_Outer:
+        while (true) { // FIXME: 6/29/2016 This method doesn't even seem to be called? maybe comment out/ignore?
+            Label_0182: {
+                if (n >= length) {
+                    break Label_0182;
+                }
+                while (true) {
+                    try {
+                        final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(n);
+                        int n2;
+                        if (checkBox.isChecked()) {
+                            n2 = 1;
+                        }
+                        else {
+                            n2 = 0;
+                        }
+                        final int id = checkBox.getId();
+                        if (n2 == 1) {
+                            this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + id, 1).commit();
+                        }
+                        ++n;
+                        continue Label_0170_Outer;
+                        this.startActivity(new Intent(this, (Class)MainActivity.class));
+                    }
+                    catch (Exception ex) {
                         continue;
                     }
-                    j = 1;
-                    int m = ((CheckBox)localObject).getId();
-                    if (j == 1) {
-                        getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + m, 1).commit();
-                    }
+                    break;
                 }
-                catch (Exception localException)
-                {
-                    continue;
-                }
-                i += 1;
-                break;
-                //j = 0;
             }
         }
-        startActivity(new Intent(this, MainActivity.class));
     }
 
-    public int[] loadArrayInt(String paramString)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null) {
-            return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
+    public int[] loadArrayInt(final String s) {
+
+        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
+        final int int1 = sharedPreferences.getInt(s + "_size", 0);
+        final int[] array = new int[int1];
+        for (int i = 0; i < int1; ++i) {
+            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
         }
-        localObject = getSharedPreferences("preferencename", 0);
-        int j = ((SharedPreferences)localObject).getInt(paramString + "_size", 0);
-        int[] arrayOfInt = new int[j];
-        int i = 0;
-        while (i < j)
-        {
-            arrayOfInt[i] = ((SharedPreferences)localObject).getInt(paramString + "_" + i, 1);
-            i += 1;
-        }
-        return arrayOfInt;
+        return array;
     }
 
     @TargetApi(23)
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(2130968605);
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("Choose Classes");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getResources();
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        paramBundle = loadArrayInt("courseStat");
-        localObject = Integer.valueOf(this.prefs.getInt("pathwayID", 0));
-        Integer localInteger = Integer.valueOf(this.prefs.getInt("pathwaysubID", 0));
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_choose_current_classes); //2130968605
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("Choose Classes");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.getResources();
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final int[] loadArrayInt = this.loadArrayInt("courseStat");
+        final Integer value = this.prefs.getInt("pathwayID", 0);
+        final Integer value2 = this.prefs.getInt("pathwaysubID", 0);
         new RelativeLayout(this);
-        LinearLayout localLinearLayout = (LinearLayout)findViewById(2131624032);
-        int j = choosePathway.subpathwayCoursePath[localObject.intValue()][localInteger.intValue()].length;
-        int i = 0;
-        while (i < j)
-        {
-            int k = choosePathway.subpathwayCoursePath[localObject.intValue()][localInteger.intValue()][i];
-            if (paramBundle[i] == 2)
-            {
-                CheckBox localCheckBox = new CheckBox(this);
-                localCheckBox.setText(choosePathway.courseNum[k] + ": " + choosePathway.courseName[k]);
-                localCheckBox.setId(k);
-                localCheckBox.setButtonTintList(ColorStateList.valueOf(getColor(this, 2131558446)));
-                localLinearLayout.addView(localCheckBox);
+        final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout16); //2131624032
+        for (int length = choosePathway.subpathwayCoursePath[value][value2].length, i = 0; i < length; ++i) {
+            final int id = choosePathway.subpathwayCoursePath[value][value2][i];
+            if (loadArrayInt[i] == 2) {
+                final CheckBox checkBox = new CheckBox(this);
+                checkBox.setText((choosePathway.courseNum[id] + ": " + choosePathway.courseName[id]));
+                checkBox.setId(id);
+                checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
+                linearLayout.addView(checkBox);
             }
-            i += 1;
         }
         new MaterialShowcaseView.Builder(this).setTarget(new View(this)).setDismissText("Okay").setTitleText("Please select the courses that you are currently taking").withRectangleShape().setMaskColour(Color.parseColor("#F1335075")).setContentText("Please check any of the courses that your are currently taking. If you are not currently taking any courses, please leave everything blank.").setDelay(100).show();
-        ((Button)findViewById(2131624033)).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }
-                paramAnonymousView = (LinearLayout)chooseCurrentClasses.this.findViewById(2131624032);
-                chooseCurrentClasses.access$000(chooseCurrentClasses.this, paramAnonymousView);
+        this.findViewById(R.id.current).setOnClickListener(new View.OnClickListener() { //2131624033
+
+
+            public void onClick(final View view) {
+                // FIXME: 6/29/2016
+                chooseCurrentClasses.access.000(chooseCurrentClasses.this, (ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16))//2131624032
             }
         });
     }

@@ -35,7 +35,7 @@ public class splash
         Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, _paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, _paramBundle);
             return;
         }
         super.onCreate(_paramBundle);
@@ -48,7 +48,7 @@ public class splash
         paramBundle.addFrame(getResources().getDrawable(R.drawable.arts), 1500);
         paramBundle.addFrame(getResources().getDrawable(R.drawable.business), 2000);
         paramBundle.setOneShot(true);
-        localObject = (ImageView)findViewById(2131624058);
+        localObject = findViewById(2131624058);
         if (Build.VERSION.SDK_INT < 16) {
             ((ImageView)localObject).setImageDrawable(paramBundle);
         }
@@ -62,7 +62,7 @@ public class splash
                     Object localObject = IncrementalChange.$change;
                     if (localObject != null)
                     {
-                        ((IncrementalChange)localObject).access$dispatch("run.()V", new Object[] { this });
+                        ((IncrementalChange)localObject).access$dispatch("run.()V", this);
                         return;
                     }
                     localObject = splash.this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
