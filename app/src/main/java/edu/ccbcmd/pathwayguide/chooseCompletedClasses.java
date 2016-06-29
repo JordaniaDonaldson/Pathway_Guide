@@ -106,7 +106,7 @@ public class chooseCompletedClasses
         Integer ___paramBundle = Integer.valueOf(this.prefs.getInt("pathwayID", 0));
         Integer _localObject = Integer.valueOf(this.prefs.getInt("pathwaysubID", 0));
         new RelativeLayout(this);
-        LinearLayout localLinearLayout = (LinearLayout)findViewById(2131624031);
+        LinearLayout localLinearLayout = (LinearLayout)findViewById(R.id.linearLayout15);
         int j = choosePathway.subpathwayCoursePath[___paramBundle.intValue()][_localObject.intValue()].length;
         int i = 0;
         while (i < j)
@@ -122,7 +122,7 @@ public class chooseCompletedClasses
             i += 1;
         }
         new MaterialShowcaseView.Builder(this).setTarget(new View(this)).setDismissText("Okay").setTitleText("Please select the courses that you have completed").withRectangleShape().setMaskColour(Color.parseColor("#F1335075")).setContentText("Please select the courses that you are sure you have successfully completed. If you are a transfer student, talk with your advisor to determine what courses will transfer.").setDelay(100).show();
-        ((Button)findViewById(2131624030)).setOnClickListener(new View.OnClickListener()
+        ((Button)findViewById(R.id.completed)).setOnClickListener(new View.OnClickListener()  //2131624030
         {
             public void onClick(View paramAnonymousView)
             {
@@ -132,8 +132,8 @@ public class chooseCompletedClasses
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
                     return;
                 }*/
-                paramAnonymousView = (LinearLayout)chooseCompletedClasses.this.findViewById(2131624031);
-                chooseCompletedClasses.access$000(chooseCompletedClasses.this, paramAnonymousView);
+                ViewGroup _paramAnonymousView = (ViewGroup)chooseCompletedClasses.this.findViewById(R.id.linearLayout15);
+                loopQuestions(_paramAnonymousView);
             }
         });
     }
