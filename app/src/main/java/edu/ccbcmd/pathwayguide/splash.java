@@ -74,7 +74,7 @@ public class splash
                     {
                         Intent _localObject = new Intent(splash.this, MainActivity.class);
                         ((Intent)_localObject).putExtra("intVariableName", 0);
-                        splash.this.startActivity((Intent)localObject);
+                        splash.this.startActivity((Intent)_localObject);
                         splash.this.finish();
                         return;
 

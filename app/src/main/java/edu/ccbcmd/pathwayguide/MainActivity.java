@@ -232,7 +232,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setOnClickListener(this);
              int length = choosePathway.coursePreRec[id].length;
             Log.w("Prereclangth:", String.valueOf(length));
-             int n10 = loadArrayInt[id];
+            int n10 = loadArrayInt[id];
             button.setTextColor(Color.parseColor("#ffffff"));
             Log.w("Status", String.valueOf(n10));
             if (n10 == 0) {
