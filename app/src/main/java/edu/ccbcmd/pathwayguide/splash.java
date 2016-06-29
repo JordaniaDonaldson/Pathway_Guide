@@ -5,86 +5,60 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.animation.Animation;
 import android.widget.ImageView;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class splash
-        extends AppCompatActivity
+public class splash extends AppCompatActivity
 {
-    public splash() {}
 
-    splash(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
 
-    public void onCreate(Bundle _paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, _paramBundle);
-            return;
-        }
-        super.onCreate(_paramBundle);
-        setContentView(R.layout.activity_splash); //2130968622);
-        AnimationDrawable paramBundle =  new AnimationDrawable();
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.splash), 2000);
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.social), 1500);
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.tech), 1500);
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.health), 1500);
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.arts), 1500);
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.business), 2000);
-        paramBundle.setOneShot(true);
-        localObject = findViewById(R.id.imageView);
+
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_splash); //2130968622
+        final AnimationDrawable animationDrawable = new AnimationDrawable();
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 2000); //2130837595
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1500); //2130837602
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1500); //2130837583
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1500); //2130837600
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1500); //2130837580
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.splash), 2000); //2130837601
+        animationDrawable.setOneShot(true);
+        final ImageView imageView = (ImageView)this.findViewById(R.id.imageView); //2131624058
         if (Build.VERSION.SDK_INT < 16) {
-            ((ImageView)localObject).setImageDrawable(paramBundle);
+            imageView.setImageDrawable(animationDrawable);
         }
-        for (;;)
-        {
-            paramBundle.start();
-            new Handler().postDelayed(new Runnable()
-            {
-                public void run()
-                {
-                    Object localObject = IncrementalChange.$change;
-                    if (localObject != null)
-                    {
-                        ((IncrementalChange)localObject).access$dispatch("run.()V", this);
-                        return;
-                    }
-                    localObject = splash.this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-                    Log.w("First Run:", String.valueOf(((SharedPreferences)localObject).getBoolean("firstrun", true)));
-                    if (((SharedPreferences)localObject).getBoolean("firstrun", true)) {
-                        splash.this.startActivity(new Intent(splash.this, demo_MainActivity.class));
-                    }
-                    for (;;)
-                    {
-                        Intent _localObject = new Intent(splash.this, MainActivity.class);
-                        ((Intent)_localObject).putExtra("intVariableName", 0);
-                        splash.this.startActivity((Intent)_localObject);
-                        splash.this.finish();
-                        return;
+        else {
+            imageView.setImageDrawable(animationDrawable);
+        }
+        animationDrawable.start();
+        new Handler().postDelayed(new Runnable() {
 
-                    }
+
+            @Override
+            public void run() {
+
+                final SharedPreferences sharedPreferences = splash.this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+                Log.w("First Run:", String.valueOf(sharedPreferences.getBoolean("firstrun", true)));
+                if (sharedPreferences.getBoolean("firstrun", true)) {
+                    splash.this.startActivity(new Intent(splash.this, (Class)demo_MainActivity.class));
                 }
-            }, 10500L);
-
-            ((ImageView)localObject).setImageDrawable(paramBundle);
-            return;
-
-        }
+                else {
+                    final Intent intent = new Intent(splash.this, (Class)MainActivity.class);
+                    intent.putExtra("intVariableName", 0);
+                    splash.this.startActivity(intent);
+                }
+                splash.this.finish();
+            }
+        }, 10500L); // FIXME: 6/29/2016 What does this do?
     }
 }

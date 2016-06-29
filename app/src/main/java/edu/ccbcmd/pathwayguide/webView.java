@@ -26,7 +26,7 @@ public class webView extends AppCompatActivity
     private Context c;
     private boolean isConnected;
 
-/* can probably delete */
+
     public static /* synthetic */ boolean access$000(final webView webView) {
         return webView.isConnected;
     }
