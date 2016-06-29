@@ -5,47 +5,30 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class ShowNotification
-        extends Service
+public class ShowNotification extends Service
 {
+
     private static final String TAG = "ShowNotification";
 
-    public ShowNotification() {}
 
-    ShowNotification(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException) {}
+    public IBinder onBind(final Intent intent) {
 
-    public IBinder onBind(Intent paramIntent)
-    {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            return (IBinder)localIncrementalChange.access$dispatch("onBind.(Landroid/content/Intent;)Landroid/os/IBinder;", this, paramIntent);
-        }
         return null;
     }
 
-    public void onCreate()
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.()V", this);
-            return;
-        }
+    public void onCreate() {
+
         super.onCreate();
-        localObject = new Intent(this, MainActivity.class);
-        ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE)).notify(0, new NotificationCompat.Builder(this).setAutoCancel(true).setContentIntent(PendingIntent.getActivity(this, 0, (Intent)localObject, 134217728)).setContentTitle("HELLO " + System.currentTimeMillis()).setContentText("PLEASE CHECK WE HAVE UPDATED NEWS").setDefaults(-1).setTicker("ticker message").setWhen(System.currentTimeMillis()).build());
+        ((NotificationManager)this.getSystemService(NOTIFICATION_SERVICE)).notify(0, new NotificationCompat.Builder(this).setAutoCancel(true).setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, (Class)MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)).setContentTitle(("HELLO " + System.currentTimeMillis())).setContentText("PLEASE CHECK WE HAVE UPDATED NEWS").setDefaults(-1).setTicker("ticker message").setWhen(System.currentTimeMillis()).build()); //"notification",  134217728
         Log.i("ShowNotification", "Notification created");
     }
 }

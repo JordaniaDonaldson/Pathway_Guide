@@ -5,87 +5,57 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class welcome
-        extends AppCompatActivity
+public class welcome extends AppCompatActivity
 {
+
     public SharedPreferences prefs;
 
-    public welcome() {}
 
-    welcome(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
+    public void onCreate(final Bundle bundle) {
 
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(2130968624);
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("Welcome");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        paramBundle = (Button)findViewById(2131624064);
-        localObject = findViewById(2131624065);
-        Button localButton = (Button)findViewById(2131624066);
-        paramBundle.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
-                    return;
-                }
-                welcome.this.startActivity(new Intent(welcome.this, choosePathway.class));
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_welcome); //2130968624
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("Welcome");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, 2130837594)));
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final Button button = (Button)this.findViewById(R.id.button4); //2131624064
+        final Button button2 = (Button)this.findViewById(R.id.button5); //2131624065
+        final Button button3 = (Button)this.findViewById(R.id.button6); //2131624066
+        button.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
+                welcome.this.startActivity(new Intent(welcome.this, (Class)choosePathway.class));
             }
         });
-        ((Button)localObject).setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
-                    return;
-                }
+        button2.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
                 welcome.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
             }
         });
-        localButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", this, paramAnonymousView);
-                    return;
-                }
+        button3.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(final View view) {
+
                 welcome.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/pathways")));
             }
         });

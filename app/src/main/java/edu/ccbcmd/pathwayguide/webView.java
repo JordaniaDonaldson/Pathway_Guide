@@ -5,136 +5,99 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
+
 import java.net.InetAddress;
 
-public class webView
-        extends AppCompatActivity
+public class webView extends AppCompatActivity
 {
+
     private Context c;
     private boolean isConnected;
 
-    public webView() {}
-
-    webView(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
+/* can probably delete */
+    public static /* synthetic */ boolean access$000(final webView webView) {
+        return webView.isConnected;
     }
 
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", this, paramBundle);
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(R.layout.activity_web_view); //2130968623
-        String _paramBundle = getIntent().getStringExtra("url");
-        getSupportActionBar().setHomeButtonEnabled(true);
-        localObject = findViewById(R.id.webView); //2131624059
-        ((WebView)localObject).setWebViewClient(new WebViewClient()
-        {
-            public void onReceivedError(WebView paramAnonymousWebView, int paramAnonymousInt, String paramAnonymousString1, String paramAnonymousString2)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;ILjava/lang/String;Ljava/lang/String;)V", this, paramAnonymousWebView, new Integer(paramAnonymousInt), paramAnonymousString1, paramAnonymousString2);
-                    return;
-                }
-                paramAnonymousWebView.loadData("<h1 style='font-size:40px'>MESSAGE 2</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_web_view); //2130968623
+        final String stringExtra = this.getIntent().getStringExtra("url");
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        final WebView webView = (WebView)this.findViewById(R.id.webView); //2131624059
+        webView.setWebViewClient(new WebViewClient() {
+
+            public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {
+
+                webView.loadData("<h1 style='font-size:40px'>MESSAGE 2</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
             }
 
             @TargetApi(23)
-            public void onReceivedError(WebView paramAnonymousWebView, WebResourceRequest paramAnonymousWebResourceRequest, WebResourceError paramAnonymousWebResourceError)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;Landroid/webkit/WebResourceError;)V", this, paramAnonymousWebView, paramAnonymousWebResourceRequest, paramAnonymousWebResourceError);
-                    return;
-                }
-                onReceivedError(paramAnonymousWebView, paramAnonymousWebResourceError.getErrorCode(), paramAnonymousWebResourceError.getDescription().toString(), paramAnonymousWebResourceRequest.getUrl().toString());
+            public void onReceivedError(final WebView webView, final WebResourceRequest webResourceRequest, final WebResourceError webResourceError) {
+
+                this.onReceivedError(webView, webResourceError.getErrorCode(), webResourceError.getDescription().toString(), webResourceRequest.getUrl().toString());
             }
 
-            public boolean shouldOverrideUrlLoading(WebView paramAnonymousWebView, String paramAnonymousString)
-            {
-                boolean bool = false;
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null) {
-                    bool = ((Boolean)localIncrementalChange.access$dispatch("shouldOverrideUrlLoading.(Landroid/webkit/WebView;Ljava/lang/String;)Z", this, paramAnonymousWebView, paramAnonymousString)).booleanValue();
+            public boolean shouldOverrideUrlLoading(final WebView webView, final String s) {
+                boolean booleanValue = false;
+
+               if (!webView.access$000(webView.this)) { // FIXME: 6/29/2016
+                    webView.loadData("<h1>MESSAGE 1</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
+                    return true;
                 }
-                while (webView.access$000(webView.this)) {
-                    return bool;
-                }
-                paramAnonymousWebView.loadData("<h1>MESSAGE 1</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
-                return true;
+                return booleanValue;
             }
         });
-        ((WebView)localObject).getSettings().setJavaScriptEnabled(true);
-        ((WebView)localObject).setScrollContainer(false);
-        ((WebView)localObject).getSettings().setSupportZoom(true);
-        ((WebView)localObject).getSettings().setBuiltInZoomControls(true);
-        ((WebView)localObject).getSettings().setDisplayZoomControls(false);
-        ((WebView)localObject).setScrollbarFadingEnabled(false);
-        if (Build.VERSION.SDK_INT >= 19)
-        {
-            ((WebView)localObject).getSettings().setLoadWithOverviewMode(true);
-            ((WebView)localObject).getSettings().setUseWideViewPort(true);
-            ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollContainer(false);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+        webView.setScrollbarFadingEnabled(false);
+        if (Build.VERSION.SDK_INT >= 19) {
+            webView.getSettings().setLoadWithOverviewMode(true);
+            webView.getSettings().setUseWideViewPort(true);
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
         }
-        for (;;)
-        {
-            ((WebView)localObject).getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/4.0");
-            ((WebView)localObject).loadUrl(_paramBundle);
-            Log.w("url:", _paramBundle);
-            return;
-            ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        else {
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
+        webView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/4.0");
+        webView.loadUrl(stringExtra);
+        Log.w("url:", stringExtra);
     }
 
-    public void onResume()
-    {
+    public void onResume() {
 
-        do
-        {
-            return;
+
             super.onResume();
             this.c = this;
-        } while (this.c.getSystemService("connectivity") == null);
-        try
-        {
-            if (InetAddress.getByName("google.com").equals(""))
-            {
-                this.isConnected = false;
-                return;
+            if (this.c.getSystemService(CONNECTIVITY_SERVICE) != null) { //"connectivity"
+                try {
+                    if (InetAddress.getByName("google.com").equals("")) {
+                        this.isConnected = false;
+                        return;
+                    }
+                }
+                catch (Exception ex) {
+                    this.isConnected = false;
+                    return;
+                }
+                this.isConnected = true;
             }
-        }
-        catch (Exception localException)
-        {
-            this.isConnected = false;
-            return;
-        }
-        this.isConnected = true;
+
     }
 }

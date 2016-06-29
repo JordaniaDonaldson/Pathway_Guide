@@ -4,136 +4,105 @@ package edu.ccbcmd.pathwayguide;
  * Created by dixo8 on 6/24/2016.
  */
 
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
-import materialshowcaseview.MaterialShowcaseView;
-import materialshowcaseview.MaterialShowcaseView.Builder;
 
-public class chooseCompletedClasses
-        extends AppCompatActivity
+import materialshowcaseview.MaterialShowcaseView;
+
+public class chooseCompletedClasses extends AppCompatActivity
 {
     public SharedPreferences prefs;
 
     public chooseCompletedClasses() {}
 
-    chooseCompletedClasses(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
+
+
+    public static /* synthetic */ void access$000(final chooseCompletedClasses chooseCompletedClasses, final ViewGroup viewGroup) {
+
+       chooseCompletedClasses.loopQuestions(viewGroup);
     }
 
-    public static final int getColor(Context paramContext, int paramInt)
-    {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            return ((Number)localIncrementalChange.access$dispatch("getColor.(Landroid/content/Context;I)I", new Object[] { paramContext, new Integer(paramInt) })).intValue();
-        }
+    public static final int getColor(final Context context, final int n) {
+
+
         if (Build.VERSION.SDK_INT >= 23) {
-            return ContextCompat.getColor(paramContext, paramInt);
+            return ContextCompat.getColor(context, n);
         }
-        return paramContext.getResources().getColor(paramInt);
+        return context.getResources().getColor(n);
     }
 
-    private void loopQuestions(ViewGroup paramViewGroup)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("loopQuestions.(Landroid/view/ViewGroup;)V", new Object[] { this, paramViewGroup });
-            return;
-        }
-        int i = 0;
-        if (i < paramViewGroup.getChildCount())
-        {
-            localObject = (CheckBox)paramViewGroup.getChildAt(i);
-            if (((CheckBox)localObject).isChecked()) {}
-            for (int j = 1;; j = 0)
-            {
-                ((CheckBox)localObject).getId();
-                if (j == 1) {
-                    getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + i, 0).commit();
-                }
-                i += 1;
-                break;
+    private void loopQuestions(final ViewGroup viewGroup) {
+
+        for (int i = 0; i < viewGroup.getChildCount(); ++i) {
+            final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(i);
+            int n;
+            if (checkBox.isChecked()) {
+                n = 1;
+            }
+            else {
+                n = 0;
+            }
+            checkBox.getId();
+            if (n == 1) {
+                this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + i, 0).commit();
             }
         }
-        startActivity(new Intent(this, chooseCurrentClasses.class));
+        this.startActivity(new Intent(this, (Class)chooseCurrentClasses.class));
     }
 
     @TargetApi(23)
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(R.layout.activity_choose_completed_classes);//2130968604);
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("Choose Completed Courses");
-        Resources _paramBundle = getResources();
-        BitmapDrawable __paramBundle = new BitmapDrawable(_paramBundle, BitmapFactory.decodeResource(_paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(__paramBundle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getResources();
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
+    public void onCreate(final Bundle bundle) {
+
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_choose_completed_classes); //2130968604
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("Choose Completed Courses");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.getResources();
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
-        Integer ___paramBundle = Integer.valueOf(this.prefs.getInt("pathwayID", 0));
-        Integer _localObject = Integer.valueOf(this.prefs.getInt("pathwaysubID", 0));
+        final Integer value = this.prefs.getInt("pathwayID", 0);
+        final Integer value2 = this.prefs.getInt("pathwaysubID", 0);
         new RelativeLayout(this);
-        LinearLayout localLinearLayout = (LinearLayout)findViewById(R.id.linearLayout15);
-        int j = choosePathway.subpathwayCoursePath[___paramBundle.intValue()][_localObject.intValue()].length;
-        int i = 0;
-        while (i < j)
-        {
-            int k = choosePathway.subpathwayCoursePath[___paramBundle.intValue()][_localObject.intValue()][i];
-            CheckBox localCheckBox = new CheckBox(this);
-            localCheckBox.setText(choosePathway.courseNum[k] + ": " + choosePathway.courseName[k]);
-            localCheckBox.setId(k);
+        final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout15); //2131624031
+        for (int length = choosePathway.subpathwayCoursePath[value][value2].length, i = 0; i < length; ++i) {
+            final int id = choosePathway.subpathwayCoursePath[value][value2][i];
+            final CheckBox checkBox = new CheckBox(this);
+            checkBox.setText((choosePathway.courseNum[id] + ": " + choosePathway.courseName[id]));
+            checkBox.setId(id);
             if (Build.VERSION.SDK_INT >= 16) {
-                localCheckBox.setButtonTintList(ColorStateList.valueOf(getColor(this, 2131558446)));
+                checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
             }
-            localLinearLayout.addView(localCheckBox);
-            i += 1;
+            linearLayout.addView(checkBox);
         }
         new MaterialShowcaseView.Builder(this).setTarget(new View(this)).setDismissText("Okay").setTitleText("Please select the courses that you have completed").withRectangleShape().setMaskColour(Color.parseColor("#F1335075")).setContentText("Please select the courses that you are sure you have successfully completed. If you are a transfer student, talk with your advisor to determine what courses will transfer.").setDelay(100).show();
-        ((Button)findViewById(R.id.completed)).setOnClickListener(new View.OnClickListener()  //2131624030
-        {
-            public void onClick(View paramAnonymousView)
-            {
-                /*IncrementalChange localIncrementalChange = $change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
-                    return;
-                }*/
-                ViewGroup _paramAnonymousView = (ViewGroup)chooseCompletedClasses.this.findViewById(R.id.linearLayout15);
-                loopQuestions(_paramAnonymousView);
+        this.findViewById(R.id.completed).setOnClickListener(new View.OnClickListener() { //2131624030
+
+
+            public void onClick(final View view) {
+                // FIXME: 6/28/2016
+
+                chooseCompletedClasses.access.000(chooseCompletedClasses.this, (ViewGroup)chooseCompletedClasses.this.findViewById(R.id.linearLayout15))//2131624031
             }
         });
     }
