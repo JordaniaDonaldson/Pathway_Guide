@@ -41,10 +41,7 @@ public class chooseCurrentClasses extends AppCompatActivity
     public SharedPreferences prefs;
 
 
-    public static /* synthetic */ void access$000(final chooseCurrentClasses chooseCurrentClasses, final ViewGroup viewGroup) {
 
-        chooseCurrentClasses.loopQuestions(viewGroup);
-    }
 
     public static int getColor(final Context context, final int n) {
 
@@ -64,7 +61,7 @@ public class chooseCurrentClasses extends AppCompatActivity
                 if (n >= length) {
                     break Label_0182;
                 }
-                while (true) {
+                while (n < length) {
                     try {
                         final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(n);
                         int n2;

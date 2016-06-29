@@ -87,7 +87,7 @@ public class info extends AppCompatActivity
 
         final Point point = new Point();
         this.getWindowManager().getDefaultDisplay().getSize(point);
-        return (int)(Object)((point.x / 355.0) * 100.0);
+        return (int)((point.x / 355.0) * 100.0);
     }
 
     public int[] loadArrayInt(final String s) {
@@ -338,7 +338,7 @@ public class info extends AppCompatActivity
         }
         final int int4 = this.prefs.getInt("internet", 1);
         if (choosePathway.pageSwitch[n] == 1) {
-            webView.setInitialScale(this.getScale());
+            webView.setInitialScale( this.getScale());
             webView.getSettings().setLoadWithOverviewMode(false);
             webView.getSettings().setUseWideViewPort(false);
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);

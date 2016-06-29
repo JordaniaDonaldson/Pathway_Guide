@@ -69,9 +69,11 @@ public class MainActivity extends Activity implements View.OnClickListener
         SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
         int int1 = sharedPreferences.getInt(s + "_size", 0);
         int[] array = new int[int1];
+
         for (int i = 0; i < int1; ++i) {
             array[i] = sharedPreferences.getInt(s + "_" + i, 1);
         }
+
         return array;
     }
 
@@ -174,7 +176,13 @@ public class MainActivity extends Activity implements View.OnClickListener
             return;
         }
         this.load2DArray("courseName");
-         int[] loadArrayInt = this.loadArrayInt("courseStat");
+        int[] _loadArrayInt = null;
+
+        if (false){  //// FIXME: 6/29/2016
+            _loadArrayInt =  new int[] {2,2,2,2,2,2,2,2,2,2};
+        } else {
+            _loadArrayInt = this.loadArrayInt("courseStat");
+        }
         Integer.parseInt(this.prefs.getString("choosenID", "0"));
         new RelativeLayout(this);
 
@@ -232,7 +240,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setOnClickListener(this);
              int length = choosePathway.coursePreRec[id].length;
             Log.w("Prereclangth:", String.valueOf(length));
-            int n10 = loadArrayInt[id];
+            int n10 = _loadArrayInt[id];
             button.setTextColor(Color.parseColor("#ffffff"));
             Log.w("Status", String.valueOf(n10));
             if (n10 == 0) {
@@ -254,7 +262,7 @@ public class MainActivity extends Activity implements View.OnClickListener
                 Log.w("if/else", "!=0");
                 int n11 = 1;
                 for (int j = 0; j < length; ++j) {
-                     int n12 = loadArrayInt[choosePathway.coursePreRec[id][j]];
+                     int n12 = _loadArrayInt[choosePathway.coursePreRec[id][j]];
                     if (n12 == 2 || n12 == 3) {
                         n11 = 0;
                     }
