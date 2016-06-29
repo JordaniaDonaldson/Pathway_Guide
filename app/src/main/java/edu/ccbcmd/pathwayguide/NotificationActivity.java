@@ -140,7 +140,7 @@ public class NotificationActivity extends AppCompatActivity
                 default: {
                     return super.onOptionsItemSelected(menuItem);
                 }
-                case 16908332: { // FIXME: 6/27/2016 
+                case 16908332: { // FIXME: 6/27/2016
                     final Integer value = this.prefs.getInt("zoom", 0);
                     if (value == 0) {
                         this.startActivity(new Intent(this, (Class)MainActivity.class));
