@@ -5,77 +5,51 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class internet_setting
-        extends AppCompatActivity
+public class internet_setting extends AppCompatActivity
 {
+
     public SharedPreferences prefs;
 
-    public internet_setting() {}
+    public void onCreate(final Bundle bundle) {
 
-    internet_setting(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_internet_setting); //2130968614
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("Internet Setting");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final Switch switch1 = (Switch)this.findViewById(R.id.switch1); //2131624048
+        if (this.prefs.getInt("internet", 1) == 1) {
+            switch1.setChecked(true);
+        }
+        else {
+            switch1.setChecked(false);
+        }
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-    public void onCreate(Bundle paramBundle)
-    {
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null)
-        {
-            localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(2130968614);
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("Internet Setting");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        paramBundle = (Switch)findViewById(2131624048);
-        if (Integer.valueOf(this.prefs.getInt("internet", 1)).intValue() == 1) {
-            paramBundle.setChecked(true);
-        }
-        for (;;)
-        {
-            paramBundle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-            {
-                public void onCheckedChanged(CompoundButton paramAnonymousCompoundButton, boolean paramAnonymousBoolean)
-                {
-                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                    if (localIncrementalChange != null)
-                    {
-                        localIncrementalChange.access$dispatch("onCheckedChanged.(Landroid/widget/CompoundButton;Z)V", new Object[] { this, paramAnonymousCompoundButton, new Boolean(paramAnonymousBoolean) });
-                        return;
-                    }
-                    if (paramAnonymousBoolean)
-                    {
-                        internet_setting.this.prefs.edit().putInt("internet", 1).commit();
-                        internet_setting.this.prefs.getInt("internet", 1);
-                        return;
-                    }
-                    internet_setting.this.prefs.edit().putInt("internet", 0).commit();
+            public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
+
+                if (b) {
+                    internet_setting.this.prefs.edit().putInt("internet", 1).commit();
                     internet_setting.this.prefs.getInt("internet", 1);
+                    return;
                 }
-            });
-            return;
-            paramBundle.setChecked(false);
-        }
+                internet_setting.this.prefs.edit().putInt("internet", 0).commit();
+                internet_setting.this.prefs.getInt("internet", 1);
+            }
+        });
     }
 }

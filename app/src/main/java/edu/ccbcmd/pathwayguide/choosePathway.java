@@ -163,11 +163,11 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
                 case 16908332: {
                     final Integer value = this.prefs.getInt("zoom", 0);
                     if (value == 0) {
-                        this.startActivity(new Intent((Context)this, (Class)MainActivity.class));
+                        this.startActivity(new Intent(this, (Class)MainActivity.class));
                         return true;
                     }
                     if (value == 1) {
-                        this.startActivity(new Intent((Context)this, (Class)MainActivityZoomOut.class));
+                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
                         return true;
                     }
                     break;

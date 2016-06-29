@@ -5,108 +5,85 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class links
-        extends AppCompatActivity
+public class links extends AppCompatActivity
 {
+
     public SharedPreferences prefs;
 
-    public links() {}
 
-    links(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
+    public void onCreate(final Bundle bundle) {
 
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(2130968615);
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("Links");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        ((TextView)findViewById(2131624052)).setVisibility(4);
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        int i = this.prefs.getInt("pathwayID", 0);
-        int j = this.prefs.getInt("pathwaysubID", 0);
-        paramBundle = choosePathway.sub_pathwayName[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()];
-        paramBundle = new ArrayAdapter(this, 2130968621, 2131624052, new String[] { "CCBC", "Blackboard", "My CCBC", "Simon", "Book Store", "Meet With An Advisor", "Resources For Students", "Course Catalog", "Flex-Reg", "Tutoring and Academic Coaching", "Disability Programs and Services" });
-        localObject = (ListView)findViewById(2131624050);
-        ((ListView)localObject).setAdapter(paramBundle);
-        ((ListView)localObject).setClickable(true);
-        ((ListView)localObject).setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong)
-            {
-                IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                if (localIncrementalChange != null)
-                {
-                    localIncrementalChange.access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", new Object[] { this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong) });
-                    return;
-                }
-                switch (paramAnonymousInt)
-                {
-                    default:
-                        return;
-                    case 0:
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_links); //2130968615
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("Links");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.findViewById(R.id.settings).setVisibility(View.INVISIBLE); //2131624052, 4
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final String s = choosePathway.sub_pathwayName[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)];
+        final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "CCBC", "Blackboard", "My CCBC", "Simon", "Book Store", "Meet With An Advisor", "Resources For Students", "Course Catalog", "Flex-Reg", "Tutoring and Academic Coaching", "Disability Programs and Services" }); //2130968621, 2131624052
+        final ListView listView = (ListView)this.findViewById(R.id.settingslist); //2131624050
+        listView.setAdapter(adapter);
+        listView.setClickable(true);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
+
+                switch (n) {
+                    default: {}
+                    case 0: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd.edu")));
-                        return;
-                    case 1:
+                    }
+                    case 1: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd-bb.blackbaord.com")));
-                        return;
-                    case 2:
+                    }
+                    case 2: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://myccbc.ccbcmd.edu/_layouts/ccbc/default.aspx?ReturnUrl=%2f_layouts%2fAuthenticate.aspx%3fSource%3d%252F&Source=%2F")));
-                        return;
-                    case 3:
+                    }
+                    case 3: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
-                        return;
-                    case 4:
+                    }
+                    case 4: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.bookstore.ccbcmd.edu/catonsville/main/")));
-                        return;
-                    case 5:
+                    }
+                    case 5: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/resources-for-students/academic-advisement")));
-                        return;
-                    case 6:
+                    }
+                    case 6: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/resources-for-students/")));
-                        return;
-                    case 7:
+                    }
+                    case 7: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://catalog.ccbcmd.edu/")));
-                        return;
-                    case 8:
+                    }
+                    case 8: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Registering-for-Classes/Flexreg.aspx")));
-                        return;
-                    case 9:
+                    }
+                    case 9: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Tutoring-and-Academic-Coaching.aspx")));
-                        return;
-
+                    }
+                    case 10: {
+                        links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Disability-Programs-and-Services.aspx")));
+                    }
                 }
-                links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Disability-Programs-and-Services.aspx")));
             }
         });
     }

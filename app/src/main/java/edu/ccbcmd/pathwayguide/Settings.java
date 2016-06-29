@@ -5,196 +5,164 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
-import android.app.AlertDialog.Builder;
-import android.app.Notification;
-import android.app.Notification.BigTextStyle;
 
+
+import android.app.Notification;
 import android.app.NotificationManager;
-import android.content.Context;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import fd.IncrementalChange;
-import fd.InstantReloadException;
 
-public class Settings
-        extends AppCompatActivity
+public class Settings extends AppCompatActivity
 {
+
     public SharedPreferences prefs;
 
-    public Settings() {}
 
-    Settings(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
-    {
-        this();
-    }
+    public void onCreate(final Bundle bundle) {
 
-    public void onCreate(Bundle paramBundle)
-    {
-        Object localObject = IncrementalChange.$change;
-        if (localObject != null)
-        {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
-            return;
-        }
-        super.onCreate(paramBundle);
-        setContentView(R.layout.activity_settings); //2130968621
-        getSupportActionBar().show();
-        getSupportActionBar().setTitle("Menu");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, R.drawable.header)); //2130837594
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        ((TextView)findViewById(R.id.settings)).setVisibility(4); //2131624052
-        this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        int i = this.prefs.getInt("pathwayID", 0);
-        int j = this.prefs.getInt("pathwaysubID", 0);
-        paramBundle = choosePathway.sub_pathwayName[Integer.valueOf(i).intValue()][Integer.valueOf(j).intValue()];
-        paramBundle = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" }); /* 2130968621, 2131624052*/
-        localObject = (ListView)findViewById(R.id.settingslist); //2131624050
-        ((ListView)localObject).setAdapter(paramBundle);
-        ((ListView)localObject).setClickable(true);
-        ((ListView)localObject).setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong)
-            {
-                Object localObject = IncrementalChange.$change;
-                if (localObject != null) {
-                    ((IncrementalChange)localObject).access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", new Object[] { this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong) });
-                }
-                do
-                {
-                    do
-                    {
-                        return;
-                        switch (paramAnonymousInt)
-                        {
-                            default:
-                                return;
-                            case 0:
-                                Settings.this.startActivity(new Intent(Settings.this, internet_setting.class));
-                                return;
-                            case 1:
-                                Settings.this.startActivity(new Intent(Settings.this, links.class));
-                                return;
-                            case 2:
-                                Settings.this.startActivity(new Intent(Settings.this, NotificationActivity.class));
-                                return;
-                            case 3:
-                                Settings.this.startActivity(new Intent(Settings.this, choosePathway.class));
-                                return;
-                            case 4:
-                                new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, 2131361978)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton(17039379, new DialogInterface.OnClickListener()
-                                {
-                                    public void onClick(DialogInterface paramAnonymous2DialogInterface, int paramAnonymous2Int)
-                                    {
-                                        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-                                        if (localIncrementalChange != null)
-                                        {
-                                            localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
-                                            return;
-                                        }
-                                        paramAnonymous2DialogInterface = Settings.this.prefs.edit();
-                                        paramAnonymous2DialogInterface.clear();
-                                        paramAnonymous2DialogInterface.commit();
-                                        Settings.this.startActivity(new Intent(Settings.this, choosePathway.class));
-                                    }
-                                }).setNegativeButton(17039369, null).show();
-                                return;
-                            case 5:
-                                Settings.this.prefs.edit().putInt("demo", 1).commit();
-                                Settings.this.startActivity(new Intent(Settings.this, demo_MainActivity.class));
-                                return;
-                            case 6:
-                                paramAnonymousAdapterView = Settings.this;
-                                paramAnonymousView = new Intent(Settings.this, openBlackboard.class);
-                                localObject = TaskStackBuilder.create(paramAnonymousAdapterView);
-                                ((TaskStackBuilder)localObject).addNextIntent(paramAnonymousView);
-                                paramAnonymousView = ((TaskStackBuilder)localObject).getPendingIntent(0, 134217728);
-                                localObject = new Notification.Builder(paramAnonymousAdapterView);
-                                ((Notification.Builder)localObject).setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
-                                ((Notification.Builder)localObject).setLights(65280, 3000, 3000);
-                                ((Notification.Builder)localObject).setAutoCancel(true);
-                                ((Notification.Builder)localObject).setStyle(new Notification.BigTextStyle().bigText("Remember to check blackboard for newly posted information and events."));
-                                paramAnonymousView = ((Notification.Builder)localObject).setContentTitle("Check Blackboard").setContentText("Remember to check blackboard for newly posted information and events.").setTicker("Remember to check blackboard for newly posted information and events.").setSmallIcon(R.drawable.appicon).setContentIntent(paramAnonymousView).setAutoCancel(true).build(); //2130837579
-                                ((NotificationManager)paramAnonymousAdapterView.getSystemService("notification")).notify(0, paramAnonymousView);
-                                paramAnonymousAdapterView = Integer.valueOf(Settings.this.prefs.getInt("zoom", 0));
-                                if (paramAnonymousAdapterView.intValue() == 0)
-                                {
-                                    Settings.this.startActivity(new Intent(Settings.this, MainActivity.class));
-                                    return;
-                                }
-                                break;
+        super.onCreate(bundle);
+        this.setContentView(R.layout.activity_settings); //2130968621
+        this.getSupportActionBar().show();
+        this.getSupportActionBar().setTitle("Menu");
+        final Resources resources = this.getResources();
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, 2130837594))); // TODO: 6/29/2016 Does this actually call the header? everywhere else I've replaced it with R.id.etc
+        this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        this.getSupportActionBar().setHomeButtonEnabled(true);
+        this.findViewById(R.id.settings).setVisibility(View.INVISIBLE); //2131624052, 4
+        this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final String s = choosePathway.sub_pathwayName[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)];
+        final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "Internet Setting", "Helpful Links", "Register For Courses", "Change Pathways", "Erase all progress", "Walkthrough", "Demo Blackboard Notification", "Demo Register Reminder" }); //2130968621, 2131624052
+        final ListView listView = (ListView)this.findViewById(R.id.settingslist); //2131624050
+        listView.setAdapter(adapter);
+        listView.setClickable(true);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
+
+
+                    switch (n) {
+                        default: {}
+                        case 0: {
+                            Settings.this.startActivity(new Intent(Settings.this, (Class)internet_setting.class));
                         }
-                    } while (paramAnonymousAdapterView.intValue() != 1);
-                    Settings.this.startActivity(new Intent(Settings.this, MainActivityZoomOut.class));
-                    return;
-                    paramAnonymousAdapterView = Settings.this;
-                    paramAnonymousView = new Intent(paramAnonymousAdapterView, NotificationActivity.class);
-                    localObject = TaskStackBuilder.create(paramAnonymousAdapterView);
-                    ((TaskStackBuilder)localObject).addParentStack(NotificationActivity.class);
-                    ((TaskStackBuilder)localObject).addNextIntent(paramAnonymousView);
-                    paramAnonymousView = ((TaskStackBuilder)localObject).getPendingIntent(0, 134217728);
-                    localObject = new Notification.Builder(paramAnonymousAdapterView);
-                    ((Notification.Builder)localObject).setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
-                    ((Notification.Builder)localObject).setLights(65280, 3000, 3000);
-                    ((Notification.Builder)localObject).setAutoCancel(true);
-                    ((Notification.Builder)localObject).setStyle(new Notification.BigTextStyle().bigText("It is finally time for you to register for your next semester classes. Update your progress and figure out what to take next semster!"));
-                    paramAnonymousView = ((Notification.Builder)localObject).setContentTitle("Register for classes").setContentText("It's time for you to register!").setTicker("It's time to register for classes!").setSmallIcon(R.drawable.appicon).setContentIntent(paramAnonymousView).setAutoCancel(true).build();
-                    ((NotificationManager)paramAnonymousAdapterView.getSystemService("notification")).notify(0, paramAnonymousView);
-                    paramAnonymousAdapterView = Integer.valueOf(Settings.this.prefs.getInt("zoom", 0));
-                    if (paramAnonymousAdapterView.intValue() == 0)
-                    {
-                        Settings.this.startActivity(new Intent(Settings.this, MainActivity.class));
-                        return;
+                        case 1: {
+                            Settings.this.startActivity(new Intent(Settings.this, (Class)links.class));
+                        }
+                        case 2: {
+                            Settings.this.startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
+                        }
+                        case 3: {
+                            Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
+                        }
+                        case 4: {
+                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978,
+
+
+                                public void onClick(final DialogInterface dialogInterface, final int n) {
+
+                                    final SharedPreferences.Editor edit = Settings.this.prefs.edit();
+                                    edit.clear();
+                                    edit.commit();
+                                    Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
+                                }
+                            }).setNegativeButton(17039369, null).show();
+                        }
+                        case 5: {
+                            Settings.this.prefs.edit().putInt("demo", 1).commit();
+                            Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
+                        }
+                        case 6: {
+                            final Settings this$0 = Settings.this; // FIXME: 6/29/2016 decompilation artifact?
+                            final Intent intent = new Intent(Settings.this, (Class)openBlackboard.class);
+                            final android.support.v4.app.TaskStackBuilder create = android.support.v4.app.TaskStackBuilder.create(this$0);
+                            create.addNextIntent(intent);
+                            final PendingIntent pendingIntent = create.getPendingIntent(0, 134217728);
+                            final Notification.Builder notificationBuilder = new Notification.Builder(this$0);
+                            notificationBuilder.setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
+                            notificationBuilder.setLights(256, 3000, 3000); //Color was -256
+                            notificationBuilder.setAutoCancel(true);
+                            notificationBuilder.setStyle(new Notification.BigTextStyle().bigText("Remember to check blackboard for newly posted information and events."));
+                            ((NotificationManager)(this$0).getSystemService(NOTIFICATION_SERVICE)).notify(0, notificationBuilder.setContentTitle("Check Blackboard").setContentText("Remember to check blackboard for newly posted information and events.").setTicker("Remember to check blackboard for newly posted information and events.").setSmallIcon(R.drawable.appicon).setContentIntent(pendingIntent).setAutoCancel(true).build()); //"notification", 2130837579
+                            final Integer value = Settings.this.prefs.getInt("zoom", 0);
+                            if (value == 0) {
+                                Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivity.class));
+                                return;
+                            }
+                            if (value == 1) {
+                                Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
+                                return;
+                            }
+                            break;
+                        }
+                        case 7: {
+                            final Settings this$2 = Settings.this;
+                            final Intent intent2 = new Intent(this$2, (Class)NotificationActivity.class);
+                            final android.support.v4.app.TaskStackBuilder create2 = android.support.v4.app.TaskStackBuilder.create(this$2);
+                            create2.addParentStack((Class)NotificationActivity.class);
+                            create2.addNextIntent(intent2);
+                            final PendingIntent pendingIntent2 = create2.getPendingIntent(0, 134217728);
+                            final Notification.Builder notificationBuilder2 = new Notification.Builder(this$2);
+                            notificationBuilder2.setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
+                            notificationBuilder2.setLights(256, 3000, 3000); //Color was -256
+                            notificationBuilder2.setAutoCancel(true);
+                            notificationBuilder2.setStyle(new Notification.BigTextStyle().bigText("It is finally time for you to register for your next semester classes. Update your progress and figure out what to take next semster!"));
+                            ((NotificationManager)(this$2).getSystemService(NOTIFICATION_SERVICE)).notify(0, notificationBuilder2.setContentTitle("Register for classes").setContentText("It's time for you to register!").setTicker("It's time to register for classes!").setSmallIcon(R.drawable.appicon).setContentIntent(pendingIntent2).setAutoCancel(true).build()); //"notification", 2130837579
+                            final Integer value2 = Settings.this.prefs.getInt("zoom", 0);
+                            if (value2 == 0) {
+                                Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivity.class));
+                                return;
+                            }
+                            if (value2 == 1) {
+                                Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
+                                return;
+                            }
+                            break;
+                        }
                     }
-                } while (paramAnonymousAdapterView.intValue() != 1);
-                Settings.this.startActivity(new Intent(Settings.this, MainActivityZoomOut.class));
+
             }
         });
     }
 
-    public boolean onOptionsItemSelected(MenuItem paramMenuItem)
-    {
-        boolean bool = true;
-        IncrementalChange localIncrementalChange = IncrementalChange.$change;
-        if (localIncrementalChange != null) {
-            bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
-        }
-        do
-        {
-            return bool;
-            switch (paramMenuItem.getItemId())
-            {
-                default:
-                    return super.onOptionsItemSelected(paramMenuItem);
+    public boolean onOptionsItemSelected(final MenuItem menuItem) {
+        boolean booleanValue = true;
+
+
+
+            switch (menuItem.getItemId()) {
+                default: {
+                    return super.onOptionsItemSelected(menuItem);
+                }
+                case 16908332: {
+                    final Integer value = this.prefs.getInt("zoom", 0);
+                    if (value == 0) {
+                        this.startActivity(new Intent(this, (Class)MainActivity.class));
+                        return true;
+                    }
+                    if (value == 1) {
+                        this.startActivity(new Intent(this, (Class)MainActivityZoomOut.class));
+                        return true;
+                    }
+                    break;
+                }
             }
-            paramMenuItem = Integer.valueOf(this.prefs.getInt("zoom", 0));
-            if (paramMenuItem.intValue() == 0)
-            {
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            }
-        } while (paramMenuItem.intValue() != 1);
-        startActivity(new Intent(this, MainActivityZoomOut.class));
-        return true;
+
+        return booleanValue;
     }
 }

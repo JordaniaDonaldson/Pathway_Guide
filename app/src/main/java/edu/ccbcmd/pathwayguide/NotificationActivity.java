@@ -81,7 +81,7 @@ public class NotificationActivity extends AppCompatActivity
         final Resources resources = this.getResources();
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
-        ((Button)this.findViewById(R.id.button7)).setOnClickListener(new View.OnClickListener() { //2131624057
+        this.findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() { //2131624057
 
 
             public void onClick(final View view) {
@@ -89,7 +89,7 @@ public class NotificationActivity extends AppCompatActivity
                 NotificationActivity.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd-bb.blackboard.com")));
             }
         });
-        ((Button)this.findViewById(R.id.cant)).setOnClickListener(new View.OnClickListener() { //2131624055
+        this.findViewById(R.id.cant).setOnClickListener(new View.OnClickListener() { //2131624055
 
 
             public void onClick(final View view) {
@@ -97,7 +97,7 @@ public class NotificationActivity extends AppCompatActivity
                 NotificationActivity.this.startActivity(new Intent(NotificationActivity.this, (Class)cantRegister.class));
             }
         });
-        ((Button)this.findViewById(R.id.this1)).setOnClickListener(new View.OnClickListener() { //2131624056
+        this.findViewById(R.id.this1).setOnClickListener(new View.OnClickListener() { //2131624056
            
             public void onClick(final View view) {
               
@@ -140,7 +140,7 @@ public class NotificationActivity extends AppCompatActivity
                 default: {
                     return super.onOptionsItemSelected(menuItem);
                 }
-                case 16908332: { // FIXME: 6/27/2016
+                case 16908332: { // FIXME: 6/27/2016 Is this a problem?
                     final Integer value = this.prefs.getInt("zoom", 0);
                     if (value == 0) {
                         this.startActivity(new Intent(this, (Class)MainActivity.class));
