@@ -8,7 +8,7 @@ package edu.ccbcmd.pathwayguide;
 import android.app.AlertDialog.Builder;
 import android.app.Notification;
 import android.app.Notification.BigTextStyle;
-import android.app.Notification.Builder;
+
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,8 +31,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class Settings
         extends AppCompatActivity
@@ -48,7 +48,7 @@ public class Settings
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -76,7 +76,7 @@ public class Settings
         {
             public void onItemClick(AdapterView<?> paramAnonymousAdapterView, View paramAnonymousView, int paramAnonymousInt, long paramAnonymousLong)
             {
-                Object localObject = $change;
+                Object localObject = IncrementalChange.$change;
                 if (localObject != null) {
                     ((IncrementalChange)localObject).access$dispatch("onItemClick.(Landroid/widget/AdapterView;Landroid/view/View;IJ)V", new Object[] { this, paramAnonymousAdapterView, paramAnonymousView, new Integer(paramAnonymousInt), new Long(paramAnonymousLong) });
                 }
@@ -106,7 +106,7 @@ public class Settings
                                 {
                                     public void onClick(DialogInterface paramAnonymous2DialogInterface, int paramAnonymous2Int)
                                     {
-                                        IncrementalChange localIncrementalChange = $change;
+                                        IncrementalChange localIncrementalChange = IncrementalChange.$change;
                                         if (localIncrementalChange != null)
                                         {
                                             localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
@@ -175,7 +175,7 @@ public class Settings
     public boolean onOptionsItemSelected(MenuItem paramMenuItem)
     {
         boolean bool = true;
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
         }

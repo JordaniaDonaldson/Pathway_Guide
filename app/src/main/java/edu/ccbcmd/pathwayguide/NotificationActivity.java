@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -20,8 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -40,7 +41,7 @@ public class NotificationActivity
 
     public void onCreate(Bundle paramBundle)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -59,7 +60,7 @@ public class NotificationActivity
         {
             public void onClick(View paramAnonymousView)
             { //2131624057
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -72,7 +73,7 @@ public class NotificationActivity
         {
             public void onClick(View paramAnonymousView)
             { //2131624055
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -85,7 +86,7 @@ public class NotificationActivity
         {
             public void onClick(View paramAnonymousView)
             { //2131624056
-                Object localObject = $change;
+                Object localObject = IncrementalChange.$change;
                 if (localObject != null)
                 {
                     ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -127,7 +128,7 @@ public class NotificationActivity
     public boolean onOptionsItemSelected(MenuItem paramMenuItem)
     {
         boolean bool = true;
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
         }

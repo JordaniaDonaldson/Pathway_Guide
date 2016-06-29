@@ -17,8 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.widget.ImageView;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class splash
         extends AppCompatActivity
@@ -32,7 +32,7 @@ public class splash
 
     public void onCreate(Bundle _paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, _paramBundle });
@@ -59,7 +59,7 @@ public class splash
             {
                 public void run()
                 {
-                    Object localObject = $change;
+                    Object localObject = IncrementalChange.$change;
                     if (localObject != null)
                     {
                         ((IncrementalChange)localObject).access$dispatch("run.()V", new Object[] { this });

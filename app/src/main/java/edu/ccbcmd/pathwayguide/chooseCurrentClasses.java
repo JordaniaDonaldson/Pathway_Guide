@@ -14,6 +14,7 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -26,9 +27,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView.Builder;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
+import materialshowcaseview.MaterialShowcaseView;
+import materialshowcaseview.MaterialShowcaseView.Builder;
 
 public class chooseCurrentClasses
         extends AppCompatActivity
@@ -44,7 +46,7 @@ public class chooseCurrentClasses
 
     public static final int getColor(Context paramContext, int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Number)localIncrementalChange.access$dispatch("getColor.(Landroid/content/Context;I)I", new Object[] { paramContext, new Integer(paramInt) })).intValue();
         }
@@ -56,7 +58,7 @@ public class chooseCurrentClasses
 
     private void loopQuestions(ViewGroup paramViewGroup)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("loopQuestions.(Landroid/view/ViewGroup;)V", new Object[] { this, paramViewGroup });
@@ -87,7 +89,7 @@ public class chooseCurrentClasses
                 }
                 i += 1;
                 break;
-                j = 0;
+                //j = 0;
             }
         }
         startActivity(new Intent(this, MainActivity.class));
@@ -95,7 +97,7 @@ public class chooseCurrentClasses
 
     public int[] loadArrayInt(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
         }
@@ -114,7 +116,7 @@ public class chooseCurrentClasses
     @TargetApi(23)
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -156,7 +158,7 @@ public class chooseCurrentClasses
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });

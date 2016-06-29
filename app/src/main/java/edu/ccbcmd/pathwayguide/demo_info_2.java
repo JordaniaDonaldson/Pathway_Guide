@@ -19,10 +19,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import materialshowcaseview.MaterialShowcaseView.Builder;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
+import showcaseview.ShowcaseView;
+import materialshowcaseview.MaterialShowcaseView;
 
 public class demo_info_2
         extends AppCompatActivity
@@ -41,7 +41,7 @@ public class demo_info_2
 
     public static int pxToDp(int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Object[] { new Integer(paramInt) })).intValue();
         }
@@ -50,7 +50,7 @@ public class demo_info_2
 
     public int[] loadArrayInt(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
         }
@@ -68,7 +68,7 @@ public class demo_info_2
 
     public void onClick(View paramView)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
@@ -79,7 +79,7 @@ public class demo_info_2
 
     public void onCreate(Bundle paramBundle)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -106,7 +106,7 @@ public class demo_info_2
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -119,7 +119,7 @@ public class demo_info_2
 
     public boolean onOptionsItemSelected(MenuItem paramMenuItem)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
         }

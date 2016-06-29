@@ -21,8 +21,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class choosePathway
         extends AppCompatActivity
@@ -64,7 +64,7 @@ public class choosePathway
 
     public String[][] load2DArray(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (String[][])((IncrementalChange)localObject).access$dispatch("load2DArray.(Ljava/lang/String;)[[Ljava/lang/String;", new Object[] { this, paramString });
         }
@@ -92,7 +92,7 @@ public class choosePathway
 
     public int[] loadArrayInt(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
         }
@@ -110,7 +110,7 @@ public class choosePathway
 
     public void onClick(View paramView)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
@@ -135,7 +135,7 @@ public class choosePathway
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -196,7 +196,7 @@ public class choosePathway
     public boolean onOptionsItemSelected(MenuItem paramMenuItem)
     {
         boolean bool = true;
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
         }
@@ -221,7 +221,7 @@ public class choosePathway
 
     public boolean save2DArray(String[][] paramArrayOfString, String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return ((Boolean)((IncrementalChange)localObject).access$dispatch("save2DArray.([[Ljava/lang/String;Ljava/lang/String;)Z", new Object[] { this, paramArrayOfString, paramString })).booleanValue();
         }
@@ -245,7 +245,7 @@ public class choosePathway
 
     public boolean save2DArrayInt(int[][] paramArrayOfInt, String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return ((Boolean)((IncrementalChange)localObject).access$dispatch("save2DArrayInt.([[ILjava/lang/String;)Z", new Object[] { this, paramArrayOfInt, paramString })).booleanValue();
         }
@@ -263,13 +263,13 @@ public class choosePathway
             }
             i += 1;
         }
-        Toast.makeText(this, "Array Has been saved", 1).show();
+        Toast.makeText(this, "Array Has been saved", Toast.LENGTH_LONG).show();
         return ((SharedPreferences.Editor)localObject).commit();
     }
 
     public boolean saveArrayInt(int[] paramArrayOfInt, String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return ((Boolean)((IncrementalChange)localObject).access$dispatch("saveArrayInt.([ILjava/lang/String;)Z", new Object[] { this, paramArrayOfInt, paramString })).booleanValue();
         }

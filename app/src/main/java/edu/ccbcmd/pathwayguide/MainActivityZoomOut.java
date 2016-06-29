@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,16 +18,17 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
+
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -44,7 +46,7 @@ public class MainActivityZoomOut
 
     public String[][] load2DArray(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (String[][])((IncrementalChange)localObject).access$dispatch("load2DArray.(Ljava/lang/String;)[[Ljava/lang/String;", new Object[] { this, paramString });
         }
@@ -72,7 +74,7 @@ public class MainActivityZoomOut
 
     public int[] loadArrayInt(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
         }
@@ -90,7 +92,7 @@ public class MainActivityZoomOut
 
     public void onClick(View paramView)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
@@ -198,7 +200,7 @@ public class MainActivityZoomOut
             {
                 public void onClick(View paramAnonymousView)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -238,7 +240,7 @@ public class MainActivityZoomOut
         {
             public void run()
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("run.()V", new Object[] { this });
@@ -522,7 +524,7 @@ public class MainActivityZoomOut
 
     public void onResume()
     {
-        Object localObject1 = $change;
+        Object localObject1 = IncrementalChange.$change;
         if (localObject1 != null)
         {
             ((IncrementalChange)localObject1).access$dispatch("onResume.()V", new Object[] { this });

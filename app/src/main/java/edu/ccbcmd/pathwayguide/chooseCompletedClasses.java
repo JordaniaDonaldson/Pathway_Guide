@@ -27,9 +27,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView.Builder;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
+import materialshowcaseview.MaterialShowcaseView;
+import materialshowcaseview.MaterialShowcaseView.Builder;
 
 public class chooseCompletedClasses
         extends AppCompatActivity
@@ -45,7 +46,7 @@ public class chooseCompletedClasses
 
     public static final int getColor(Context paramContext, int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Number)localIncrementalChange.access$dispatch("getColor.(Landroid/content/Context;I)I", new Object[] { paramContext, new Integer(paramInt) })).intValue();
         }
@@ -57,7 +58,7 @@ public class chooseCompletedClasses
 
     private void loopQuestions(ViewGroup paramViewGroup)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("loopQuestions.(Landroid/view/ViewGroup;)V", new Object[] { this, paramViewGroup });
@@ -84,7 +85,7 @@ public class chooseCompletedClasses
     @TargetApi(23)
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });

@@ -18,6 +18,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -32,7 +33,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
+
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.WebResourceError;
@@ -45,8 +46,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 import java.net.InetAddress;
 import java.util.Calendar;
 
@@ -67,7 +68,7 @@ public class info
 
     private int getScale()
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return ((Number)((IncrementalChange)localObject).access$dispatch("getScale.()I", new Object[] { this })).intValue();
         }
@@ -78,7 +79,7 @@ public class info
 
     public int[] loadArrayInt(String paramString)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             return (int[])((IncrementalChange)localObject).access$dispatch("loadArrayInt.(Ljava/lang/String;)[I", new Object[] { this, paramString });
         }
@@ -96,7 +97,7 @@ public class info
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -132,7 +133,7 @@ public class info
             {
                 public void onClick(View paramAnonymousView)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -158,7 +159,7 @@ public class info
             {
                 public void onClick(View paramAnonymousView)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -182,7 +183,7 @@ public class info
                         {
                             public void onClick(DialogInterface paramAnonymous2DialogInterface, int paramAnonymous2Int)
                             {
-                                IncrementalChange localIncrementalChange = $change;
+                                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                                 if (localIncrementalChange != null)
                                 {
                                     localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
@@ -196,7 +197,7 @@ public class info
                         {
                             public void onClick(DialogInterface paramAnonymous2DialogInterface, int paramAnonymous2Int)
                             {
-                                IncrementalChange localIncrementalChange = $change;
+                                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                                 if (localIncrementalChange != null)
                                 {
                                     localIncrementalChange.access$dispatch("onClick.(Landroid/content/DialogInterface;I)V", new Object[] { this, paramAnonymous2DialogInterface, new Integer(paramAnonymous2Int) });
@@ -253,7 +254,7 @@ public class info
             {
                 public void onPageFinished(WebView paramAnonymousWebView, String paramAnonymousString)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onPageFinished.(Landroid/webkit/WebView;Ljava/lang/String;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousString });
@@ -264,7 +265,7 @@ public class info
 
                 public void onPageStarted(WebView paramAnonymousWebView, String paramAnonymousString, Bitmap paramAnonymousBitmap)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onPageStarted.(Landroid/webkit/WebView;Ljava/lang/String;Landroid/graphics/Bitmap;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousString, paramAnonymousBitmap });
@@ -276,7 +277,7 @@ public class info
 
                 public void onReceivedError(WebView paramAnonymousWebView, int paramAnonymousInt, String paramAnonymousString1, String paramAnonymousString2)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;ILjava/lang/String;Ljava/lang/String;)V", new Object[] { this, paramAnonymousWebView, new Integer(paramAnonymousInt), paramAnonymousString1, paramAnonymousString2 });
@@ -288,7 +289,7 @@ public class info
                 @TargetApi(23)
                 public void onReceivedError(WebView paramAnonymousWebView, WebResourceRequest paramAnonymousWebResourceRequest, WebResourceError paramAnonymousWebResourceError)
                 {
-                    IncrementalChange localIncrementalChange = $change;
+                    IncrementalChange localIncrementalChange = IncrementalChange.$change;
                     if (localIncrementalChange != null)
                     {
                         localIncrementalChange.access$dispatch("onReceivedError.(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;Landroid/webkit/WebResourceError;)V", new Object[] { this, paramAnonymousWebView, paramAnonymousWebResourceRequest, paramAnonymousWebResourceError });
@@ -299,7 +300,7 @@ public class info
 
                 public boolean shouldOverrideUrlLoading(WebView paramAnonymousWebView, String paramAnonymousString)
                 {
-                    Object localObject = $change;
+                    Object localObject = IncrementalChange.$change;
                     if (localObject != null) {
                         return ((Boolean)((IncrementalChange)localObject).access$dispatch("shouldOverrideUrlLoading.(Landroid/webkit/WebView;Ljava/lang/String;)Z", new Object[] { this, paramAnonymousWebView, paramAnonymousString })).booleanValue();
                     }
@@ -449,7 +450,7 @@ public class info
     public boolean onOptionsItemSelected(MenuItem paramMenuItem)
     {
         boolean bool = true;
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             bool = ((Boolean)localIncrementalChange.access$dispatch("onOptionsItemSelected.(Landroid/view/MenuItem;)Z", new Object[] { this, paramMenuItem })).booleanValue();
         }
@@ -474,7 +475,7 @@ public class info
 
     public void onResume()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             localIncrementalChange.access$dispatch("onResume.()V", new Object[] { this });
         }

@@ -11,17 +11,19 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class NonBreakingPeriodTextView
         extends TextView
 {
     private static final String TAG = "NonBreakingPeriodTextView";
 
-    public NonBreakingPeriodTextView(Context paramContext) {}
+    public NonBreakingPeriodTextView(){super(null);}
 
-    public NonBreakingPeriodTextView(Context paramContext, AttributeSet paramAttributeSet) {}
+    public NonBreakingPeriodTextView(Context paramContext) {this();}
+
+    public NonBreakingPeriodTextView(Context paramContext, AttributeSet paramAttributeSet) {this();}
 
     NonBreakingPeriodTextView(Object[] paramArrayOfObject, InstantReloadException paramInstantReloadException)
     {
@@ -30,7 +32,7 @@ public class NonBreakingPeriodTextView
 
     public void onSizeChanged(int paramInt1, int paramInt2, int paramInt3, int paramInt4)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             ((IncrementalChange)localObject).access$dispatch("onSizeChanged.(IIII)V", new Object[] { this, new Integer(paramInt1), new Integer(paramInt2), new Integer(paramInt3), new Integer(paramInt4) });
         }
@@ -41,13 +43,13 @@ public class NonBreakingPeriodTextView
             localObject = getEditableText();
             if (localObject == null)
             {
-                Log.d("NonBreakingPeriodTextView", "non-editable text");
+                Log.d("NonBreakin", "non-editable text");
                 return;
             }
             int n = getWidth() - getPaddingLeft() - getPaddingRight();
             if (n == 0)
             {
-                Log.d("NonBreakingPeriodTextView", "zero-length text");
+                Log.d("NonBreakin", "zero-length text");
                 return;
             }
             TextPaint localTextPaint = getPaint();
