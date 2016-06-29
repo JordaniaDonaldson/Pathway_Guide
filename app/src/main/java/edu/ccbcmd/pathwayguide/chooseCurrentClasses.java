@@ -41,7 +41,10 @@ public class chooseCurrentClasses extends AppCompatActivity
     public SharedPreferences prefs;
 
 
+    public static /* synthetic */ void access$000(final chooseCurrentClasses chooseCurrentClasses, final ViewGroup viewGroup) {
 
+        chooseCurrentClasses.loopQuestions(viewGroup);
+    }
 
     public static int getColor(final Context context, final int n) {
 
@@ -56,7 +59,7 @@ public class chooseCurrentClasses extends AppCompatActivity
         final int length = choosePathway.subpathwayCoursePath[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)].length;
         int n = 0;
         Label_0170_Outer:
-        while (true) { // FIXME: 6/29/2016 This method doesn't even seem to be called? maybe comment out/ignore?
+        while (true) { // FIXME: 6/29/2016
             Label_0182: {
                 if (n >= length) {
                     break Label_0182;
