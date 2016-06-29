@@ -18,12 +18,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence.OnSequenceItemShownListener;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView.Builder;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
+import materialshowcaseview.MaterialShowcaseSequence;
+import materialshowcaseview.MaterialShowcaseSequence.OnSequenceItemShownListener;
+import materialshowcaseview.MaterialShowcaseView;
+import materialshowcaseview.MaterialShowcaseView.Builder;
 
 public class demo_mainActivity_3
         extends AppCompatActivity
@@ -43,7 +43,7 @@ public class demo_mainActivity_3
 
     private void presentShowcaseSequence(int paramInt)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("presentShowcaseSequence.(I)V", new Object[] { this, new Integer(paramInt) });
@@ -54,7 +54,7 @@ public class demo_mainActivity_3
         {
             public void onShow(MaterialShowcaseView paramAnonymousMaterialShowcaseView, int paramAnonymousInt)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null) {
                     localIncrementalChange.access$dispatch("onShow.(Luk/co/deanwild/materialshowcaseview/MaterialShowcaseView;I)V", new Object[] { this, paramAnonymousMaterialShowcaseView, new Integer(paramAnonymousInt) });
                 }
@@ -67,7 +67,7 @@ public class demo_mainActivity_3
 
     public static int pxToDp(int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Number)localIncrementalChange.access$dispatch("pxToDp.(I)I", new Object[] { new Integer(paramInt) })).intValue();
         }
@@ -76,7 +76,7 @@ public class demo_mainActivity_3
 
     public void onClick(View paramView)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
@@ -87,7 +87,7 @@ public class demo_mainActivity_3
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -138,7 +138,7 @@ public class demo_mainActivity_3
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -197,7 +197,7 @@ public class demo_mainActivity_3
 
     public void onResume()
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null)
         {
             localIncrementalChange.access$dispatch("onResume.()V", new Object[] { this });

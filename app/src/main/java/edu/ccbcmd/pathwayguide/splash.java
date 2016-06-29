@@ -15,9 +15,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.animation.Animation;
 import android.widget.ImageView;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class splash
         extends AppCompatActivity
@@ -29,25 +30,25 @@ public class splash
         this();
     }
 
-    public void onCreate(Bundle paramBundle)
+    public void onCreate(Bundle _paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
-            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
+            ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, _paramBundle });
             return;
         }
-        super.onCreate(paramBundle);
-        setContentView(R.layout.activity_splash); //2130968622
-        paramBundle = new AnimationDrawable();
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.health), 2000); //2130837595
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.tech), 1500); //2130837602
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.business), 1500); //2130837583
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.social), 1500); //2130837600
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.arts), 1500); //2130837580
-        paramBundle.addFrame(getResources().getDrawable(R.drawable.splash), 2000); //2130837601
+        super.onCreate(_paramBundle);
+        setContentView(2130968622);
+        AnimationDrawable paramBundle =  new AnimationDrawable();
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.splash), 2000);
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.social), 1500);
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.tech), 1500);
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.health), 1500);
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.arts), 1500);
+        paramBundle.addFrame(getResources().getDrawable(R.drawable.business), 2000);
         paramBundle.setOneShot(true);
-        localObject = (ImageView)findViewById(R.id.imageView); //2131624058
+        localObject = (ImageView)findViewById(2131624058);
         if (Build.VERSION.SDK_INT < 16) {
             ((ImageView)localObject).setImageDrawable(paramBundle);
         }
@@ -58,7 +59,7 @@ public class splash
             {
                 public void run()
                 {
-                    Object localObject = $change;
+                    Object localObject = IncrementalChange.$change;
                     if (localObject != null)
                     {
                         ((IncrementalChange)localObject).access$dispatch("run.()V", new Object[] { this });

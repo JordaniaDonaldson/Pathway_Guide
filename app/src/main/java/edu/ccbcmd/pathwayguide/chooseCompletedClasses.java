@@ -27,9 +27,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView.Builder;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
+import materialshowcaseview.MaterialShowcaseView;
+import materialshowcaseview.MaterialShowcaseView.Builder;
 
 public class chooseCompletedClasses
         extends AppCompatActivity
@@ -45,7 +46,7 @@ public class chooseCompletedClasses
 
     public static final int getColor(Context paramContext, int paramInt)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Number)localIncrementalChange.access$dispatch("getColor.(Landroid/content/Context;I)I", new Object[] { paramContext, new Integer(paramInt) })).intValue();
         }
@@ -57,7 +58,7 @@ public class chooseCompletedClasses
 
     private void loopQuestions(ViewGroup paramViewGroup)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("loopQuestions.(Landroid/view/ViewGroup;)V", new Object[] { this, paramViewGroup });
@@ -84,33 +85,33 @@ public class chooseCompletedClasses
     @TargetApi(23)
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968604);
+        setContentView(R.layout.activity_choose_completed_classes);//2130968604);
         getSupportActionBar().show();
         getSupportActionBar().setTitle("Choose Completed Courses");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
+        Resources _paramBundle = getResources();
+        BitmapDrawable __paramBundle = new BitmapDrawable(_paramBundle, BitmapFactory.decodeResource(_paramBundle, 2130837594));
+        getSupportActionBar().setBackgroundDrawable(__paramBundle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getResources();
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
-        paramBundle = Integer.valueOf(this.prefs.getInt("pathwayID", 0));
-        localObject = Integer.valueOf(this.prefs.getInt("pathwaysubID", 0));
+        Integer ___paramBundle = Integer.valueOf(this.prefs.getInt("pathwayID", 0));
+        Integer _localObject = Integer.valueOf(this.prefs.getInt("pathwaysubID", 0));
         new RelativeLayout(this);
         LinearLayout localLinearLayout = (LinearLayout)findViewById(2131624031);
-        int j = choosePathway.subpathwayCoursePath[paramBundle.intValue()][localObject.intValue()].length;
+        int j = choosePathway.subpathwayCoursePath[___paramBundle.intValue()][_localObject.intValue()].length;
         int i = 0;
         while (i < j)
         {
-            int k = choosePathway.subpathwayCoursePath[paramBundle.intValue()][localObject.intValue()][i];
+            int k = choosePathway.subpathwayCoursePath[___paramBundle.intValue()][_localObject.intValue()][i];
             CheckBox localCheckBox = new CheckBox(this);
             localCheckBox.setText(choosePathway.courseNum[k] + ": " + choosePathway.courseName[k]);
             localCheckBox.setId(k);
@@ -125,12 +126,12 @@ public class chooseCompletedClasses
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                /*IncrementalChange localIncrementalChange = $change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
                     return;
-                }
+                }*/
                 paramAnonymousView = (LinearLayout)chooseCompletedClasses.this.findViewById(2131624031);
                 chooseCompletedClasses.access$000(chooseCompletedClasses.this, paramAnonymousView);
             }

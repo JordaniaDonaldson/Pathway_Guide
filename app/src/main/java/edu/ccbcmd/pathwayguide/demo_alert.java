@@ -7,6 +7,7 @@ package edu.ccbcmd.pathwayguide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,8 +15,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class demo_alert
         extends Activity
@@ -26,7 +27,7 @@ public class demo_alert
 
     public void onBackPressed()
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onBackPressed.()V", new Object[] { this });
@@ -40,7 +41,7 @@ public class demo_alert
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
@@ -54,7 +55,7 @@ public class demo_alert
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -69,7 +70,7 @@ public class demo_alert
         {
             public void onClick(View paramAnonymousView)
             {
-                IncrementalChange localIncrementalChange = $change;
+                IncrementalChange localIncrementalChange = IncrementalChange.$change;
                 if (localIncrementalChange != null)
                 {
                     localIncrementalChange.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramAnonymousView });
@@ -82,7 +83,7 @@ public class demo_alert
 
     public boolean onKeyDown(int paramInt, KeyEvent paramKeyEvent)
     {
-        IncrementalChange localIncrementalChange = $change;
+        IncrementalChange localIncrementalChange = IncrementalChange.$change;
         if (localIncrementalChange != null) {
             return ((Boolean)localIncrementalChange.access$dispatch("onKeyDown.(ILandroid/view/KeyEvent;)Z", new Object[] { this, new Integer(paramInt), paramKeyEvent })).booleanValue();
         }

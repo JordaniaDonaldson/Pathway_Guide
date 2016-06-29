@@ -20,8 +20,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
-import com.android.tools.fd.runtime.IncrementalChange;
-import com.android.tools.fd.runtime.InstantReloadException;
+import fd.IncrementalChange;
+import fd.InstantReloadException;
 
 public class chooseSub_Pathway
         extends AppCompatActivity
@@ -38,7 +38,7 @@ public class chooseSub_Pathway
 
     public void onClick(View paramView)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null)
         {
             ((IncrementalChange)localObject).access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, paramView });
@@ -60,11 +60,11 @@ public class chooseSub_Pathway
                     return;
                 }
             }
-            catch (ArrayIndexOutOfBoundsException paramView)
+            catch (ArrayIndexOutOfBoundsException parameView)
             {
                 this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
                 this.prefs.getInt("pathwayID", -1);
-                Toast.makeText(this, "The Sub-Pathway you selected is not currently available in this app. Please visit ccbcmd.edu/pathways to view more info on this pathway.", 1).show();
+                Toast.makeText(this, "The Sub-Pathway you selected is not currently available in this app. Please visit ccbcmd.edu/pathways to view more info on this pathway.", Toast.LENGTH_LONG).show();
                 return;
             }
             localObject = new Intent(this, MainActivity.class);
@@ -73,7 +73,7 @@ public class chooseSub_Pathway
 
     public void onCreate(Bundle paramBundle)
     {
-        Object localObject = $change;
+        Object localObject = IncrementalChange.$change;
         if (localObject != null) {
             ((IncrementalChange)localObject).access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, paramBundle });
         }

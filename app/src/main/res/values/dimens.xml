@@ -84,4 +84,6 @@
     <dimen name="showcase_radius_material">48.0dip</dimen>
     <dimen name="showcase_radius_outer">128.0dip</dimen>
     <dimen name="text_padding">24.0dip</dimen>
+
+
 </resources>
