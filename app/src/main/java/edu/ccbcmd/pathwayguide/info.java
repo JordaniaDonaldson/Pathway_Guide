@@ -263,13 +263,13 @@ public class info extends AppCompatActivity
 
             public void onPageFinished(final WebView webView, final String s) {
 
-                info.access$100(info.this).setVisibility(8);
+                webView.setVisibility(View.VISIBLE);
             }
 
             public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) {
 
-                info.access$100(info.this).getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
-                info.access$100(info.this).setVisibility(0);
+                mPbar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
+                webView.setVisibility(View.INVISIBLE);
             }
 
             public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {
@@ -308,7 +308,7 @@ public class info extends AppCompatActivity
                 }
                 Log.w("Url GOT", s);
                 Log.w("Url3", value2);
-                if (info.access$000(info.this)) {
+                if (isConnected) {
                     return false;
                 }
                 webView.loadData("<h1 style='font-size:40px'>No Internet Connection</h1><h3>Course Description could not be loaded. Please check your internet connection and try again.</h3>", "text/html", "utf-8");
@@ -388,7 +388,7 @@ public class info extends AppCompatActivity
 
             super.onResume();
             this.c = this;
-            if (this.c.getSystemService("connectivity") != null) {
+            if (this.c.getSystemService(Context.CONNECTIVITY_SERVICE) != null) {
                 try {
                     if (InetAddress.getByName("google.com").equals("")) {
                         return;

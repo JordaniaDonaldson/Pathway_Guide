@@ -84,7 +84,7 @@ public class webView
                 if (localIncrementalChange != null) {
                     bool = ((Boolean)localIncrementalChange.access$dispatch("shouldOverrideUrlLoading.(Landroid/webkit/WebView;Ljava/lang/String;)Z", this, paramAnonymousWebView, paramAnonymousString)).booleanValue();
                 }
-                while (webView.access$000(webView.this)) {
+                while (webView.this.isConnected) {
                     return bool;
                 }
                 paramAnonymousWebView.loadData("<h1>MESSAGE 1</h1><h4>Course Description could not be loaded. Please check your internet connection and try again</h4>", "text/html", "utf-8");
@@ -108,8 +108,9 @@ public class webView
             ((WebView)localObject).getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/4.0");
             ((WebView)localObject).loadUrl(_paramBundle);
             Log.w("url:", _paramBundle);
-            return;
+
             ((WebView)localObject).getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+            return;
         }
     }
 
@@ -118,10 +119,11 @@ public class webView
 
         do
         {
-            return;
+
             super.onResume();
             this.c = this;
-        } while (this.c.getSystemService("connectivity") == null);
+
+        } while (this.c.getSystemService(CONNECTIVITY_SERVICE) == null);
         try
         {
             if (InetAddress.getByName("google.com").equals(""))
@@ -136,5 +138,6 @@ public class webView
             return;
         }
         this.isConnected = true;
+        return;
     }
 }

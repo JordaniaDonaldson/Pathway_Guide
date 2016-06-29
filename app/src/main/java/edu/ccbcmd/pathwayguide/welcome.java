@@ -7,6 +7,7 @@ package edu.ccbcmd.pathwayguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -40,17 +41,17 @@ public class welcome
             return;
         }
         super.onCreate(paramBundle);
-        setContentView(2130968624);
+        setContentView(R.layout.activity_welcome);
         getSupportActionBar().show();
         getSupportActionBar().setTitle("Welcome");
-        paramBundle = getResources();
-        paramBundle = new BitmapDrawable(paramBundle, BitmapFactory.decodeResource(paramBundle, 2130837594));
-        getSupportActionBar().setBackgroundDrawable(paramBundle);
+        Resources _paramBundle = getResources();
+        BitmapDrawable __paramBundle = new BitmapDrawable(_paramBundle, BitmapFactory.decodeResource(_paramBundle, 2130837594));
+        getSupportActionBar().setBackgroundDrawable(__paramBundle);
         this.prefs = getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        paramBundle = (Button)findViewById(2131624064);
-        localObject = findViewById(2131624065);
-        Button localButton = (Button)findViewById(2131624066);
-        paramBundle.setOnClickListener(new View.OnClickListener()
+        Button ___paramBundle = (Button)findViewById(R.id.button4);
+        Button _localObject = (Button) findViewById(R.id.button5);
+        Button _localButton = (Button) findViewById(R.id.button6);
+        ___paramBundle.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
             {
@@ -63,7 +64,7 @@ public class welcome
                 welcome.this.startActivity(new Intent(welcome.this, choosePathway.class));
             }
         });
-        ((Button)localObject).setOnClickListener(new View.OnClickListener()
+        ((Button) _localObject).setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
             {
@@ -76,7 +77,7 @@ public class welcome
                 welcome.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
             }
         });
-        localButton.setOnClickListener(new View.OnClickListener()
+        _localButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View paramAnonymousView)
             {

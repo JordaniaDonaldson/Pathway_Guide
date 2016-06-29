@@ -78,21 +78,9 @@ public class demo_info extends AppCompatActivity
 
 
 
-  // public static /* synthetic */ boolean access.000(final demo_info demo_info) {
-  //     final IncrementalChange .change = demo_info..change;
- //      if (.change != null) {
- //          return (boolean).change.access.dispatch("access.000.(Lcom/example/nicholas/buttontest/demo_info;)Z", new Object[] { demo_info });
- //      }
- //      return demo_info.isConnected;
- //  }
+
     public boolean isThisConnected(){return isConnected;}
- //   public static /* synthetic */ ProgressBar access.100(final demo_info demo_info) {
-//        final IncrementalChange .change = demo_info..change;
-//        if (.change != null) {
- //           return (ProgressBar).change.access.dispatch("access.100.(Lcom/example/nicholas/buttontest/demo_info;)Landroid/widget/ProgressBar;", new Object[] { demo_info });
-//        }
- //       return demo_info.mPbar;
- //   }
+
 
     private int getScale() {
 
@@ -176,13 +164,13 @@ public class demo_info extends AppCompatActivity
 
             public void onPageFinished(final WebView webView, final String s) {
 
-                this.setVisibility(8); // FIXME: 6/28/2016
+                webView.setVisibility(View.VISIBLE);
             }
 
-            public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) { // FIXME: 6/28/2016
+            public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) {
 
-                this.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
-                this.setVisibility(0);
+                mPbar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
+                webView.setVisibility(View.INVISIBLE);
             }
 
             public void onReceivedError(final WebView webView, final int n, final String s, final String s2) {

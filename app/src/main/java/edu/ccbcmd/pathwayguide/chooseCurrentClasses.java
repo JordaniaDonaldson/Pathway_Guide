@@ -77,14 +77,16 @@ public class chooseCurrentClasses extends AppCompatActivity
                         }
                         ++n;
                         continue Label_0170_Outer;
-                        this.startActivity(new Intent(this, (Class)MainActivity.class));
+
                     }
                     catch (Exception ex) {
                         continue;
                     }
-                    break;
+
                 }
+
             }
+            this.startActivity(new Intent(this, (Class)MainActivity.class));
         }
     }
 
@@ -132,8 +134,8 @@ public class chooseCurrentClasses extends AppCompatActivity
 
 
             public void onClick(final View view) {
-                // FIXME: 6/29/2016
-                chooseCurrentClasses.access.000(chooseCurrentClasses.this, (ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16))//2131624032
+
+                loopQuestions((ViewGroup)chooseCurrentClasses.this.findViewById(R.id.linearLayout16));//2131624032
             }
         });
     }

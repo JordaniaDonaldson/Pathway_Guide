@@ -48,7 +48,7 @@ public class splash
         paramBundle.addFrame(getResources().getDrawable(R.drawable.arts), 1500);
         paramBundle.addFrame(getResources().getDrawable(R.drawable.business), 2000);
         paramBundle.setOneShot(true);
-        localObject = findViewById(2131624058);
+        localObject = findViewById(R.id.imageView);
         if (Build.VERSION.SDK_INT < 16) {
             ((ImageView)localObject).setImageDrawable(paramBundle);
         }
@@ -72,16 +72,19 @@ public class splash
                     }
                     for (;;)
                     {
+                        Intent _localObject = new Intent(splash.this, MainActivity.class);
+                        ((Intent)_localObject).putExtra("intVariableName", 0);
+                        splash.this.startActivity((Intent)localObject);
                         splash.this.finish();
                         return;
-                        localObject = new Intent(splash.this, MainActivity.class);
-                        ((Intent)localObject).putExtra("intVariableName", 0);
-                        splash.this.startActivity((Intent)localObject);
+
                     }
                 }
             }, 10500L);
-            return;
+
             ((ImageView)localObject).setImageDrawable(paramBundle);
+            return;
+
         }
     }
 }
