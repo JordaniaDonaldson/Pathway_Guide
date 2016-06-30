@@ -81,7 +81,7 @@ public class info extends AppCompatActivity
 
         final Point point = new Point();
         this.getWindowManager().getDefaultDisplay().getSize(point);
-        return (int)(Object)((point.x / 355.0) * 100.0);
+        return (int)((point.x / 355.0) * 100.0);
     }
 
     public int[] loadArrayInt(final String s) {
