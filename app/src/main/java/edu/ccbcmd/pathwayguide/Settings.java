@@ -5,6 +5,31 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
+import android.app.AlertDialog.Builder;
+import android.app.Notification.BigTextStyle;
+
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 
 import android.app.Notification;
@@ -17,6 +42,7 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
@@ -40,7 +66,7 @@ public class Settings extends AppCompatActivity
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Menu");
         final Resources resources = this.getResources();
-        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, 2130837594))); // TODO: 6/29/2016 Does this actually call the header? everywhere else I've replaced it with R.id.etc
+        this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header)));
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.findViewById(R.id.settings).setVisibility(View.INVISIBLE); //2131624052, 4
@@ -50,28 +76,36 @@ public class Settings extends AppCompatActivity
         final ListView listView = (ListView)this.findViewById(R.id.settingslist); //2131624050
         listView.setAdapter(adapter);
         listView.setClickable(true);
+        Log.w("listview", "loaded adapter");
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
+                Log.w("item n", String.valueOf(n));
 
 
                     switch (n) {
-                        default: {}
+
                         case 0: {
                             Settings.this.startActivity(new Intent(Settings.this, (Class)internet_setting.class));
+                            break;
                         }
                         case 1: {
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)links.class));
+                           startActivity(new Intent(Settings.this, (Class)links.class));
+                            break;
                         }
                         case 2: {
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
+                            startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
+                            break;
                         }
                         case 3: {
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
+                            startActivity(new Intent(Settings.this, (Class)choosePathway.class));
+                            break;
                         }
                         case 4: {
-                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978,
+                            Log.w("4", "wtf");
+
+                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton("yes", new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
 
 
                                 public void onClick(final DialogInterface dialogInterface, final int n) {
@@ -81,11 +115,13 @@ public class Settings extends AppCompatActivity
                                     edit.commit();
                                     Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
                                 }
-                            }).setNegativeButton(17039369, null).show();
+                            }).setNegativeButton("no", null).show();
+                            break;
                         }
                         case 5: {
                             Settings.this.prefs.edit().putInt("demo", 1).commit();
                             Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
+                            break;
                         }
                         case 6: {
                             final Settings this$0 = Settings.this; // FIXME: 6/29/2016 decompilation artifact?
@@ -132,6 +168,10 @@ public class Settings extends AppCompatActivity
                                 Settings.this.startActivity(new Intent(Settings.this, (Class)MainActivityZoomOut.class));
                                 return;
                             }
+                            break;
+                        }
+
+                        default: {
                             break;
                         }
                     }
