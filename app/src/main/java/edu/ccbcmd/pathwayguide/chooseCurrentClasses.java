@@ -11,6 +11,7 @@ import android.annotation.TargetApi;
 import android.content.res.Resources;
 
 import android.os.Build;
+import android.util.Log;
 import android.widget.Button;
 import android.graphics.Color;
 
@@ -56,36 +57,35 @@ public class chooseCurrentClasses extends AppCompatActivity
         final int length = choosePathway.subpathwayCoursePath[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)].length;
         int n = 0;
         Label_0170_Outer:
-        while (n < length) { // FIXME: 6/29/2016
+        while (n < length-1) {
             Label_0182: {
-                if (n>length-1){ this.startActivity(new Intent(this, (Class)MainActivity.class)); break Label_0170_Outer;}
+                if (n>length-2){  break Label_0170_Outer;}
                 while (n < length) {
+                    Log.e("Here", ""+n);
                     try {
-                        final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(n);
+                        final CheckBox checkBox = (CheckBox) viewGroup.getChildAt(n);
                         int n2;
                         if (checkBox.isChecked()) {
                             n2 = 1;
-                        }
-                        else {
+                        } else {
                             n2 = 0;
                         }
                         final int id = checkBox.getId();
                         if (n2 == 1) {
                             this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + id, 1).commit();
                         }
-                        ++n;
+                        n++;
                         continue Label_0170_Outer;
 
-                        }
-                        catch (Exception ex) {
-                           continue;
-                        }
-
+                    } catch (Exception ex) {
+                        continue;
+                    }
                 }
-
+                break;
             }
 
         }
+        this.startActivity(new Intent(this, (Class)MainActivity.class));
     }
 
     public int[] loadArrayInt(final String s) {
