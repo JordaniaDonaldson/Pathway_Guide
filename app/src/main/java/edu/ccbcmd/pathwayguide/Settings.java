@@ -5,33 +5,6 @@ package edu.ccbcmd.pathwayguide;
  */
 
 
-import android.app.AlertDialog.Builder;
-import android.app.Notification.BigTextStyle;
-
-import android.app.NotificationManager;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -42,7 +15,6 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
@@ -51,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class Settings extends AppCompatActivity
 {
@@ -76,12 +47,10 @@ public class Settings extends AppCompatActivity
         final ListView listView = (ListView)this.findViewById(R.id.settingslist); //2131624050
         listView.setAdapter(adapter);
         listView.setClickable(true);
-        Log.w("listview", "loaded adapter");
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
-                Log.w("item n", String.valueOf(n));
 
 
                     switch (n) {
@@ -103,9 +72,8 @@ public class Settings extends AppCompatActivity
                             break;
                         }
                         case 4: {
-                            Log.w("4", "wtf");
-
-                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton("yes", new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
+                            // TODO: 6/30/2016 fix the alert icon
+                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
 
 
                                 public void onClick(final DialogInterface dialogInterface, final int n) {
@@ -115,7 +83,7 @@ public class Settings extends AppCompatActivity
                                     edit.commit();
                                     Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
                                 }
-                            }).setNegativeButton("no", null).show();
+                            }).setNegativeButton(17039369, null).show();
                             break;
                         }
                         case 5: {
