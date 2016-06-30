@@ -52,53 +52,14 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         sub_pathwayName = new String[][] { { "Nursing A.S.N.", "Occupational Therapy Assistant A.A.S.", "Dental Hygiene A.A.S.", "Medical Lab. Technology A.A.S.", "Veterinary Technology A.A.S.", "Emergency Medical Technology A.A.S.", "Respiratory Care Therapy A.A.S.", "Radiography A.A.S.", "Radiation Therapy A.A.S.", "Massage Therapy A.A.S.", "Mortuary Science A.A.S.", "Mental Health A.A.S" } };
         subpathwayCoursePath = new int[][][] { { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 } } };
     }
-/*
-    public choosePathway() {
-        final IncrementalChange $change = choosePathway.$change;
-        if ($change != null) {
-            final Object[] array = { null };
-            array[0] = array;
-            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
-        }
-        else {}
-        if ($change != null) {
-            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/choosePathway;)V", new Object[] { this });
-            return;
-        }
-        this.prefs = null;
-        this.courseStat = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
-    } */
-    public choosePathway() {
-        this.prefs = null;
-        this.courseStat = new int []{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
-    }
 
-        /*
-
-    choosePathway(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/choosePathway"));
-            }
-            case -2089128195: {}
-            case -2066401796: {
-                this();
-            }
-        }
-    }
-*/
 
 
 
 /* Deleted load2DArray() and loadArrayInt() methods, they can be found in MainActivity and others. */
 
     public void onClick(final View view) {
-      /*  final IncrementalChange $change = choosePathway.$change;
-        if ($change != null) {
-            $change.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, view });
-            return;
-        } */
+
         try {
             final int length = choosePathway.sub_pathwayName[view.getId()].length;
             this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
@@ -114,10 +75,6 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
     }
 
     public void onCreate(final Bundle bundle) {
-      /*  final IncrementalChange $change = choosePathway.$change;
-        if ($change != null) {
-            $change.access$dispatch("onCreate.(Landroid/os/Bundle;)V", new Object[] { this, bundle });
-        } */
 
             super.onCreate(bundle);
             this.setContentView(R.layout.activity_choose_pathway); //2130968606

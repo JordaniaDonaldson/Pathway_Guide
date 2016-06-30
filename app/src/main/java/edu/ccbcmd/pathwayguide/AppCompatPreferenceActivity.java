@@ -30,33 +30,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 {
 
     private AppCompatDelegate mDelegate;
-/*
-    public AppCompatPreferenceActivity() {
-        final IncrementalChange .change = AppCompatPreferenceActivity..change;
-        if (.change != null) {
-            final Object[] array = { null };
-            array[0] = array;
-            this((Object[]).change.access.dispatch("init.args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
-        }
-        else {}
-        if (.change != null) {
-            .change.access.dispatch("init.body.(Lcom/example/nicholas/buttontest/AppCompatPreferenceActivity;)V", new Object[] { this });
-        }
-    }
 
-    AppCompatPreferenceActivity(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/AppCompatPreferenceActivity"));
-            }
-            case -1269620170: {
-                this();
-            }
-            case 1824235717: {}
-        }
-    }
-*/
     private AppCompatDelegate getDelegate() {
 
         if (this.mDelegate == null) {

@@ -56,7 +56,7 @@ public class demo_info_2 extends AppCompatActivity implements View.OnClickListen
         this.setContentView(R.layout.activity_demo_info_2); //2130968609
         (this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0)).getInt("pathwayID", -1);
         this.prefs.getInt("pathwaysubID", -1);
-        Integer.parseInt(this.prefs.getString("choosenID", "0"));
+        Integer.parseInt(this.prefs.getString("choosenID", "0")); // FIXME: 6/29/2016 is this meant to be used?
         ((TextView)this.findViewById(R.id.textView)).setText("Transitioning to College"); //2131624036
         ((TextView)this.findViewById(R.id.description)).setText("Credits: 1\nRecommended Semester: 1st*\n\n*This course may not be required for transfer students. Ask your adviser for more information."); //2131624042
         this.getSupportActionBar().setTitle("ACDV 101");
@@ -64,6 +64,7 @@ public class demo_info_2 extends AppCompatActivity implements View.OnClickListen
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
+
         this.findViewById(R.id.button).setOnClickListener(this); //2131624037
         this.findViewById(R.id.button3).setOnClickListener(this); //2131624041
         final Button button = (Button)this.findViewById(R.id.colorChange); //2131624038

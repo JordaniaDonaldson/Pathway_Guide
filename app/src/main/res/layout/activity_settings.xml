@@ -9,15 +9,15 @@
 
     <TextView
         android:textSize="20.0sp"
-        android:id="@id/settings"
+        android:id="@+id/settings"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Menu" />
 
     <ListView
         android:textSize="20.0sp"
-        android:id="@id/settingslist"
+        android:id="@+id/settingslist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@+id/travel" />
+         />
 </RelativeLayout>

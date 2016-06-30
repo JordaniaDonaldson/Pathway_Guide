@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@id/zoomout"
+        android:id="@+id/zoomout"
         android:background="#fffdfcfc"
         android:paddingLeft="25.0dip"
         android:paddingTop="2.0dip"
@@ -47,7 +47,7 @@
         android:layout_alignParentBottom="true" />
 
     <ImageButton
-        android:id="@id/button2"
+        android:id="@+id/button2"
         android:background="#fffdfcfc"
         android:paddingLeft="26.0dip"
         android:paddingTop="7.0dip"

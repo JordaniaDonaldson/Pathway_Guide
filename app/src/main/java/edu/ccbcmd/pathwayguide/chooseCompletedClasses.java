@@ -30,7 +30,7 @@ public class chooseCompletedClasses extends AppCompatActivity
 {
     public SharedPreferences prefs;
 
-    public chooseCompletedClasses() {}
+
 
 
 

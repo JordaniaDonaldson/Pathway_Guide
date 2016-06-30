@@ -59,12 +59,6 @@ public class info extends AppCompatActivity
     private ProgressBar mPbar;
     public SharedPreferences prefs;
 
-    public info() {
-
-        this.mPbar = null;
-        this.isConnected = true;
-        this.prefs = null;
-    }
 
     public static /* synthetic */ boolean access$000(final info info) {
 
@@ -151,7 +145,7 @@ public class info extends AppCompatActivity
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
-        final Button button = (Button)this.findViewById(R.id.button); //2131624037
+        final Button button = (Button) findViewById(R.id.button); //2131624037
         if (choosePathway.pageSwitch[n] == 1) {
             button.setText("Meet with an Adviser");
         }

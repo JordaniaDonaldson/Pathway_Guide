@@ -22,29 +22,13 @@ package edu.ccbcmd.pathwayguide;
 
 public class NonBreakingPeriodTextView extends TextView
 {
-   // public static volatile /* synthetic */ IncrementalChange $change;
+
     private static final String TAG = "NonBreakingPeriodTextView";
 
     public NonBreakingPeriodTextView(Context context) {
 
         super(context);
 
-        /*
-        final IncrementalChange $change = NonBreakingPeriodTextView.$change;
-        if ($change != null) {
-            final Object[] array = new Object[2];
-            (array[0] = array)[1] = context;
-            final Object[] array2 = (Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;Landroid/content/Context;)Ljava/lang/Object;", array);
-            context = (Context)array[1];
-            this(array2, null);
-        }
-        else {
-
-        }
-        if ($change != null) {
-            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/NonBreakingPeriodTextView;Landroid/content/Context;)V", new Object[] { this, context });
-        }
-        */
     }
 
     public NonBreakingPeriodTextView(Context context, AttributeSet set) {
@@ -53,44 +37,17 @@ public class NonBreakingPeriodTextView extends TextView
 
 
     }
-/*
-    NonBreakingPeriodTextView(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/NonBreakingPeriodTextView"));
-            }
-            case -1595407246: {
-                this((Context)array[1], (AttributeSet)array[2]);
-            }
-            case -1377109095: {
-                super((Context)array[1], (AttributeSet)array[2], ((Number)array[3]).intValue());
-            }
-            case 255810076: {
-                this((Context)array[1]);
-            }
-            case 259320458: {
-                super((Context)array[1], (AttributeSet)array[2], ((Number)array[3]).intValue(), ((Number)array[4]).intValue());
-            }
-            case 1589761252: {
-                super((Context)array[1]);
-            }
-            case 1895238826: {
-                super((Context)array[1], (AttributeSet)array[2]);
-            }
-        }
-    }
-*/
+
     public void onSizeChanged(int i, int n, int n2, int n3) {
 
             final Editable editableText = this.getEditableText();
             if (editableText == null) {
-            //    Log.d("NonBreakingPeriodTextView", "non-editable text");
+                Log.d("tag", "non-editable text");
                 return;
             }
             final int n4 = this.getWidth() - this.getPaddingLeft() - this.getPaddingRight();
             if (n4 == 0) {
-          //      Log.d("NonBreakingPeriodTextView", "zero-length text");
+        Log.d("tag", "zero-length text");
                 return;
             }
             final TextPaint paint = this.getPaint();

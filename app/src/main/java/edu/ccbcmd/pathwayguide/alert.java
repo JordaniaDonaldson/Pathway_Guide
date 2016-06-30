@@ -22,35 +22,7 @@ public class alert extends Activity
 {
    // public static volatile /* synthetic */ IncrementalChange $change;
     public SharedPreferences prefs;
-/*
-    public alert() {
-        final IncrementalChange $change = alert.$change;
-        if ($change != null) {
-            final Object[] array = { null };
-            array[0] = array;
-            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
-        }
-        else {}
-        if ($change != null) {
-            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/alert;)V", new Object[] { this });
-            return;
-        }
-        this.prefs = null;
-    }
 
-    alert(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/alert"));
-            }
-            case -1230767868: {}
-            case 1037210181: {
-                this();
-            }
-        }
-    }
-*/
     public int[] loadArrayInt(final String s) {
 
         final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);

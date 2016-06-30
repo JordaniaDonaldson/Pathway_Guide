@@ -39,11 +39,6 @@ public class MainActivity extends Activity implements View.OnClickListener
 
     public SharedPreferences prefs;
 
-    public MainActivity() {
-
-        this.prefs = null; //TODO: is this needed?
-    }
-
 
 
     public String[][] load2DArray(String s) {
@@ -239,10 +234,10 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setId(id);
             button.setOnClickListener(this);
              int length = choosePathway.coursePreRec[id].length;
-            Log.w("Prereclangth:", String.valueOf(length));
+           // Log.w("Prereclangth:", String.valueOf(length));
             int n10 = _loadArrayInt[id];
             button.setTextColor(Color.parseColor("#ffffff"));
-            Log.w("Status", String.valueOf(n10));
+           // Log.w("Status", String.valueOf(n10));
             if (n10 == 0) {
                 button.setBackgroundColor(Color.parseColor("#159b8a"));
             }
@@ -256,10 +251,10 @@ public class MainActivity extends Activity implements View.OnClickListener
             else if (length == 0) {
                 button.setTextColor(Color.parseColor("#000000"));
                 button.setBackgroundColor(Color.parseColor("#fcd054"));
-                Log.w("if/else", "=0");
+            //    Log.w("if/else", "=0");
             }
             else {
-                Log.w("if/else", "!=0");
+              //  Log.w("if/else", "!=0");
                 int n11 = 1;
                 for (int j = 0; j < length; ++j) {
                      int n12 = _loadArrayInt[choosePathway.coursePreRec[id][j]];
