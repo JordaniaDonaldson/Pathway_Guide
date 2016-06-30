@@ -23,34 +23,7 @@ package edu.ccbcmd.pathwayguide;
 
 public class AlarmReceiver extends BroadcastReceiver
 {
-  /*
 
-    public AlarmReceiver() {
-        final IncrementalChange $change = AlarmReceiver.$change;
-        if ($change != null) {
-            final Object[] array = { null };
-            array[0] = array;
-            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
-        }
-        else {}
-        if ($change != null) {
-            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/AlarmReceiver;)V", new Object[] { this });
-        }
-    }
-
-    AlarmReceiver(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/AlarmReceiver"));
-            }
-            case -1885074391: {
-                this();
-            }
-            case 1550206337: {}
-        }
-    }
-*/
     public void onReceive(final Context context, Intent intent) {
 
         intent = new Intent(context, (Class)NotificationActivity.class);

@@ -59,12 +59,6 @@ public class info extends AppCompatActivity
     private ProgressBar mPbar;
     public SharedPreferences prefs;
 
-    public info() {
-
-        this.mPbar = null;
-        this.isConnected = true;
-        this.prefs = null;
-    }
 
     public static /* synthetic */ boolean access$000(final info info) {
 

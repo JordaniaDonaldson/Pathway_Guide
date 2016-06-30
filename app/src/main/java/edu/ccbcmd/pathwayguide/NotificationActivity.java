@@ -41,36 +41,7 @@ public class NotificationActivity extends AppCompatActivity
 {
 
     public SharedPreferences prefs;
-/*
-    public NotificationActivity() {
-        final IncrementalChange $change = NotificationActivity.$change;
-        if ($change != null) {
-            final Object[] array = { null };
-            array[0] = array;
-            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
-        }
-        else {}
-        if ($change != null) {
-            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/NotificationActivity;)V", new Object[] { this });
-            return;
-        }
-        this.prefs = null;
-    }
-*/
-    /*
-    NotificationActivity(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/NotificationActivity"));
-            }
-            case -2089128195: {}
-            case -1975292385: {
-                this();
-            }
-        }
-    }
-*/
+
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);

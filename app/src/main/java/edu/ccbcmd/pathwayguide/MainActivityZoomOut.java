@@ -40,35 +40,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
 {
 
     public SharedPreferences prefs;
- /*
-    public MainActivityZoomOut() {
-       final IncrementalChange $change = MainActivityZoomOut.$change;
-        if ($change != null) {
-            final Object[] array = { null };
-            array[0] = array;
-            this((Object[])$change.access$dispatch("init$args.([Ljava/lang/Object;)Ljava/lang/Object;", array), null);
-        }
-        else {}
-        if ($change != null) {
-            $change.access$dispatch("init$body.(Lcom/example/nicholas/buttontest/MainActivityZoomOut;)V", new Object[] { this });
-            return;
-        }
-        this.prefs = null;
-    }
 
-    MainActivityZoomOut(final Object[] array, final InstantReloadException ex) {
-        final String s = (String)array[0];
-        switch (s.hashCode()) {
-            default: {
-                throw new InstantReloadException(String.format("String switch could not find '%s' with hashcode %s in %s", s, s.hashCode(), "com/example/nicholas/buttontest/MainActivityZoomOut"));
-            }
-            case -1859807428: {
-                this();
-            }
-            case -1230767868: {}
-        }
-    }
-*/
 
     public String[][] load2DArray(String s) {
 
@@ -206,7 +178,6 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
             final LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
             final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1); //2131624045
             scrollView.post(new Runnable() {
-               // public static volatile /* synthetic */ IncrementalChange $change;
 
                 @Override
                 public void run() {
@@ -449,37 +420,21 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
             }
         }
         this.findViewById(R.id.zoom).setOnClickListener(new View.OnClickListener() { //2131624053
-          //  public static volatile /* synthetic */ IncrementalChange $change;
+
 
             public void onClick(final View view) {
-               /* final IncrementalChange $change = MainActivityZoomOut$2.$change;
-                if ($change != null) {
-                    $change.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, view });
-                    return;
-                } */
                 MainActivityZoomOut.this.startActivity(new Intent(MainActivityZoomOut.this, (Class)MainActivity.class));
             }
         });
         this.findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() { //2131624054
-          //  public static volatile /* synthetic */ IncrementalChange $change;
 
             public void onClick(final View view) {
-               /* final IncrementalChange $change = MainActivityZoomOut$3.$change;
-                if ($change != null) {
-                    $change.access$dispatch("onClick.(Landroid/view/View;)V", new Object[] { this, view });
-                    return;
-                } */
                 MainActivityZoomOut.this.startActivity(new Intent(MainActivityZoomOut.this, (Class)Settings.class));
             }
         });
     }
 
     public void onResume() {
-       /* final IncrementalChange $change = MainActivityZoomOut.$change;
-        if ($change != null) {
-            $change.access$dispatch("onResume.()V", new Object[] { this });
-            return;
-        } */
         super.onResume();
         if (this.getIntent().getIntExtra("intVariableName", 1) == 0) {
             final int int1 = this.prefs.getInt("opencount", 1);

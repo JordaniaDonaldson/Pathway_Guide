@@ -53,14 +53,6 @@ public class demo_info extends AppCompatActivity
     public SharedPreferences prefs;
     private ShowcaseView showcaseView;
 
-    public demo_info() {
-
-        this.counter = 0;
-        this.prefs = null;
-        this.mPbar = null;
-        this.isConnected = true;
-    }
-
 
    public static /* synthetic */ boolean access$000(final demo_info demo_info) {
 
@@ -155,14 +147,13 @@ public class demo_info extends AppCompatActivity
 
 
             public void onPageFinished(final WebView webView, final String s) {
-                /* I _think_ the line I added is what was needed. */
+
                mPbar.setVisibility(View.GONE); //8
-               // webView.setVisibility(View.GONE);
-               // this.setVisibility(); //8 // FIXME: 6/28/2016 might be fixed
+
             }
 
-            public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) { // FIXME: 6/28/2016
-/* changed <this> to <mPbar>. see if it works. */
+            public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) {
+
                 mPbar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#1ba9d8"), PorterDuff.Mode.MULTIPLY);
                 mPbar.setVisibility(View.VISIBLE); //0
 
@@ -226,7 +217,7 @@ public class demo_info extends AppCompatActivity
         webView.setScrollbarFadingEnabled(false);
         if (Build.VERSION.SDK_INT >= 19) {
             webView.getSettings().setLoadWithOverviewMode(true);
-            webView.getSettings().setUseWideViewPort(true); //Changed both uses of this command to false to false to prevent logcat error
+            webView.getSettings().setUseWideViewPort(true);
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
         }
         else {
