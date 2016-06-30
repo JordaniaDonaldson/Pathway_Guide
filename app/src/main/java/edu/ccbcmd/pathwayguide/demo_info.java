@@ -6,57 +6,42 @@ package edu.ccbcmd.pathwayguide;
 
 
 
-        import android.graphics.PorterDuff;
-        import android.os.Build;
-
-        import java.net.InetAddress;
-
-        import android.webkit.WebSettings;
-
-        import android.webkit.CookieManager;
-        import android.util.Log;
-        import android.widget.Toast;
         import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import android.webkit.WebResourceError;
+import com.github.amlcurran.showcaseview.ShowcaseView;
 
-        import android.webkit.WebResourceRequest;
+import java.net.InetAddress;
+import java.util.Calendar;
 
-        import android.webkit.WebViewClient;
-        import android.webkit.WebView;
-        import java.util.Calendar;
-        import android.widget.Button;
-        import android.graphics.drawable.ColorDrawable;
-        import android.graphics.Color;
-        import android.widget.TextView;
-        import android.content.res.Resources;
-
-        import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-
-        import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-        import android.graphics.Point;
-
-        import android.graphics.drawable.Drawable;
-
-        import android.view.MenuItem;
-
-        import android.net.Uri;
-
-        import android.graphics.Bitmap;
-
-        import android.app.Activity;
-        import android.view.KeyEvent;
-
-        import android.view.View;
-        import android.content.Intent;
-        import android.os.Bundle;
-
-        import com.github.amlcurran.showcaseview.ShowcaseView;
-        import android.content.SharedPreferences;
-        import android.widget.ProgressBar;
-        import android.content.Context;
-
-        import android.support.v7.app.AppCompatActivity;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class demo_info extends AppCompatActivity
 {
@@ -75,7 +60,6 @@ public class demo_info extends AppCompatActivity
         this.mPbar = null;
         this.isConnected = true;
     }
-
 
 
    public static /* synthetic */ boolean access$000(final demo_info demo_info) {
@@ -146,6 +130,7 @@ public class demo_info extends AppCompatActivity
         (this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0)).getInt("pathwayID", -1);
         this.prefs.getInt("pathwaysubID", -1);
         final int int1 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
+
         ((TextView)this.findViewById(R.id.textView)).setText("Introduction to College Writing"); //2131624036
         this.getSupportActionBar().setTitle("ENGL 101");
         this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181")));
@@ -171,8 +156,9 @@ public class demo_info extends AppCompatActivity
 
             public void onPageFinished(final WebView webView, final String s) {
                 /* I _think_ the line I added is what was needed. */
-                webView.setVisibility(View.GONE); //8
-               // this.setVisibility(); //8 // FIXME: 6/28/2016
+               mPbar.setVisibility(View.GONE); //8
+               // webView.setVisibility(View.GONE);
+               // this.setVisibility(); //8 // FIXME: 6/28/2016 might be fixed
             }
 
             public void onPageStarted(final WebView webView, final String s, final Bitmap bitmap) { // FIXME: 6/28/2016
@@ -228,8 +214,8 @@ public class demo_info extends AppCompatActivity
         CookieManager.getInstance().setAcceptCookie(false);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUserAgentString("User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
-        webView.getSettings();
-        this.getResources();
+        webView.getSettings().setDomStorageEnabled(true); //Added line to fix "cannot call determinedVisibility()" logcat message
+        //this.getResources(); doesn't seem to do anything?
         final int n2 = (int)(6 * this.getResources().getDisplayMetrics().density);
         webView.setFocusableInTouchMode(false);
         webView.setFocusable(false);
@@ -240,13 +226,13 @@ public class demo_info extends AppCompatActivity
         webView.setScrollbarFadingEnabled(false);
         if (Build.VERSION.SDK_INT >= 19) {
             webView.getSettings().setLoadWithOverviewMode(true);
-            webView.getSettings().setUseWideViewPort(true);
+            webView.getSettings().setUseWideViewPort(true); //Changed both uses of this command to false to false to prevent logcat error
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
         }
         else {
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
-        final Integer value3 = this.prefs.getInt("internet", 1);
+        final Integer value3 = this.prefs.getInt("internet", 1); //"internet"
         Toast.makeText(this, String.valueOf(value3), Toast.LENGTH_LONG); //1 // FIXME: 6/29/2016 when is this meant to be displayed?
         if (value3 == 1) {
             webView.loadUrl(value2);
@@ -255,7 +241,7 @@ public class demo_info extends AppCompatActivity
         else {
             webView.setInitialScale(this.getScale());
             webView.getSettings().setLoadWithOverviewMode(false);
-            webView.getSettings().setUseWideViewPort(false);
+            webView.getSettings().setUseWideViewPort(true);
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             webView.loadDataWithBaseURL("", "<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet setting's found in the menu.</h3>", "text/html", "utf-8", "");
         }
@@ -269,7 +255,7 @@ public class demo_info extends AppCompatActivity
         });
        final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
 
-        button2.setText("Class End Results"); // FIXME: 6/29/2016 text bs
+        button2.setText("Class End Results");
         button2.setOnClickListener(new View.OnClickListener() {
 
 

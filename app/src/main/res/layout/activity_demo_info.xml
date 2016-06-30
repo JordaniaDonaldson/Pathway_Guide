@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@id/colorChange"
+        android:id="@+id/colorChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I have registered for this course"
@@ -42,7 +42,8 @@
         android:layout_marginTop="50.0dip"
         android:layout_above="@id/button"
         android:layout_below="@id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar2"
