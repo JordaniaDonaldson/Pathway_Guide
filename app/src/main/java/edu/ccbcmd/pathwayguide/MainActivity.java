@@ -178,7 +178,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.load2DArray("courseName");
         int[] _loadArrayInt = null;
 
-        if (false){  //// FIXME: 6/29/2016
+        if (prefs.getBoolean("firstrun", true)){  //// FIXME: 6/29/2016
             _loadArrayInt =  new int[] {2,2,2,2,2,2,2,2,2,2};
         } else {
             _loadArrayInt = this.loadArrayInt("courseStat");

@@ -59,7 +59,7 @@ public class AlarmReceiver extends BroadcastReceiver
         create.addNextIntent(intent);
         final PendingIntent pendingIntent = create.getPendingIntent(0, 134217728);
         final Notification.Builder notificationBuilder = new Notification.Builder(context);
-        notificationBuilder.setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
+        notificationBuilder.setVibrate(new long[] { 100L });
         notificationBuilder.setLights(256, 3000, 3000); //color value -256, but IDE complained
         notificationBuilder.setAutoCancel(true);
         notificationBuilder.setStyle(new Notification.BigTextStyle().bigText("It is finally time for you to register for your next semester classes. Update your progress and figure out what to take next semester!"));

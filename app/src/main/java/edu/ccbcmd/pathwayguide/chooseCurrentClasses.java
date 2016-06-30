@@ -56,11 +56,9 @@ public class chooseCurrentClasses extends AppCompatActivity
         final int length = choosePathway.subpathwayCoursePath[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)].length;
         int n = 0;
         Label_0170_Outer:
-        while (true) { // FIXME: 6/29/2016
+        while (n < length) { // FIXME: 6/29/2016
             Label_0182: {
-                if (n >= length) {
-                    break Label_0182;
-                }
+                if (n>length-1){ this.startActivity(new Intent(this, (Class)MainActivity.class)); break Label_0170_Outer;}
                 while (n < length) {
                     try {
                         final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(n);
@@ -78,15 +76,15 @@ public class chooseCurrentClasses extends AppCompatActivity
                         ++n;
                         continue Label_0170_Outer;
 
-                    }
-                    catch (Exception ex) {
-                        continue;
-                    }
+                        }
+                        catch (Exception ex) {
+                           continue;
+                        }
 
                 }
 
             }
-            this.startActivity(new Intent(this, (Class)MainActivity.class));
+
         }
     }
 
