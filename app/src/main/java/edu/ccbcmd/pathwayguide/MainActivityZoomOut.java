@@ -267,8 +267,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                         textView2.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
                         textView2.setId(id2);
                         textView2.setOnClickListener(this);
-                        Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id2].length));
-                        Log.w("Status", String.valueOf(loadArrayInt[id2]));
+                      //  Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id2].length));
+                     //   Log.w("Status", String.valueOf(loadArrayInt[id2]));
                         textView2.setBackgroundColor(Color.parseColor("#fcd054"));
                         textView2.setTextColor(Color.parseColor("#000000"));
                         linearLayout2.addView(textView2);
@@ -298,8 +298,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                         textView3.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
                         textView3.setId(id3);
                         textView3.setOnClickListener(this);
-                        Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id3].length));
-                        Log.w("Status", String.valueOf(loadArrayInt[id3]));
+                      //  Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id3].length));
+                   //     Log.w("Status", String.valueOf(loadArrayInt[id3]));
                         textView3.setBackgroundColor(Color.parseColor("#fcd054"));
                         textView3.setTextColor(Color.parseColor("#000000"));
                         linearLayout2.addView(textView3);
@@ -351,7 +351,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
             }
             for (int n16 = length; n16 > 0; --n16) {
                 final int n17 = choosePathway.subpathwayCoursePath[value][value2][n16 - 1];
-                final int length4 = choosePathway.coursePreRec[n17].length;
+                final int length4 = choosePathway.coursePreRec[n17].length; // TODO: 6/30/2016 review these
                 final int n18 = loadArrayInt[n17];
                 if (n18 != 0 && (n18 == 1 || n18 == 4)) {
                     final TextView textView5 = new TextView(this);
@@ -375,8 +375,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView5.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
                     textView5.setId(id5);
                     textView5.setOnClickListener(this);
-                    Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id5].length));
-                    Log.w("Status", String.valueOf(loadArrayInt[id5]));
+                  //  Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id5].length));
+                 //   Log.w("Status", String.valueOf(loadArrayInt[id5]));
                     textView5.setBackgroundColor(Color.parseColor("#644181"));
                     linearLayout2.addView(textView5);
                     final LinearLayout.LayoutParams layoutParams10 = (LinearLayout.LayoutParams)textView5.getLayoutParams();
@@ -409,8 +409,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     textView6.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
                     textView6.setId(id6);
                     textView6.setOnClickListener(this);
-                    Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id6].length));
-                    Log.w("Status", String.valueOf(loadArrayInt[id6]));
+               //     Log.w("Prereclangth:", String.valueOf(choosePathway.coursePreRec[id6].length));
+               //     Log.w("Status", String.valueOf(loadArrayInt[id6]));
                     textView6.setBackgroundColor(Color.parseColor("#159b8a"));
                     linearLayout2.addView(textView6);
                     final LinearLayout.LayoutParams layoutParams12 = (LinearLayout.LayoutParams)textView6.getLayoutParams();

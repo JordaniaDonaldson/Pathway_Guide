@@ -173,7 +173,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.load2DArray("courseName");
         int[] _loadArrayInt = null;
 
-        if (prefs.getBoolean("firstrun", true)){  //// FIXME: 6/29/2016
+        if (prefs.getBoolean("firstrun", true)){  // TODO: 6/30/2016 Not sure if needed.
             _loadArrayInt =  new int[] {2,2,2,2,2,2,2,2,2,2};
         } else {
             _loadArrayInt = this.loadArrayInt("courseStat");
@@ -186,16 +186,9 @@ public class MainActivity extends Activity implements View.OnClickListener
         LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
         final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1); //2131624045
         scrollView.post(new Runnable() {
-           // public static volatile /* synthetic */ IncrementalChange $change;
 
             @Override
             public void run() {
-              /*   IncrementalChange $change = MainActivity$1.$change;
-                if ($change != null) {
-                    $change.access$dispatch("run.()V", new Object[] { this });
-                    return;
-                }
-                */
                 scrollView.fullScroll(130);
             }
         });
@@ -320,7 +313,7 @@ public class MainActivity extends Activity implements View.OnClickListener
              int int1 = this.prefs.getInt("opencount", 1);
             Log.w("counter", String.valueOf(int1));
             int n;
-            if (int1 == 5) {
+            if (int1 == 5) { // TODO: 6/30/2016 Blackboard reminder is set to go off every 5 times the app opens. too much? actually it looks like every 4 times(!)
                 this.startActivity(new Intent(this, (Class)blackboardReminder.class));
                 n = 1;
             }
