@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20.0dip"
-        android:text="For more information about the pathways, visit the pathways webpage. Please remember that this app doe not replace an actual advisor."
+        android:text="For more information about the pathways, visit the pathways webpage. Please remember that this app does not replace an actual advisor."
         android:layout_below="@id/textView6"
         android:layout_centerHorizontal="true" />
 
@@ -43,7 +43,7 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meet with and Advisor"
+        android:text="Meet with an Advisor"
         android:layout_above="@id/button4"
         android:layout_centerHorizontal="true" />
 

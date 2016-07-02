@@ -84,6 +84,11 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
             this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
             if (this.prefs.getBoolean("firstrun", true)) {
+                /* this code won't be necessary if the code in MainActivity is fixed */
+                if (courseStat == null) {
+                    courseStat = new int[] {2,2,2,2,2,2,2,2,2,2}; // copied this from MainActivity
+                }
+
                 this.saveArrayInt(this.courseStat, "courseStat");
                 this.getSupportActionBar().setHomeButtonEnabled(false);
                 this.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
