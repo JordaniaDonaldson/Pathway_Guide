@@ -42,7 +42,7 @@ public class alert extends Activity
         final int int1 = this.prefs.getInt("pathwayID", -1);
         final int int2 = this.prefs.getInt("pathwaysubID", -1);
         final int int3 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
-        final int n = this.loadArrayInt("courseStat")[choosePathway.subpathwayCoursePath[int1][int2][int3]];
+        final int n = this.loadArrayInt("courseStat")[choosePathway.subpathwayCoursePath[0][int1][int3]];
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 

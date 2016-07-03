@@ -63,6 +63,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
         int int1 = sharedPreferences.getInt(s + "_size", 0);
+        Log.w("array length", String.valueOf(int1));
         int[] array = new int[int1];
 
         for (int i = 0; i < int1; ++i) {
@@ -86,8 +87,10 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.setContentView(R.layout.activity_main); //2130968616
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 0).commit();
-        Integer value = this.prefs.getInt("pathwayID", 0);
-        Integer value2 = this.prefs.getInt("pathwaysubID", 0);
+        Integer pathID = this.prefs.getInt("pathwayID", 0);
+        Integer pathSubID = this.prefs.getInt("pathwaysubID", -1);
+        Log.w("Main - pathID", String.valueOf(pathID));
+        Log.w("Main - pathSubID", String.valueOf(pathSubID));
         String string = this.prefs.getString("notifydate", "00/00/0000");
         Calendar instance = Calendar.getInstance();
 
@@ -166,7 +169,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         else {
             Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
         }
-        if (value2 == -1) {
+        if (pathSubID == -1) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
@@ -176,7 +179,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         if (prefs.getBoolean("firstrun", true)){  // TODO: 6/30/2016 Not sure if needed.
             _loadArrayInt =  new int[] {2,2,2,2,2,2,2,2,2,2};
         } else {
-            _loadArrayInt = this.loadArrayInt("courseStat");
+            _loadArrayInt = this.loadArrayInt("courseStat"); // FIXME: 7/3/2016 fix this bs setting
         }
         Integer.parseInt(this.prefs.getString("choosenID", "0"));
         new RelativeLayout(this);
@@ -201,13 +204,15 @@ public class MainActivity extends Activity implements View.OnClickListener
         Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         linearLayout2.addView(imageView);
         int i;
-        for (int n7 = i = choosePathway.subpathwayCoursePath[value][value2].length; i > 0; --i) {
+        for (int n7 = i = choosePathway.subpathwayCoursePath[0][pathID].length; i > 0; --i) {
              float density = this.getResources().getDisplayMetrics().density;
              int n8 = (int)(13 * density);
              int n9 = (int)(2.2 * density);
              Button button = new Button(this);
-             int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
-            button.setText(choosePathway.courseNum[id]);
+
+             int id = choosePathway.subpathwayCoursePath[0][pathID][i - 1];
+            Log.w("Subcoursepath", String.valueOf(id));
+            button.setText(choosePathway.courseNum[pathID][id]);
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
@@ -226,9 +231,9 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
             button.setId(id);
             button.setOnClickListener(this);
-             int length = choosePathway.coursePreRec[id].length;
-           // Log.w("Prereclangth:", String.valueOf(length));
-            int n10 = _loadArrayInt[id];
+             int length = choosePathway.coursePreRec[pathID][id].length;
+           Log.w("Prereclangth:", String.valueOf(length));
+            int n10 = 0;// _loadArrayInt[id]; // FIXME: 7/3/2016 temp work
             button.setTextColor(Color.parseColor("#ffffff"));
            // Log.w("Status", String.valueOf(n10));
             if (n10 == 0) {
@@ -250,7 +255,7 @@ public class MainActivity extends Activity implements View.OnClickListener
               //  Log.w("if/else", "!=0");
                 int n11 = 1;
                 for (int j = 0; j < length; ++j) {
-                     int n12 = _loadArrayInt[choosePathway.coursePreRec[id][j]];
+                     int n12 = _loadArrayInt[choosePathway.coursePreRec[pathID][id][j]];
                     if (n12 == 2 || n12 == 3) {
                         n11 = 0;
                     }
@@ -272,7 +277,7 @@ public class MainActivity extends Activity implements View.OnClickListener
          int n13 = (int)(13 * density2);
          int n14 = (int)(2.2 * density2);
          NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView(this);
-        nonBreakingPeriodTextView.setText((choosePathway.sub_pathwayName[value][value2] + "\nPathway"), TextView.BufferType.EDITABLE);
+        nonBreakingPeriodTextView.setText((choosePathway.sub_pathwayName[pathID][pathSubID] + "\nPathway"), TextView.BufferType.EDITABLE);
          LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
         nonBreakingPeriodTextView.setPadding(n13, n13, n13, n13);
         nonBreakingPeriodTextView.setGravity(16);

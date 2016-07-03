@@ -119,8 +119,9 @@ public class demo_info extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_demo_info); //2130968609
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
-        (this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0)).getInt("pathwayID", -1);
-        this.prefs.getInt("pathwaysubID", -1);
+        prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
+        final int pathID = prefs.getInt("pathwayID", 0);
+        final int pathSubID = prefs.getInt("pathwaysubID", 0);
         final int int1 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
 
         ((TextView)this.findViewById(R.id.textView)).setText("Introduction to College Writing"); //2131624036
@@ -181,7 +182,7 @@ public class demo_info extends AppCompatActivity
                 else {
                     --value;
                 }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[int1].replace(" ", "&code="));
+                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int1].replace(" ", "&code=")); // FIXME: 7/3/2016 courseNum now 2d array
                 final Integer value3 = demo_info.this.prefs.getInt("internet", 1);
                 Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1 // FIXME: 6/29/2016 When is this meant to be displayed?
                 if (value3 != 1) {

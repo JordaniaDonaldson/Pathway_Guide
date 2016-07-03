@@ -88,8 +88,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
         this.setContentView(R.layout.activity_main_activity_zoom_out); //2130968617
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 1).commit();
-        final Integer value = this.prefs.getInt("pathwayID", 0);
-        final Integer value2 = this.prefs.getInt("pathwaysubID", 0);
+        final Integer pathID = this.prefs.getInt("pathwayID", 0);
+        final Integer pathSubID = this.prefs.getInt("pathwaysubID", 0);
         final String string = this.prefs.getString("notifydate", "00/00/0000");
         final Calendar instance = Calendar.getInstance();
         instance.set(Calendar.HOUR_OF_DAY, 0); //11
@@ -164,7 +164,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
         else {
             Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
         }
-        if (value2 == -1) {
+        if (pathSubID == -1) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
         }
         else {
@@ -194,24 +194,24 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
             imageView.getLayoutParams().height = Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
             final int round = Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
             linearLayout2.addView(imageView);
-            final int length = choosePathway.subpathwayCoursePath[value][value2].length;
+            final int length = choosePathway.subpathwayCoursePath[0][pathID].length;
             final int n7 = (heightPixels - round * 2) / length;
             for (int i = length; i > 0; --i) {
-                final int n8 = choosePathway.subpathwayCoursePath[value][value2][i - 1];
+                final int n8 = choosePathway.subpathwayCoursePath[0][pathID][i - 1];
                 final int length2 = choosePathway.coursePreRec[n8].length;
                 final int n9 = loadArrayInt[n8];
                 if (n9 != 0 && n9 != 1 && n9 != 4 && n9 != 3 && length2 != 0) {
                     int n10 = 1;
                     for (int j = 0; j < length2; ++j) {
-                        final int n11 = loadArrayInt[choosePathway.coursePreRec[n8][j]];
+                        final int n11 = loadArrayInt[choosePathway.coursePreRec[pathID][n8][j]];
                         if (n11 == 2 || n11 == 3) {
                             n10 = 0;
                         }
                     }
                     if (n10 != 1) {
                         final TextView textView = new TextView(this);
-                        final int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
-                        textView.setText(choosePathway.courseNum[id]);
+                        final int id = choosePathway.subpathwayCoursePath[0][pathID][i - 1];
+                        textView.setText(choosePathway.courseNum[pathSubID][id]);
                         textView.setTextColor(Color.parseColor("#ffffff"));
                         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
                         if (i != length) {
@@ -241,14 +241,14 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                 }
             }
             for (int k = length; k > 0; --k) {
-                final int n12 = choosePathway.subpathwayCoursePath[value][value2][k - 1];
+                final int n12 = choosePathway.subpathwayCoursePath[0][pathID][k - 1];
                 final int length3 = choosePathway.coursePreRec[n12].length;
                 final int n13 = loadArrayInt[n12];
                 if (n13 != 0 && n13 != 1 && n13 != 4) {
                     if (n13 == 3) {
                         final TextView textView2 = new TextView(this);
-                        final int id2 = choosePathway.subpathwayCoursePath[value][value2][k - 1];
-                        textView2.setText(choosePathway.courseNum[id2]);
+                        final int id2 = choosePathway.subpathwayCoursePath[0][pathID][k - 1];
+                        textView2.setText(choosePathway.courseNum[pathSubID][id2]);
                         textView2.setTextColor(Color.parseColor("#ffffff"));
                         final LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
                         if (k != length) {
@@ -278,8 +278,8 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     }
                     else if (length3 == 0) {
                         final TextView textView3 = new TextView(this);
-                        final int id3 = choosePathway.subpathwayCoursePath[value][value2][k - 1];
-                        textView3.setText(choosePathway.courseNum[id3]);
+                        final int id3 = choosePathway.subpathwayCoursePath[0][pathID][k - 1];
+                        textView3.setText(choosePathway.courseNum[pathSubID][id3]);
                         textView3.setTextColor(Color.parseColor("#ffffff"));
                         final LinearLayout.LayoutParams layoutParams5 = new LinearLayout.LayoutParams(-2, -2);
                         if (k != length) {
@@ -310,15 +310,15 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                     else {
                         int n14 = 1;
                         for (int l = 0; l < length3; ++l) {
-                            final int n15 = loadArrayInt[choosePathway.coursePreRec[n12][l]];
+                            final int n15 = loadArrayInt[choosePathway.coursePreRec[pathID][n12][l]];
                             if (n15 == 2 || n15 == 3) {
                                 n14 = 0;
                             }
                         }
                         if (n14 == 1) {
                             final TextView textView4 = new TextView(this);
-                            final int id4 = choosePathway.subpathwayCoursePath[value][value2][k - 1];
-                            textView4.setText(choosePathway.courseNum[id4]);
+                            final int id4 = choosePathway.subpathwayCoursePath[0][pathID][k - 1];
+                            textView4.setText(choosePathway.courseNum[pathSubID][id4]);
                             textView4.setTextColor(Color.parseColor("#ffffff"));
                             final LinearLayout.LayoutParams layoutParams7 = new LinearLayout.LayoutParams(-2, -2);
                             if (k != length) {
@@ -350,13 +350,13 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                 }
             }
             for (int n16 = length; n16 > 0; --n16) {
-                final int n17 = choosePathway.subpathwayCoursePath[value][value2][n16 - 1];
+                final int n17 = choosePathway.subpathwayCoursePath[0][pathID][n16 - 1];
                 final int length4 = choosePathway.coursePreRec[n17].length; // TODO: 6/30/2016 review these
                 final int n18 = loadArrayInt[n17];
                 if (n18 != 0 && (n18 == 1 || n18 == 4)) {
                     final TextView textView5 = new TextView(this);
-                    final int id5 = choosePathway.subpathwayCoursePath[value][value2][n16 - 1];
-                    textView5.setText(choosePathway.courseNum[id5]);
+                    final int id5 = choosePathway.subpathwayCoursePath[0][pathID][n16 - 1];
+                    textView5.setText(choosePathway.courseNum[pathSubID][id5]);
                     textView5.setTextColor(Color.parseColor("#ffffff"));
                     final LinearLayout.LayoutParams layoutParams9 = new LinearLayout.LayoutParams(-2, -2);
                     if (n16 != length) {
@@ -385,12 +385,12 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
                 }
             }
             for (int n19 = length; n19 > 0; --n19) {
-                final int n20 = choosePathway.subpathwayCoursePath[value][value2][n19 - 1];
+                final int n20 = choosePathway.subpathwayCoursePath[0][pathID][n19 - 1];
                 final int length5 = choosePathway.coursePreRec[n20].length;
                 if (loadArrayInt[n20] == 0) {
                     final TextView textView6 = new TextView(this);
-                    final int id6 = choosePathway.subpathwayCoursePath[value][value2][n19 - 1];
-                    textView6.setText(choosePathway.courseNum[id6]);
+                    final int id6 = choosePathway.subpathwayCoursePath[0][pathID][n19 - 1];
+                    textView6.setText(choosePathway.courseNum[pathSubID][id6]);
                     textView6.setTextColor(Color.parseColor("#ffffff"));
                     final LinearLayout.LayoutParams layoutParams11 = new LinearLayout.LayoutParams(-2, -2);
                     if (n19 != length) {
