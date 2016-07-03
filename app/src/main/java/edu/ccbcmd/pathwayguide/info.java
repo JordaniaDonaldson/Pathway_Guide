@@ -79,9 +79,10 @@ public class info extends AppCompatActivity
     }
 
     public int[] loadArrayInt(final String s) {
-
+Log.w("loadArInt string", s);
         final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
         final int int1 = sharedPreferences.getInt(s + "_size", 0);
+        Log.w("loadArInt s+size", String.valueOf(int1));
         final int[] array = new int[int1];
         for (int i = 0; i < int1; ++i) {
             array[i] = sharedPreferences.getInt(s + "_" + i, 1);
@@ -99,12 +100,13 @@ public class info extends AppCompatActivity
         final String string = this.prefs.getString("choosenID", "0");
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
         final int int3 = Integer.parseInt(string);
-        ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[pathSubID][int3]); //2131624036
-        this.getSupportActionBar().setTitle(choosePathway.courseNum[pathSubID][int3]); // TODO: 7/3/2016 make sure these work properly
-        final int n = choosePathway.subpathwayCoursePath[0][pathSubID][int3];
+        ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[pathID][int3]); //2131624036
+        this.getSupportActionBar().setTitle(choosePathway.courseNum[pathID][int3]); // TODO: 7/3/2016 make sure these work properly
+        final int n = choosePathway.subpathwayCoursePath[0][pathID][int3];
         final int[] loadArrayInt = this.loadArrayInt("courseStat");
-        final int length = choosePathway.coursePreRec[n].length;
+        final int length = choosePathway.coursePreRec[pathID][n].length;
         Log.w("Prereclangth:", String.valueOf(length));
+        Log.w("n value", String.valueOf(n));
         final int n2 = loadArrayInt[n];
         final int n3;
         if (n2 == 0) {
