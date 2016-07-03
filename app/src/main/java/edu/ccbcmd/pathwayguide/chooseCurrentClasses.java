@@ -76,8 +76,12 @@ public class chooseCurrentClasses extends AppCompatActivity
                         }
                         n++;
                         continue Label_0170_Outer;
-
+                    } catch (NullPointerException e) {
+                        // it's probably the checkBox
+                        // for right now, I'm just going to increase n -- Dorothy
+                        n++;
                     } catch (Exception ex) {
+                        System.err.println(ex); // at least for debugging, let's see what the error is
                         continue;
                     }
                 }
