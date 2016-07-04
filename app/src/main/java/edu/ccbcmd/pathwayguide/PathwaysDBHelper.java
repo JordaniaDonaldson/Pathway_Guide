@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.database.DatabaseErrorHandler;
@@ -41,22 +42,17 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
         Log.w("in", "oncreate");
-        Log.w("input streams", classes.toString());
         // create tables
         db.execSQL("create table descriptions (id int auto_increment, description text unique)");
         db.execSQL("create table classes (id text, name text, description int, prereqs text, status int, foreign key(description) references description(id))");
         db.execSQL("create table subpathways  (id int auto_increment, name text, degree text, pathway text, classes text)");
-
-        db.execSQL("insert into descriptions (id, description) values (0, \' \')");
-        db.execSQL("insert into classes values (\'CSIT211\', \'Advanced Programming\', 0, \'CSIT210\', -1)");
 
         // populate all the classes from file
             BufferedReader rd = new BufferedReader(new InputStreamReader(classes));
             try {
                 String line = rd.readLine();
                 while (line != null) {
-                    Log.w("line", line);
-                    String[] values = line.split("|");
+                    String[] values = line.split("\\|", 0);
                     ContentValues cv = new ContentValues();
 
                     // indices 0: id 1: name 2: description 3: prereqs
@@ -84,12 +80,10 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
                 }
 
             // the pathways too
-            rd = new BufferedReader(new InputStreamReader(classes));
+            rd = new BufferedReader(new InputStreamReader(pathways));
             line = rd.readLine();
-                Log.w("line", "m"+line);
             while (line != null) {
-                Log.w("line", line);
-                String[] values = line.split("|");
+                String[] values = line.split("\\|", 0);
                 ContentValues cv = new ContentValues();
 
                 // indices 0: name of major 1: degree type 2: pathway name 3: class sequence
