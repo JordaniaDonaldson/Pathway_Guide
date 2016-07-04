@@ -128,12 +128,12 @@ public class MainActivity extends Activity implements View.OnClickListener
         Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         linearLayout2.addView(imageView);
         int i;
-        for (int n7 = i = choosePathway.subpathwayCoursePath[value][value2].length; i > 0; --i) {
+        for (int n7 = i = choosePathway.subpathwayCoursePath[0][value2].length; i > 0; --i) {
              float density = this.getResources().getDisplayMetrics().density;
              int n8 = (int)(13 * density);
              int n9 = (int)(2.2 * density);
              Button button = new Button(this);
-             int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
+             int id = choosePathway.subpathwayCoursePath[0][value2][i - 1];
             button.setText(choosePathway.courseNum[value][id]);
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
@@ -153,7 +153,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             button.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
             button.setId(id);
             button.setOnClickListener(this);
-             int length = choosePathway.coursePreRec[id].length;
+            int length = choosePathway.coursePreRec[value][id].length;
            // Log.w("Prereclangth:", String.valueOf(length));
             int n10 = _loadArrayInt[id];
             button.setTextColor(Color.parseColor("#ffffff"));
