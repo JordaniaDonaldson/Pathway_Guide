@@ -39,7 +39,7 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
     public void onClick(final View view) {
 
-       // FIXME: 6/29/2016 is this structure intended?
+
 
                 try {
                     this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);

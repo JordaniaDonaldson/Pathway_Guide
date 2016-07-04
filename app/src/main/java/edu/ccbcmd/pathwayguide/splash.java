@@ -59,6 +59,6 @@ public class splash extends AppCompatActivity
                 }
                 splash.this.finish();
             }
-        }, 10500L); // FIXME: 6/29/2016 What does this do?
+        }, 10500L);
     }
 }

@@ -106,7 +106,7 @@ public class Settings extends AppCompatActivity
                         }
                         case 6: {
                             Log.w("switch 6", String.valueOf(n));
-                            final Settings this$0 = Settings.this; // FIXME: 6/29/2016 decompilation artifact?
+                            final Settings this$0 = Settings.this;
                             final Intent intent = new Intent(Settings.this, (Class)openBlackboard.class);
                             final android.support.v4.app.TaskStackBuilder create = android.support.v4.app.TaskStackBuilder.create(this$0);
                             create.addNextIntent(intent);

@@ -79,7 +79,6 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.getResources();
-        // TODO: 7/3/2016 Implement appropriate error handling
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
         final Integer pathID = this.prefs.getInt("pathwayID", 0);

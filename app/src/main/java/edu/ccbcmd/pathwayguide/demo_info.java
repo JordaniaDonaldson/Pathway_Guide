@@ -58,7 +58,7 @@ public class demo_info extends AppCompatActivity
 
        return demo_info.isConnected;
   }
-    public boolean isThisConnected(){return isConnected;} // TODO: 6/29/2016 is this necessary? why not just check variable directly?
+    public boolean isThisConnected(){return isConnected;}
 
    public static /* synthetic */ ProgressBar access$100(final demo_info demo_info) {
 
@@ -182,9 +182,9 @@ public class demo_info extends AppCompatActivity
                 else {
                     --value;
                 }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int1].replace(" ", "&code=")); // FIXME: 7/3/2016 courseNum now 2d array
+                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int1].replace(" ", "&code="));
                 final Integer value3 = demo_info.this.prefs.getInt("internet", 1);
-                Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1 // FIXME: 6/29/2016 When is this meant to be displayed?
+                Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1
                 if (value3 != 1) {
                     webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet setting's found in the menu.</h3>", "text/html", "utf-8");
                     return true;
@@ -225,7 +225,7 @@ public class demo_info extends AppCompatActivity
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
         final Integer value3 = this.prefs.getInt("internet", 1); //"internet"
-        Toast.makeText(this, String.valueOf(value3), Toast.LENGTH_LONG); //1 // FIXME: 6/29/2016 when is this meant to be displayed?
+        Toast.makeText(this, String.valueOf(value3), Toast.LENGTH_LONG); //1
         if (value3 == 1) {
             webView.loadUrl(value2);
             Log.w("url:", value2);
@@ -274,7 +274,7 @@ public class demo_info extends AppCompatActivity
             default: {
                 return super.onOptionsItemSelected(menuItem);
             }
-            case 16908332: { // FIXME: 6/28/2016 is this correct?
+            case 16908332: {
                 this.finish();
                 return true;
             }

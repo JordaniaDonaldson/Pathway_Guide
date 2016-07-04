@@ -351,7 +351,7 @@ public class MainActivityZoomOut extends Activity implements View.OnClickListene
             }
             for (int n16 = length; n16 > 0; --n16) {
                 final int n17 = choosePathway.subpathwayCoursePath[0][pathID][n16 - 1];
-                final int length4 = choosePathway.coursePreRec[n17].length; // TODO: 6/30/2016 review these
+                final int length4 = choosePathway.coursePreRec[n17].length;
                 final int n18 = loadArrayInt[n17];
                 if (n18 != 0 && (n18 == 1 || n18 == 4)) {
                     final TextView textView5 = new TextView(this);

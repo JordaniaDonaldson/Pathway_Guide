@@ -108,7 +108,7 @@ public class demo_MainActivity extends Activity
         this.b1.setTypeface(null, 1);
         layoutParams3.setMargins(n2, n2, n2, n2);
         this.b1.setLayoutParams(layoutParams3);
-        this.b1.setId(1); // FIXME: 6/29/2016
+        this.b1.setId(1);
         this.b1.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
         this.b1.setBackgroundColor(Color.parseColor("#fcd054"));
         linearLayout.addView(this.b1);
@@ -165,7 +165,7 @@ public class demo_MainActivity extends Activity
 
             }
         });
-        // FIXME: 6/29/2016 Why does this complain about imagebutton? check xml
+
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
 

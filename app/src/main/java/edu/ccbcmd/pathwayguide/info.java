@@ -101,7 +101,7 @@ Log.w("loadArInt string", s);
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
         final int int3 = Integer.parseInt(string);
         ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[pathID][int3]); //2131624036
-        this.getSupportActionBar().setTitle(choosePathway.courseNum[pathID][int3]); // TODO: 7/3/2016 make sure these work properly
+        this.getSupportActionBar().setTitle(choosePathway.courseNum[pathID][int3]);
         final int n = choosePathway.subpathwayCoursePath[0][pathID][int3];
         final int[] loadArrayInt = this.loadArrayInt("courseStat");
         final int length = choosePathway.coursePreRec[pathID][n].length;
@@ -287,7 +287,7 @@ Log.w("loadArInt string", s);
                 }
                 final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int3].replace(" ", "&code="));
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
-                Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG); // FIXME: 6/29/2016 display when?
+                Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG);
                 if (value3 != 1) {
                     webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
                     return true;
@@ -357,7 +357,7 @@ Log.w("loadArInt string", s);
                     return super.onOptionsItemSelected(menuItem);
                 }
 
-                case 16908332: {    // FIXME: 6/27/2016 is this correct?
+                case 16908332: {
                     final Integer value = this.prefs.getInt("zoom", 0);
                     if (value == 0) {
                         this.startActivity(new Intent(this, (Class)MainActivity.class));
