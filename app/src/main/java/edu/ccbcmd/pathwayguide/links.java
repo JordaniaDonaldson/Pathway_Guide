@@ -49,7 +49,7 @@ public class links extends AppCompatActivity
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
 
                 switch (n) {
-                    default: {}
+
                     case 0: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd.edu")));
                         break;
@@ -92,6 +92,9 @@ public class links extends AppCompatActivity
                     }
                     case 10: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Disability-Programs-and-Services.aspx")));
+                        break;
+                    }
+                    default: {
                         break;
                     }
                 }
