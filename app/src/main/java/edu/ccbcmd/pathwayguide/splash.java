@@ -36,7 +36,6 @@ public class splash extends AppCompatActivity
                 Log.w("where:", "after database");
                 Cursor c = db.query(false, "classes", null, null, null, null, null, null, null);
                 c.moveToNext();
-                Log.w("0th index: ", "m" +c.getString(0));
                 Log.w("where:", "after cursor");
                 db.close();
             }
