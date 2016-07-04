@@ -28,15 +28,14 @@ public class splash extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_splash); //2130968622
 
-        if (getSharedPreferences("com.mycompany.CCBCPathway", 0).getBoolean("firstrun", true)) {
-            // start populating the database
-            Thread th = new Thread() {
-                public void run() {
-                    new PathwaysDBHelper(splash.this).getReadableDatabase();
-                }
-            };
-            th.start();
-        }
+        // set-up the database
+        Thread th = new Thread() {
+            public void run() {
+                DatabaseWrapper.db = new PathwaysDBHelper(splash.this).getWritableDatabase();
+            }
+        };
+        th.start();
+
         final AnimationDrawable animationDrawable = new AnimationDrawable();
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 2000); //2130837595
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1500); //2130837602
