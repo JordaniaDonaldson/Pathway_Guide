@@ -79,9 +79,10 @@ public class info extends AppCompatActivity
     }
 
     public int[] loadArrayInt(final String s) {
-
+Log.w("loadArInt string", s);
         final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
         final int int1 = sharedPreferences.getInt(s + "_size", 0);
+        Log.w("loadArInt s+size", String.valueOf(int1));
         final int[] array = new int[int1];
         for (int i = 0; i < int1; ++i) {
             array[i] = sharedPreferences.getInt(s + "_" + i, 1);
@@ -94,17 +95,18 @@ public class info extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_info); //2130968613
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final int int1 = this.prefs.getInt("pathwayID", -1);
-        final int int2 = this.prefs.getInt("pathwaysubID", -1);
+        final int pathID = this.prefs.getInt("pathwayID", -1);
+        final int pathSubID = this.prefs.getInt("pathwaysubID", -1);
         final String string = this.prefs.getString("choosenID", "0");
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
         final int int3 = Integer.parseInt(string);
-        ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[int3]); //2131624036
-        this.getSupportActionBar().setTitle(choosePathway.courseNum[int3]);
-        final int n = choosePathway.subpathwayCoursePath[int1][int2][int3];
+        ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[pathID][int3]); //2131624036
+        this.getSupportActionBar().setTitle(choosePathway.courseNum[pathID][int3]); // TODO: 7/3/2016 make sure these work properly
+        final int n = choosePathway.subpathwayCoursePath[0][pathID][int3];
         final int[] loadArrayInt = this.loadArrayInt("courseStat");
-        final int length = choosePathway.coursePreRec[n].length;
+        final int length = choosePathway.coursePreRec[pathID][n].length;
         Log.w("Prereclangth:", String.valueOf(length));
+        Log.w("n value", String.valueOf(n));
         final int n2 = loadArrayInt[n];
         final int n3;
         if (n2 == 0) {
@@ -128,7 +130,7 @@ public class info extends AppCompatActivity
             Log.w("if/else", "!=0");
             int n4 = 1;
             for (int i = 0; i < length; ++i) {
-                final int n5 = loadArrayInt[choosePathway.coursePreRec[n][i]];
+                final int n5 = loadArrayInt[choosePathway.coursePreRec[pathID][n][i]];
                 if (n5 == 2 || n5 == 3) {
                     n4 = 0;
                 }
@@ -153,7 +155,8 @@ public class info extends AppCompatActivity
 
             public void onClick(final View view) {
 
-                final String replace = choosePathway.courseNum[int3].replace(" ", "/");
+                final String replace = choosePathway.courseNum[pathSubID][int3].replace(" ", "/");
+
                 if (choosePathway.pageSwitch[n] == 1) {
                     info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
                     return;
@@ -243,7 +246,7 @@ public class info extends AppCompatActivity
         else {
             --value;
         }
-        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n6 + "&prefix=" + choosePathway.courseNum[int3].replace(" ", "&code="));
+        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n6 + "&prefix=" + choosePathway.courseNum[pathSubID][int3].replace(" ", "&code="));
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
@@ -282,7 +285,7 @@ public class info extends AppCompatActivity
                 else {
                     --value;
                 }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[int3].replace(" ", "&code="));
+                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int3].replace(" ", "&code="));
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
                 Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG); // FIXME: 6/29/2016 display when?
                 if (value3 != 1) {

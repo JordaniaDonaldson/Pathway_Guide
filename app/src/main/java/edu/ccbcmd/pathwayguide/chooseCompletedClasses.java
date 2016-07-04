@@ -79,16 +79,18 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.getResources();
+        // TODO: 7/3/2016 Implement appropriate error handling
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
-        final Integer value = this.prefs.getInt("pathwayID", 0);
-        final Integer value2 = this.prefs.getInt("pathwaysubID", 0);
+        final Integer pathID = this.prefs.getInt("pathwayID", 0);
+        final Integer pathSubID = this.prefs.getInt("pathwaysubID", 0);
         new RelativeLayout(this);
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout15); //2131624031
-        for (int length = choosePathway.subpathwayCoursePath[value][value2].length, i = 0; i < length; ++i) {
-            final int id = choosePathway.subpathwayCoursePath[value][value2][i];
+        for (int length = choosePathway.subpathwayCoursePath[0][pathID].length, i = 0; i < length; ++i) {
+            /*why not just use loop counter?*/
+            final int id = choosePathway.subpathwayCoursePath[0][pathID][i];
             final CheckBox checkBox = new CheckBox(this);
-            checkBox.setText((choosePathway.courseNum[id] + ": " + choosePathway.courseName[id]));
+            checkBox.setText((choosePathway.courseNum[pathSubID][id] + ": " + choosePathway.courseName[pathSubID][id]));
             checkBox.setId(id);
             if (Build.VERSION.SDK_INT >= 16) {
                 checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
