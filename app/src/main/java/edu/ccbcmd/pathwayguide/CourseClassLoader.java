@@ -24,9 +24,7 @@ public class CourseClassLoader {
     //This list allows the courses to be sorted according to their status as done, inprogress, available, and not able to take
     private List<CourseClass> sortedObject;
 
-    //This variable is the default pathway. When the changes are made, this section of variables will grow
-    //TODO: PUT IN ALL OF THE SUB PATHWAYS AND ALLOW THE COURSE LOADER TO LOAD THEM INTO MEMORY
-    final private int ALLIED_HEALTH = 100;
+
 
     //This variable will loaded from the vector of course labels the appropriate labels for the pathway
     String[] courseLabels;
@@ -58,7 +56,14 @@ public class CourseClassLoader {
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
         //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
         switch (pathway){
-            case ALLIED_HEALTH:
+            case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
+            {
+                courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
+                coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
+                courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                break;
+            }
+            case CourseContract.TSM.TSM:
             {
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
