@@ -134,7 +134,7 @@ public class MainActivity extends Activity implements View.OnClickListener
              int n9 = (int)(2.2 * density);
              Button button = new Button(this);
              int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
-            button.setText(choosePathway.courseNum[pathID][id]);
+            button.setText(choosePathway.courseNum[value][id]);
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements View.OnClickListener
               //  Log.w("if/else", "!=0");
                 int n11 = 1;
                 for (int j = 0; j < length; ++j) {
-                     int n12 = _loadArrayInt[choosePathway.coursePreRec[id][j]];
+                     int n12 = _loadArrayInt[choosePathway.coursePreRec[value][id][j]];
                     if (n12 == 2 || n12 == 3) {
                         n11 = 0;
                     }
