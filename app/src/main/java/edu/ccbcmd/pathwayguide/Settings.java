@@ -52,7 +52,7 @@ public class Settings extends AppCompatActivity
 
 
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int n, final long n2) {
-Log.w("item Clicked", String.valueOf(n));
+            Log.w("item Clicked", String.valueOf(n));
 
                     switch (n) {
 
@@ -62,33 +62,28 @@ Log.w("item Clicked", String.valueOf(n));
                             break;
                         }
                         case 1: {
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)links.class));
+                            Log.w("switch 1", String.valueOf(n));
+                            startActivity(new Intent(Settings.this, (Class)links.class));
                             break;
                         }
                         case 2: {
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
-                            break;
-                        }
-                        case 3: {
-                            Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
-                            Log.w("switch 1", String.valueOf(n));
-                           startActivity(new Intent(Settings.this, (Class)links.class));
-                            break;
-                        }
-                        case 4: {
                             Log.w("switch 2", String.valueOf(n));
                             startActivity(new Intent(Settings.this, (Class)NotificationActivity.class));
                             break;
                         }
-                        case 5: {
+                        case 3: {
                             Log.w("switch 3", String.valueOf(n));
                             startActivity(new Intent(Settings.this, (Class)choosePathway.class));
                             break;
                         }
-                        case 6: {
+                        case 4: {
                             Log.w("switch 4", String.valueOf(n));
                             // TODO: 6/30/2016 fix the alert icon
-                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme)).setTitle("Confirm Progress Erase").setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?").setIcon(17301543).setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
+                            new AlertDialog.Builder(new ContextThemeWrapper(Settings.this, R.style.SplashTheme))
+                                    .setTitle("Confirm Progress Erase")
+                                    .setMessage("This action will reset the app back to the very first time you installed it. Continuing with action will erase all saved information and your current pathway selection. This action cannot be undone. Are you sure you want to reset your progress?")
+                                    .setIcon(17301543)
+                                    .setPositiveButton(17039379, new DialogInterface.OnClickListener() { //2131361978, 17301543, 17039379
 
 
                                 public void onClick(final DialogInterface dialogInterface, final int n) {
@@ -98,16 +93,18 @@ Log.w("item Clicked", String.valueOf(n));
                                     edit.commit();
                                     Settings.this.startActivity(new Intent(Settings.this, (Class)choosePathway.class));
                                 }
-                            }).setNegativeButton(17039369, null).show();
+                            })
+                                    .setNegativeButton(17039369, null)
+                                    .show();
                             break;
                         }
-                        case 7: {
+                        case 5: {
                             Log.w("switch 5", String.valueOf(n));
                             Settings.this.prefs.edit().putInt("demo", 1).commit();
                             Settings.this.startActivity(new Intent(Settings.this, (Class)demo_MainActivity.class));
                             break;
                         }
-                        case 8: {
+                        case 6: {
                             Log.w("switch 6", String.valueOf(n));
                             final Settings this$0 = Settings.this; // FIXME: 6/29/2016 decompilation artifact?
                             final Intent intent = new Intent(Settings.this, (Class)openBlackboard.class);
@@ -131,14 +128,14 @@ Log.w("item Clicked", String.valueOf(n));
                             }
                             break;
                         }
-                        case 9: {
+                        case 7: {
                             Log.w("switch 7", String.valueOf(n));
                             final Settings this$2 = Settings.this;
                             final Intent intent2 = new Intent(this$2, (Class)NotificationActivity.class);
                             final android.support.v4.app.TaskStackBuilder create2 = android.support.v4.app.TaskStackBuilder.create(this$2);
                             create2.addParentStack((Class)NotificationActivity.class);
                             create2.addNextIntent(intent2);
-                            final PendingIntent pendingIntent2 = create2.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
+                            final PendingIntent pendingIntent2 = create2.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
                             final Notification.Builder notificationBuilder2 = new Notification.Builder(this$2);
                             notificationBuilder2.setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
                             notificationBuilder2.setLights(256, 3000, 3000); //Color was -256

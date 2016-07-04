@@ -16,11 +16,11 @@ package edu.ccbcmd.pathwayguide;
 
         import android.app.Activity;
 
-        import fd.IncrementalChange;
+
 
 public class alert extends Activity
 {
-   // public static volatile /* synthetic */ IncrementalChange $change;
+
     public SharedPreferences prefs;
 
     public int[] loadArrayInt(final String s) {

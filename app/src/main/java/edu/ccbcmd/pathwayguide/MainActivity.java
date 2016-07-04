@@ -84,43 +84,48 @@ public class MainActivity extends Activity implements View.OnClickListener
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_main); //2130968616
+
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 0).commit();
+
         Integer value = this.prefs.getInt("pathwayID", 0);
         Integer value2 = this.prefs.getInt("pathwaysubID", 0);
+
         String string = this.prefs.getString("notifydate", "00/00/0000");
         Calendar instance = Calendar.getInstance();
 
-        /* TODO: Verify the correct calendar consts were substituted in. */
         instance.set(Calendar.HOUR_OF_DAY, 0); //11
         instance.set(Calendar.MINUTE, 0); //12
-        instance.set(Calendar.SECOND, 1); //13
+        instance.set(Calendar.SECOND, 0); //13
         instance.set(Calendar.MILLISECOND, 0); //14
-        Date time = instance.getTime();
-        instance.getTimeInMillis();
-         String[] split = string.split("/");
-         String s = split[2];
-         String s2 = split[0];
-         String s3 = split[1];
-         int int1 = Integer.parseInt(s);
-         int int2 = Integer.parseInt(s2);
-         int int3 = Integer.parseInt(s3);
+
+        String[] split = string.split("/");
+        String s = split[2];
+        String s2 = split[0];
+        String s3 = split[1];
+        int int1 = Integer.parseInt(s);
+        int int2 = Integer.parseInt(s2);
+        int int3 = Integer.parseInt(s3);
         instance.set(Calendar.YEAR, int1); //1
         instance.set(Calendar.MONTH, int2); //2
         instance.set(Calendar.DATE, int3 - 1); //5
-         Date time2 = instance.getTime();
+
+        Date time = instance.getTime();
+
+        Date time2 = Calendar.getInstance().getTime();
 
         if (time2.before(time)) {
 
-           SharedPreferences.Editor edit = this.prefs.edit();
-             Calendar instance2 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            instance2.set(Calendar.HOUR_OF_DAY, 0); //11
-            instance2.set(Calendar.MINUTE, 0); //12
-            instance2.set(Calendar.SECOND, 0); //13
-            instance2.set(Calendar.MILLISECOND, 0); //14
-             int value3 = Calendar.getInstance().get(Calendar.MONTH); //2
-             int value4 = Calendar.getInstance().get(Calendar.YEAR); //1
-            Log.w("THIS YEAR", String.valueOf(value3));
+            SharedPreferences.Editor edit = this.prefs.edit();
+
+            Calendar instance2 = Calendar.getInstance();
+            instance2.set(Calendar.HOUR_OF_DAY, 0);
+            instance2.set(Calendar.MINUTE, 0);
+            instance2.set(Calendar.SECOND, 0);
+            instance2.set(Calendar.MILLISECOND, 0);
+            int value3 = Calendar.getInstance().get(Calendar.MONTH); //2
+            int value4 = Calendar.getInstance().get(Calendar.YEAR); //1
+            Log.w("THIS YEAR", String.valueOf(value4));
             int n2;
             int n3;
             if (value3 < 4) {
@@ -181,29 +186,22 @@ public class MainActivity extends Activity implements View.OnClickListener
         Integer.parseInt(this.prefs.getString("choosenID", "0"));
         new RelativeLayout(this);
 
-        /*Refactored linearLayout2, was originally named linearLayout but it calls the same obj
-        * as the commented out line a page down. just making note in case of problems*/
+
         LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
         final ScrollView scrollView = (ScrollView)this.findViewById(R.id.scrollView1); //2131624045
         scrollView.post(new Runnable() {
-           // public static volatile /* synthetic */ IncrementalChange $change;
 
             @Override
             public void run() {
-              /*   IncrementalChange $change = MainActivity$1.$change;
-                if ($change != null) {
-                    $change.access$dispatch("run.()V", new Object[] { this });
-                    return;
-                }
-                */
+
                 scrollView.fullScroll(130);
             }
         });
-         ImageView imageView = new ImageView(this);
+        ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.grad); //2130837591
         imageView.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
-         //LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); // 2131624046
-         Resources resources = this.getResources();
+
+        Resources resources = this.getResources();
         imageView.getLayoutParams().height = Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         linearLayout2.addView(imageView);

@@ -52,36 +52,47 @@ public class links extends AppCompatActivity
                     default: {}
                     case 0: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd.edu")));
+                        break;
                     }
                     case 1: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://ccbcmd-bb.blackbaord.com")));
+                        break;
                     }
                     case 2: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://myccbc.ccbcmd.edu/_layouts/ccbc/default.aspx?ReturnUrl=%2f_layouts%2fAuthenticate.aspx%3fSource%3d%252F&Source=%2F")));
+                        break;
                     }
                     case 3: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://simon.ccbcmd.edu/pls/PROD/twbkwbis.P_WWWLogin")));
+                        break;
                     }
                     case 4: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.bookstore.ccbcmd.edu/catonsville/main/")));
+                        break;
                     }
                     case 5: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/resources-for-students/academic-advisement")));
+                        break;
                     }
                     case 6: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/resources-for-students/")));
+                        break;
                     }
                     case 7: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://catalog.ccbcmd.edu/")));
+                        break;
                     }
                     case 8: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Registering-for-Classes/Flexreg.aspx")));
+                        break;
                     }
                     case 9: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Tutoring-and-Academic-Coaching.aspx")));
+                        break;
                     }
                     case 10: {
                         links.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Disability-Programs-and-Services.aspx")));
+                        break;
                     }
                 }
             }
