@@ -93,9 +93,6 @@ public class MainActivity extends Activity implements View.OnClickListener
         checkAlarm(string);
 
 
-
-
-
         if (value2 == -1) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
@@ -137,7 +134,7 @@ public class MainActivity extends Activity implements View.OnClickListener
              int n9 = (int)(2.2 * density);
              Button button = new Button(this);
              int id = choosePathway.subpathwayCoursePath[value][value2][i - 1];
-            button.setText(choosePathway.courseNum[id]);
+            button.setText(choosePathway.courseNum[pathID][id]);
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
