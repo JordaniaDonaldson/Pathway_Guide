@@ -39,8 +39,6 @@ public class MainActivity extends Activity implements View.OnClickListener
 
     public SharedPreferences prefs;
 
-
-
     public String[][] load2DArray(String s) {
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
@@ -92,85 +90,12 @@ public class MainActivity extends Activity implements View.OnClickListener
         Integer value2 = this.prefs.getInt("pathwaysubID", 0);
 
         String string = this.prefs.getString("notifydate", "00/00/0000");
-        Calendar instance = Calendar.getInstance();
+        checkAlarm(string);
 
-        instance.set(Calendar.HOUR_OF_DAY, 0); //11
-        instance.set(Calendar.MINUTE, 0); //12
-        instance.set(Calendar.SECOND, 0); //13
-        instance.set(Calendar.MILLISECOND, 0); //14
 
-        String[] split = string.split("/");
-        String s = split[2];
-        String s2 = split[0];
-        String s3 = split[1];
-        int int1 = Integer.parseInt(s);
-        int int2 = Integer.parseInt(s2);
-        int int3 = Integer.parseInt(s3);
-        instance.set(Calendar.YEAR, int1); //1
-        instance.set(Calendar.MONTH, int2); //2
-        instance.set(Calendar.DATE, int3 - 1); //5
 
-        Date time = instance.getTime();
 
-        Date time2 = Calendar.getInstance().getTime();
 
-        if (time2.before(time)) {
-
-            SharedPreferences.Editor edit = this.prefs.edit();
-
-            Calendar instance2 = Calendar.getInstance();
-            instance2.set(Calendar.HOUR_OF_DAY, 0);
-            instance2.set(Calendar.MINUTE, 0);
-            instance2.set(Calendar.SECOND, 0);
-            instance2.set(Calendar.MILLISECOND, 0);
-            int value3 = Calendar.getInstance().get(Calendar.MONTH); //2
-            int value4 = Calendar.getInstance().get(Calendar.YEAR); //1
-            Log.w("THIS YEAR", String.valueOf(value4));
-            int n2;
-            int n3;
-            if (value3 < 4) {
-                 int n = 4;
-                Log.w("THIS Month", "<4: year post is: " + value4);
-                n2 = value4;
-                n3 = n;
-            }
-            else if (value3 < 11) {
-                 int n4 = 11;
-                n2 = value4;
-                Log.w("THIS Month", "<10: year post is: " + n2);
-                n3 = n4;
-            }
-            else {
-                 int n5 = 4;
-                 int n6 = value4 + 1;
-                Log.w("THIS YEAR", "TRUE " + n6);
-                n3 = n5;
-                n2 = n6;
-            }
-             AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
-             Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-            intent.addCategory("android.intent.category.DEFAULT");
-             PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
-             Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            instance3.set(Calendar.DATE, 1); //5
-            instance3.set(Calendar.MONTH, n3); //2
-            instance3.set(Calendar.YEAR, n2); //1
-            instance3.set(Calendar.HOUR_OF_DAY, 10); //11
-            instance3.set(Calendar.MINUTE, 0); //12
-            instance3.set(Calendar.SECOND, 0); //13
-            if (Build.VERSION.SDK_INT >= 19) {
-                alarmManager.setExact(0, instance3.getTimeInMillis(), broadcast);
-            }
-            else {
-                alarmManager.set(0, instance3.getTimeInMillis(), broadcast);
-            }
-            edit.putString("notifydate", String.valueOf(n3) + "/01/" + String.valueOf(n2)).commit();
-            Log.w("NEW ALERT SET DATE", String.valueOf(n3) + "/01/" + String.valueOf(n2));
-            Log.w("Date Calc", "Date specified [" + time2 + "] is before today [" + time + "]");
-        }
-        else {
-            Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
-        }
         if (value2 == -1) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
@@ -330,34 +255,128 @@ public class MainActivity extends Activity implements View.OnClickListener
         if (this.prefs.getBoolean("firstrun", true)) {
             this.startActivity(new Intent(this, (Class)choosePathway.class));
         }
-         String string = this.prefs.getString("notifydate", "00/00/0000");
-         Calendar instance = Calendar.getInstance();
+
+        String string = this.prefs.getString("notifydate", "00/00/0000");
+        setCheckAlarm(string);
+    }
+
+    public void checkAlarm(String notifyDate){
+        Calendar instance = Calendar.getInstance();
         instance.set(Calendar.HOUR_OF_DAY, 0); //11
         instance.set(Calendar.MINUTE, 0); //12
-        instance.set(Calendar.SECOND, 1); //13
+        instance.set(Calendar.SECOND, 0); //13
         instance.set(Calendar.MILLISECOND, 0); //14
-         Date time = instance.getTime();
-        instance.getTimeInMillis();
-         String[] split = string.split("/");
-         String s = split[2];
-         String s2 = split[0];
-         String s3 = split[1];
-         int int2 = Integer.parseInt(s);
-         int int3 = Integer.parseInt(s2);
-         int int4 = Integer.parseInt(s3);
-        instance.set(Calendar.YEAR, int2); //1
-        instance.set(Calendar.MONTH, int3); //2
-        instance.set(Calendar.DATE, int4 - 1); //5
-         Date time2 = instance.getTime();
+
+        String[] split = notifyDate.split("/");
+        String s = split[2];
+        String s2 = split[0];
+        String s3 = split[1];
+        int int1 = Integer.parseInt(s);
+        int int2 = Integer.parseInt(s2);
+        int int3 = Integer.parseInt(s3);
+        instance.set(Calendar.YEAR, int1); //1
+        instance.set(Calendar.MONTH, int2); //2
+        instance.set(Calendar.DATE, int3 - 1); //5
+
+        Date time = instance.getTime();
+
+        Date time2 = Calendar.getInstance().getTime();
+
         if (time2.before(time)) {
-             SharedPreferences.Editor edit = this.prefs.edit();
-             Calendar instance2 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            instance2.set(Calendar.HOUR_OF_DAY, 0); //11
-            instance2.set(Calendar.MINUTE, 0); //12
-            instance2.set(Calendar.SECOND, 0); //13
-            instance2.set(Calendar.MILLISECOND, 0); //14
-             int value = Calendar.getInstance().get(Calendar.MONTH); //2
-             int value2 = Calendar.getInstance().get(Calendar.YEAR); //1
+            //If current time is before set time.
+
+            SharedPreferences.Editor edit = this.prefs.edit();
+
+            Calendar instance2 = Calendar.getInstance();
+            instance2.set(Calendar.HOUR_OF_DAY, 0);
+            instance2.set(Calendar.MINUTE, 0);
+            instance2.set(Calendar.SECOND, 0);
+            instance2.set(Calendar.MILLISECOND, 0);
+            int value3 = instance2.get(Calendar.MONTH); //2
+            int value4 = instance2.get(Calendar.YEAR); //1
+            Log.w("THIS YEAR", String.valueOf(value4));
+            int n2;
+            int n3;
+            if (value3 < 4) {
+                int n = 4;
+                Log.w("THIS Month", "<4: year post is: " + value4);
+                n2 = value4;
+                n3 = n;
+            }
+            else if (value3 < 11) {
+                int n4 = 11;
+                n2 = value4;
+                Log.w("THIS Month", "<10: year post is: " + n2);
+                n3 = n4;
+            }
+            else {
+                int n5 = 4;
+                int n6 = value4 + 1;
+                Log.w("THIS YEAR", "TRUE " + n6);
+                n3 = n5;
+                n2 = n6;
+            }
+
+            Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+            instance3.set(Calendar.DATE, 1); //5
+            instance3.set(Calendar.MONTH, n3); //2
+            instance3.set(Calendar.YEAR, n2); //1
+            instance3.set(Calendar.HOUR_OF_DAY, 10); //11
+            instance3.set(Calendar.MINUTE, 0); //12
+            instance3.set(Calendar.SECOND, 0); //13
+
+            AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
+            Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+            intent.addCategory("android.intent.category.DEFAULT");
+            PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
+
+            if (Build.VERSION.SDK_INT >= 19) {
+                alarmManager.setExact(0, instance3.getTimeInMillis(), broadcast);
+            }
+            else {
+                alarmManager.set(0, instance3.getTimeInMillis(), broadcast);
+            }
+            edit.putString("notifydate", String.valueOf(n3) + "/01/" + String.valueOf(n2)).commit();
+            Log.w("NEW ALERT SET DATE", String.valueOf(n3) + "/01/" + String.valueOf(n2));
+            Log.w("Date Calc", "Date specified [" + time2 + "] is before today [" + time + "]");
+        }
+        else {
+            Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
+        }
+    }
+
+    public void setCheckAlarm(String notifyDate){
+
+        Calendar instance = Calendar.getInstance();
+
+        instance.set(Calendar.HOUR_OF_DAY, 0);
+        instance.set(Calendar.MINUTE, 0);
+        instance.set(Calendar.SECOND, 1);
+        instance.set(Calendar.MILLISECOND, 0);
+        String[] split = notifyDate.split("/");
+        String s = split[2];
+        String s2 = split[0];
+        String s3 = split[1];
+        int int2 = Integer.parseInt(s);
+        int int3 = Integer.parseInt(s2);
+        int int4 = Integer.parseInt(s3);
+        instance.set(Calendar.YEAR, int2);
+        instance.set(Calendar.MONTH, int3);
+        instance.set(Calendar.DATE, int4);//Why did this have minus one!??
+
+        Date time = instance.getTime();
+        Date time2 = Calendar.getInstance().getTime();
+
+        if (time2.before(time)) {
+
+            Calendar instance2 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+
+            instance2.set(Calendar.HOUR_OF_DAY, 0);
+            instance2.set(Calendar.MINUTE, 0);
+            instance2.set(Calendar.SECOND, 0);
+            instance2.set(Calendar.MILLISECOND, 0);
+            int value = instance2.get(Calendar.MONTH);
+            int value2 = instance2.get(Calendar.YEAR);
             int n2 = 0;
             int n3 = 0;
             Log.w("THIS YEAR", String.valueOf(value));
@@ -376,25 +395,35 @@ public class MainActivity extends Activity implements View.OnClickListener
                 n3 = value2 + 1;
                 Log.w("THIS YEAR (bottom)", "True" + n3);
             }
-             AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
-             Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-            intent.addCategory("android.intent.category.DEFAULT");
-             PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
-             Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+
+            Calendar instance3 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
             instance3.set(Calendar.DATE, 1); //5
             instance3.set(Calendar.MONTH, n2); //2
             instance3.set(Calendar.YEAR, n3); //1
             instance3.set(Calendar.HOUR_OF_DAY, 10); //11
             instance3.set(Calendar.MINUTE, 0); //12
             instance3.set(Calendar.SECOND, 0); //13
+
+            AlarmManager alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
+            Intent intent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+            intent.addCategory("android.intent.category.DEFAULT");
+            PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
             if (Build.VERSION.SDK_INT >= 19) {
                 alarmManager.setExact(0, instance3.getTimeInMillis(), broadcast);
             }
             else {
                 alarmManager.set(0, instance3.getTimeInMillis(), broadcast);
             }
-             Calendar instance4 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-            int value3 = Calendar.getInstance().get(Calendar.MONTH); //2
+
+
+
+
+
+
+
+            Calendar instance4 = Calendar.getInstance();
+            int value3 = instance4.get(Calendar.MONTH);
+            int value4 = instance4.get(Calendar.YEAR);
             switch (value3) {
                 case 0: {
                     ++value3;
@@ -438,28 +467,36 @@ public class MainActivity extends Activity implements View.OnClickListener
                 }
                 case 10: {
                     value3 = 1;
+                    value4++;
                     break;
                 }
                 case 11: {
                     value3 = 1;
+                    value4++;
                     break;
                 }
             }
-            Log.w("Cmonth", String.valueOf(value3));
-            instance4.set(Calendar.DATE, 1); //5
-            instance4.set(Calendar.MONTH, value3); //2
-            instance4.set(Calendar.HOUR_OF_DAY, 10); //11
-            instance4.set(Calendar.MINUTE, 0); //12
-            instance4.set(Calendar.SECOND, 0); //13
-             Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+
+            instance4.set(Calendar.DATE, 1);
+            instance4.set(Calendar.YEAR,value4);
+            instance4.set(Calendar.MONTH, value3);
+            instance4.set(Calendar.HOUR_OF_DAY, 10);
+            instance4.set(Calendar.MINUTE, 0);
+            instance4.set(Calendar.SECOND, 0);
+
+
+
+            Intent intent2 = new Intent("android.media.action.DISPLAY_NOTIFICATION");
             intent2.addCategory("android.intent.category.DEFAULT");
-             PendingIntent broadcast2 = PendingIntent.getBroadcast(this, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
+            PendingIntent broadcast2 = PendingIntent.getBroadcast(this, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
             if (Build.VERSION.SDK_INT >= 19) {
                 alarmManager.setExact(0, instance4.getTimeInMillis(), broadcast2);
             }
             else {
                 alarmManager.set(0, instance4.getTimeInMillis(), broadcast2);
             }
+
+            SharedPreferences.Editor edit = this.prefs.edit();
             edit.putString("notifydate", String.valueOf(n2) + "/01/" + String.valueOf(n3)).commit();
             Log.w("NEW ALERT SET DATE", String.valueOf(n2) + "/01/" + String.valueOf(n3));
             Log.w("Date Calc", "Date specified [" + time2 + "] is before today [" + time + "]");
@@ -467,72 +504,80 @@ public class MainActivity extends Activity implements View.OnClickListener
         else {
             Log.w("Date Calc", "Date specified [" + time2 + "] is NOT before today [" + time + "]");
         }
-         AlarmManager alarmManager2 = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
-         Calendar instance5 = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-        int value4 = Calendar.getInstance().get(Calendar.MONTH); //2
-        switch (value4) {
+
+
+
+        AlarmManager alarmManager2 = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE); //"alarm"
+        Calendar instance5 = Calendar.getInstance();
+        int value5 = instance5.get(Calendar.MONTH);
+        int value6 = instance5.get(Calendar.YEAR);
+        switch (value5) {
             case 0: {
-                ++value4;
+                ++value5;
                 break;
             }
             case 1: {
-                ++value4;
+                ++value5;
                 break;
             }
             case 2: {
-                ++value4;
+                ++value5;
                 break;
             }
             case 3: {
-                value4 = 8;
+                value5 = 8;
                 break;
             }
             case 4: {
-                value4 = 8;
+                value5 = 8;
                 break;
             }
             case 5: {
-                value4 = 8;
+                value5 = 8;
                 break;
             }
             case 6: {
-                value4 = 8;
+                value5 = 8;
                 break;
             }
             case 7: {
-                ++value4;
+                ++value5;
                 break;
             }
             case 8: {
-                ++value4;
+                ++value5;
                 break;
             }
             case 9: {
-                ++value4;
+                ++value5;
                 break;
             }
             case 10: {
-                value4 = 1;
+                value5 = 1;
+                value6++;
                 break;
             }
             case 11: {
-                value4 = 1;
+                value5 = 1;
+                value6++;
                 break;
             }
         }
-        Log.w("Cmonth", String.valueOf(value4));
-        instance5.set(Calendar.DATE, 1); //5
-        instance5.set(Calendar.MONTH, value4); //2
-        instance5.set(Calendar.YEAR, 10); //11
-        instance5.set(Calendar.MINUTE, 0); //12
-        instance5.set(Calendar.SECOND, 0); //13
-         Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
+        Log.w("Cmonth", String.valueOf(value5));
+        instance5.set(Calendar.DATE, 1);
+        instance5.set(Calendar.MONTH, value5);
+        instance5.set(Calendar.YEAR, value6);
+        instance5.set(Calendar.MINUTE, 0);
+        instance5.set(Calendar.SECOND, 0);
+
+        Intent intent3 = new Intent("android.media.action.DISPLAY_Blackboard_NOTIFICATION");
         intent3.addCategory("android.intent.category.DEFAULT_Blackboard");
-         PendingIntent broadcast3 = PendingIntent.getBroadcast(this, 100, intent3, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
+        PendingIntent broadcast3 = PendingIntent.getBroadcast(this, 100, intent3, PendingIntent.FLAG_UPDATE_CURRENT); //134217728
         if (Build.VERSION.SDK_INT >= 19) {
             alarmManager2.setExact(0, instance5.getTimeInMillis(), broadcast3);
             return;
+        } else {
+            alarmManager2.set(0, instance5.getTimeInMillis(), broadcast3);
         }
-        alarmManager2.set(0, instance5.getTimeInMillis(), broadcast3);
     }
 }

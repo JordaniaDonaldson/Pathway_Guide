@@ -61,7 +61,7 @@ public class chooseCurrentClasses extends AppCompatActivity
             Label_0182: {
                 if (n>length-2){  break Label_0170_Outer;}
                 while (n < length) {
-                    Log.e("Here", ""+n);
+
                     try {
                         final CheckBox checkBox = (CheckBox) viewGroup.getChildAt(n);
                         int n2;
