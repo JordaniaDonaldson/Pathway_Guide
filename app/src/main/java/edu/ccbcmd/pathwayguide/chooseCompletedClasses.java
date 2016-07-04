@@ -24,6 +24,9 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import materialshowcaseview.MaterialShowcaseView;
 
 public class chooseCompletedClasses extends AppCompatActivity
@@ -49,7 +52,7 @@ public class chooseCompletedClasses extends AppCompatActivity
     }
 
     private void loopQuestions(final ViewGroup viewGroup) {
-
+        //Nick's Code
         for (int i = 0; i < viewGroup.getChildCount(); ++i) {
             final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(i);
             int n;
@@ -64,6 +67,39 @@ public class chooseCompletedClasses extends AppCompatActivity
                 this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + i, 0).commit();
             }
         }
+
+        //Getting a handle for the shared preference editor
+        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPrefDone.edit();
+
+        String[] courseLabels = getResources().getStringArray(R.array.AlliedHealthPathway);
+        List<CheckBox> checkBoxesDone = new ArrayList<CheckBox>();
+        for (int i = 0; i<viewGroup.getChildCount(); i++){
+            checkBoxesDone.add((CheckBox) viewGroup.getChildAt(i));
+        }
+        //My code
+        int counter = 0;
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+
+            if (checkBoxesDone.size()>0&& checkBoxesDone.size()>counter) {
+                CheckBox box = checkBoxesDone.get(counter);
+                counter++;
+
+                if(box.isChecked() ) {
+
+                    editor.putBoolean(courseLabels[i], true);
+                    editor.commit();
+                } else {
+
+                    editor.putBoolean(courseLabels[i], false);
+                    editor.commit();
+                }
+            }
+        }
+
+
+
+
         this.startActivity(new Intent(this, (Class)chooseCurrentClasses.class));
     }
 

@@ -34,6 +34,9 @@ import android.content.SharedPreferences;
 
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import materialshowcaseview.MaterialShowcaseView;
 
 public class chooseCurrentClasses extends AppCompatActivity
@@ -89,6 +92,42 @@ public class chooseCurrentClasses extends AppCompatActivity
             }
 
         }
+
+        //Getting a handle for the shared preference editor
+        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPrefDone.edit();
+
+        String[] courseLabels = getResources().getStringArray(R.array.AlliedHealthPathway);
+        List<CheckBox> checkBoxesInProgress = new ArrayList<CheckBox>();
+        for (int i = 0; i<viewGroup.getChildCount(); i++){
+            checkBoxesInProgress.add((CheckBox) viewGroup.getChildAt(i));
+        }
+        //My code
+        SharedPreferences sharedPrefInProgress = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
+
+        //In this for loop you will find it saving the state of the check box to the shared preferences.
+        int counter = 0;
+        for (int i = 0; i < checkBoxesInProgress.size(); i++) {
+
+                CheckBox box = checkBoxesInProgress.get(counter);
+                counter++;
+                if (box.isChecked()) {
+                    editorIP.putBoolean(courseLabels[i], true);
+
+                    editorIP.commit();
+                } else {
+                    editorIP.putBoolean(courseLabels[i], false);
+
+                    editorIP.commit();
+                }
+        }
+
+
+
+
+
+
         this.startActivity(new Intent(this, (Class)MainActivity.class));
     }
 

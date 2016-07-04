@@ -28,6 +28,8 @@ public class CourseClassLoader {
 
     //This variable will loaded from the vector of course labels the appropriate labels for the pathway
     String[] courseLabels;
+    //This variable will load in the vector of course full labels.
+    String[] courseFullTitles;
     //This variable will load in the prerequisites for the courses. Each position corresponds to the courseLabels position.
     String[] coursePrereqs;
     //This variable will load in the urls for the courses. Each position corresponds to the courseLabels position
@@ -45,7 +47,7 @@ public class CourseClassLoader {
         //The third instance of sharedpreferences is the particular pathway chosen.
         SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
-        //TODO: CLEAN UP THIS VERY STUPID WAY OF GETTING THE PATHWAY CHOICE.
+
         int pathway;
         if (pathwayPref.contains("PathwayChoice"))
         {
@@ -59,20 +61,23 @@ public class CourseClassLoader {
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
+                courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
                 courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
                 break;
             }
             case CourseContract.TSM.TSM:
             {
-                courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
-                coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
-                courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
+                courseFullTitles = context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
+                coursePrereqs = context.getResources().getStringArray(R.array.TSMPrereqs);
+                courseURLs = context.getResources().getStringArray(R.array.TSMURLS);
                 break;
             }
             default:
             {
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
+                courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
                 courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
             }
@@ -121,6 +126,7 @@ public class CourseClassLoader {
 
             //After setting all of the appropriate flags,  The course object itself is instantiated.
             CourseClass course = new CourseClass(courseLabels[i],
+                    courseFullTitles[i],
                     courseURLs[i],
                     done,
                     inProgress,

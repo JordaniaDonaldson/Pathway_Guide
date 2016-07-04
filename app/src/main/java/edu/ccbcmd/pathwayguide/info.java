@@ -22,8 +22,9 @@ import android.widget.Toast;
         import android.webkit.WebViewClient;
         import android.webkit.WebView;
         import java.util.Calendar;
+import java.util.List;
 
-        import android.content.DialogInterface;
+import android.content.DialogInterface;
 
         import android.widget.Button;
         import android.graphics.drawable.ColorDrawable;
@@ -81,7 +82,7 @@ public class info extends AppCompatActivity
     public int[] loadArrayInt(final String s) {
 Log.w("loadArInt string", s);
         final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        final int int1 = sharedPreferences.getInt(s + "_size", 0);
+        final int int1 = 14; //sharedPreferences.getInt(s + "_size", 0);
         Log.w("loadArInt s+size", String.valueOf(int1));
         final int[] array = new int[int1];
         for (int i = 0; i < int1; ++i) {
@@ -94,61 +95,68 @@ Log.w("loadArInt string", s);
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_info); //2130968613
+        CourseClassLoader classLoader = new CourseClassLoader(getApplicationContext());
+        List<CourseClass> classesList = classLoader.loadClassObjects();
+
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final int pathID = this.prefs.getInt("pathwayID", -1);
         final int pathSubID = this.prefs.getInt("pathwaysubID", -1);
         final String string = this.prefs.getString("choosenID", "0");
         this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
         final int int3 = Integer.parseInt(string);
-        ((TextView)this.findViewById(R.id.textView)).setText(choosePathway.courseName[pathID][int3]); //2131624036
-        this.getSupportActionBar().setTitle(choosePathway.courseNum[pathID][int3]);
-        final int n = choosePathway.subpathwayCoursePath[0][pathID][int3];
+        ((TextView)this.findViewById(R.id.textView)).setText(classesList.get(int3).getFullTitle()); //2131624036
+        this.getSupportActionBar().setTitle(classesList.get(int3).getTitle());
+
+        //This is where we are setting the color of the dialog box.
+        final int n =  int3; // choosePathway.subpathwayCoursePath[0][pathID][int3];
         final int[] loadArrayInt = this.loadArrayInt("courseStat");
-        final int length = choosePathway.coursePreRec[pathID][n].length;
-        Log.w("Prereclangth:", String.valueOf(length));
-        Log.w("n value", String.valueOf(n));
+        //final int length = choosePathway.coursePreRec[pathID][n].length;
+        //Log.w("Prereclength:", String.valueOf(length));
+        //Log.w("n value", String.valueOf(n));
+
+
         final int n2 = loadArrayInt[n];
         final int n3;
-        if (n2 == 0) {
-            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a")));
+        if (classesList.get(int3).getDone()) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a"))); //Green
             n3 = 0;
         }
-        else if (n2 == 1 || n2 == 4) {
-            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181")));
+        else if (classesList.get(int3).getInProgress()) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181"))); //Purple
             n3 = 1;
         }
-        else if (n2 == 3) {
-            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
+        else if (classesList.get(int3).getIsOpenForRegistration()) {
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054"))); //Yellow
             n3 = 2;
         }
-        else if (length == 0) {
-            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
-            n3 = 2;
-            Log.w("if/else", "=0");
-        }
+        //else if (length == 0) {
+        //    this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054"))); //Yello
+        //    n3 = 2;
+        //    Log.w("if/else", "=0");
+        //}
         else {
             Log.w("if/else", "!=0");
             int n4 = 1;
-            for (int i = 0; i < length; ++i) {
-                final int n5 = loadArrayInt[choosePathway.coursePreRec[pathID][n][i]];
-                if (n5 == 2 || n5 == 3) {
-                    n4 = 0;
-                }
-            }
-            if (n4 == 1) {
-                this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
-                n3 = 2;
-            }
-            else {
-                this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#893f4e")));
+            //for (int i = 0; i < length; ++i) {
+              //  final int n5 = loadArrayInt[choosePathway.coursePreRec[pathID][n][i]];
+               // if (n5 == 2 || n5 == 3) {
+                //    n4 = 0;
+                //}
+            //}
+            //if (n4 == 1) {
+            //    this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
+            //    n3 = 2;
+            //}
+            //else {
+                this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#893f4e"))); //RED
                 n3 = 3;
-            }
+            //}
         }
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final Button button = (Button) findViewById(R.id.button); //2131624037
-        if (choosePathway.pageSwitch[n] == 1) {
+        if (classesList.get(int3).getAnyPreReqs()) {
             button.setText("Meet with an Adviser");
         }
         button.setOnClickListener(new View.OnClickListener() {
@@ -246,7 +254,7 @@ Log.w("loadArInt string", s);
         else {
             --value;
         }
-        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n6 + "&prefix=" + choosePathway.courseNum[pathSubID][int3].replace(" ", "&code="));
+        final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n6 + "&prefix=" + classesList.get(int3).getTitle().replace(" ", "&code="));
         this.getSupportActionBar().setHomeButtonEnabled(true);
         final WebView webView = (WebView)this.findViewById(R.id.descriptionwebview);
         webView.loadData("<h1>Loading, please wait...</h1>", "text/html", "utf-8");
@@ -328,12 +336,12 @@ Log.w("loadArInt string", s);
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         }
         final int int4 = this.prefs.getInt("internet", 1);
-        if (choosePathway.pageSwitch[n] == 1) {
+        if (classesList.get(int3).getIsOpenForRegistration()) {
             webView.setInitialScale(this.getScale());
             webView.getSettings().setLoadWithOverviewMode(false);
             webView.getSettings().setUseWideViewPort(false);
             webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-            webView.loadDataWithBaseURL("", choosePathway.courseInfo[int3], "text/html", "utf-8", "");
+            webView.loadDataWithBaseURL("", classesList.get(int3).getUrl(), "text/html", "utf-8", "");
             return;
         }
         if (int4 == 1) {

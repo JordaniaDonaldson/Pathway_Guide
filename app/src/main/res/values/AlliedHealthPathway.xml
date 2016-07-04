@@ -17,6 +17,23 @@
         <item>NURS S04</item>
     </string-array>
 
+    <string-array name="AlliedHealthPathwayFullTitles">
+        <item>MATH 083</item>
+        <item>ACDV 101</item>
+        <item>ENGL 101</item>
+        <item>BIOL 110</item>
+        <item>PSYC 101</item>
+        <item>SOCL 101</item>
+        <item>CMNS 101</item>
+        <item>PSYC 103</item>
+        <item>BIOL 210</item>
+        <item>BIOL 230</item>
+        <item>NURS S01</item>
+        <item>NURS S02</item>
+        <item>NURS S03</item>
+        <item>NURS S04</item>
+    </string-array>
+
     <string-array name="AlliedHealthPrereqs">
         <item>NONE</item>
         <item>NONE</item>

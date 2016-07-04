@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -26,6 +27,7 @@ import android.widget.ScrollView;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -82,6 +84,11 @@ public class MainActivity extends Activity implements View.OnClickListener
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_main); //2130968616
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        CourseClassLoader courseClassLoader = new CourseClassLoader(getApplicationContext());
+
+        List<CourseClass> coursesList = courseClassLoader.loadClassObjects();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 0).commit();
@@ -128,13 +135,19 @@ public class MainActivity extends Activity implements View.OnClickListener
         Math.round(TypedValue.applyDimension(1, 70.0f, resources.getDisplayMetrics()));
         linearLayout2.addView(imageView);
         int i;
-        for (int n7 = i = choosePathway.subpathwayCoursePath[0][value2].length; i > 0; --i) {
+        for (int n7 = i = 0; coursesList.size() > i; ++i) {
+
+            CourseClass curCourse = coursesList.get(i);
+
              float density = this.getResources().getDisplayMetrics().density;
              int n8 = (int)(13 * density);
              int n9 = (int)(2.2 * density);
              Button button = new Button(this);
-             int id = choosePathway.subpathwayCoursePath[0][value2][i - 1];
-            button.setText(choosePathway.courseNum[value][id]);
+
+            //id seems to serve as which one we are talking about in the list.
+             int id = i; //choosePathway.subpathwayCoursePath[0][value2][i - 1];
+            button.setText(curCourse.getTitle());
+
              LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
             button.setPadding(n8, n8, n8, n8);
             button.setGravity(16);
@@ -148,25 +161,37 @@ public class MainActivity extends Activity implements View.OnClickListener
             else {
                 layoutParams.setMargins(n9, (int)(5.0f * density), n9, n9);
             }
+
             button.setLayoutParams(layoutParams);
             button.setTag(id);
             button.setWidth(Math.round(TypedValue.applyDimension(1, 100.0f, resources.getDisplayMetrics())));
             button.setId(id);
             button.setOnClickListener(this);
-            int length = choosePathway.coursePreRec[value][id].length;
+
+            //Length is asking how many courses?  No idea why?  It seems this is a catch case so that
+            //bad pathways don't crash the program.
+            int length = 1;// choosePathway.coursePreRec[value][id].length;
            // Log.w("Prereclangth:", String.valueOf(length));
-            int n10 = _loadArrayInt[id];
+
+            //This is loading what status the course is.
+            int n10 = -1; //_loadArrayInt[id];
+            if (curCourse.getDone()){ n10 = 0;}
+            if (curCourse.getIsOpenForRegistration()){n10 = 3;}
+            if (curCourse.getInProgress()){n10 = 4;}
+
+
+
             button.setTextColor(Color.parseColor("#ffffff"));
            // Log.w("Status", String.valueOf(n10));
             if (n10 == 0) {
-                button.setBackgroundColor(Color.parseColor("#159b8a"));
+                button.setBackgroundColor(Color.parseColor("#159b8a")); //Green
             }
             else if (n10 == 1 || n10 == 4) {
-                button.setBackgroundColor(Color.parseColor("#644181"));
+                button.setBackgroundColor(Color.parseColor("#644181"));  //purple
             }
             else if (n10 == 3) {
                 button.setTextColor(Color.parseColor("#000000"));
-                button.setBackgroundColor(Color.parseColor("#fcd054"));
+                button.setBackgroundColor(Color.parseColor("#fcd054"));  //YelloW!
             }
             else if (length == 0) {
                 button.setTextColor(Color.parseColor("#000000"));
@@ -177,7 +202,7 @@ public class MainActivity extends Activity implements View.OnClickListener
               //  Log.w("if/else", "!=0");
                 int n11 = 1;
                 for (int j = 0; j < length; ++j) {
-                     int n12 = _loadArrayInt[choosePathway.coursePreRec[value][id][j]];
+                     int n12 = 1;//_loadArrayInt[choosePathway.coursePreRec[value][id][j]];
                     if (n12 == 2 || n12 == 3) {
                         n11 = 0;
                     }
@@ -187,7 +212,7 @@ public class MainActivity extends Activity implements View.OnClickListener
                     button.setBackgroundColor(Color.parseColor("#fcd054"));
                 }
                 else {
-                    button.setBackgroundColor(Color.parseColor("#893f4e"));
+                    button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED
                 }
             }
             linearLayout2.addView(button);

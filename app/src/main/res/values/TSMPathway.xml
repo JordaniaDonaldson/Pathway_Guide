@@ -17,6 +17,23 @@
         <item>TSM S04</item>
     </string-array>
 
+    <string-array name="TSMPathwayFullTitles">
+        <item>MATH 251</item>
+        <item>ACDV 101</item>
+        <item>ENGL 101</item>
+        <item>BIOL 110</item>
+        <item>PSYC 101</item>
+        <item>SOCL 101</item>
+        <item>CMNS 101</item>
+        <item>PSYC 103</item>
+        <item>BIOL 210</item>
+        <item>BIOL 230</item>
+        <item>TSM S01</item>
+        <item>TSM S02</item>
+        <item>TSM S03</item>
+        <item>TSM S04</item>
+    </string-array>
+
     <string-array name="TSMPrereqs">
         <item>NONE</item>
         <item>NONE</item>

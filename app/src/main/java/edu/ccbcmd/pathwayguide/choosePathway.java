@@ -4,6 +4,7 @@ package edu.ccbcmd.pathwayguide;
 
 
         import android.content.res.Resources;
+        import android.preference.PreferenceManager;
         import android.util.TypedValue;
 
         import android.view.Gravity;
@@ -58,8 +59,8 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         sub_pathwayName = new String[][]{{"Nursing A.S.N.", "Occupational Therapy Assistant A.A.S.", "Dental Hygiene A.A.S.", "Medical Lab. Technology A.A.S.", "Veterinary Technology A.A.S.", "Emergency Medical Technology A.A.S.", "Respiratory Care Therapy A.A.S.", "Radiography A.A.S.", "Radiation Therapy A.A.S.", "Massage Therapy A.A.S.", "Mortuary Science A.A.S.", "Mental Health A.A.S"},
                 {"Information Technology", "Computer-Aided Drafting and Design", "Network Technology" }};
         /*not entirely sure the necessity of this */
-        subpathwayCoursePath = new int[][][]{{{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
-                {0,1,2,3,4,5,6,7,8,9,10}}};
+        subpathwayCoursePath = new int[][][]{{{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13},
+                {0,1,2,3,4,5,6,7,8,9,10, 11, 12, 13}}};
     }
 
 
@@ -127,6 +128,35 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
     public boolean onOptionsItemSelected(final MenuItem menuItem) {
         boolean booleanValue = true;
+
+        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
+        //for the courses that are done.
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //The editor so we can save those preferences.
+        SharedPreferences.Editor editor =sharedPreferences.edit();
+
+        switch (menuItem.getOrder()){
+            case 0: {
+                Log.e("ChooseP","alliedHealth");
+                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                editor.apply();
+                break;
+            }
+            case 1: {
+                Log.e("ChooseP", "TSM");
+                editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
+                editor.apply();
+                break;
+            }
+            default: {
+                Log.e("ChooseP","DEFAULT!!!");
+                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                editor.apply();
+                break;
+            }
+        }
+
+
 
         switch (menuItem.getItemId()) {
             default: {

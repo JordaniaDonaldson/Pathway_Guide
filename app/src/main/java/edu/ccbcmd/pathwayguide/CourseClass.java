@@ -6,6 +6,9 @@ public class CourseClass {
     //These are the different types of information used by the course class.
     //This will store the title of the course
     private String title;
+
+    //This will store the full title of the course
+    private String fullTitle;
     //This will store the url to the quick register link
     private String url;
     //This will store the status of whether this course has been completed
@@ -25,6 +28,7 @@ public class CourseClass {
         //Null constructor.  DO NOT use.
         super();
         title = null;
+        fullTitle = null;
         url = null;
         done = false;
         inProgress = false;
@@ -32,10 +36,11 @@ public class CourseClass {
         preReqs = null;
     }
 
-    public CourseClass(String title, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration){
+    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration){
         super();
         //The proper constructor.
         this.title = title;
+        this.fullTitle = fullTitle;
         this.url = url;
         this.done = done;
         this.inProgress = inProgress;
@@ -64,11 +69,13 @@ public class CourseClass {
     public String getPreReqs(){
         return preReqs;
     }
+    public String getFullTitle(){return fullTitle;}
     public boolean getIsOpenForRegistration() {return isOpenForRegistration;}
 
     public void setTitle(String title){
         this.title = title;
     }
+    public void setFullTitle(String title){this.fullTitle = title;}
     public void setUrl(String url){
         this.url = url;
     }
