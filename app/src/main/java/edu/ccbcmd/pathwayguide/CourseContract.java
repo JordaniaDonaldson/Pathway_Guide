@@ -18,7 +18,7 @@ public class CourseContract {
         final public static int _PRE_ALLIED_HEALTH = 100;
 
         final public static int ALLIED_HEALTH_NURSING_ASN = 101;
-        final public static String ALLIED_HEALTH_NURSING_ASN_NAME = "Nursing A.S.N.";
+        final public static String ALLIED_HEALTH_NURSING_ASN_NAME = "Nursing";
         public static final String PRE_ALLIED_HEALTH_XML_COURSENAMES = "AlliedHealthPathway";
         public static final String PRE_ALLIED_HEALTH_XML_PREREQS = "AlliedHealthPrereqs";
         public static final String PRE_ALLIED_HEALTH_XML_URL = "AlliedHealthURLS";

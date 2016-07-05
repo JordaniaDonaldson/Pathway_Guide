@@ -22,7 +22,8 @@ public class CourseClassLoader {
     //This list allows the courses to be sorted according to their status as done, inprogress, available, and not able to take
     private List<CourseClass> sortedObject;
 
-
+    //This is the access to the database
+    PathwaysDBHelper dataBase;
 
     //This variable will loaded from the vector of course labels the appropriate labels for the pathway
     public  static String[] courseLabels;
@@ -45,7 +46,9 @@ public class CourseClassLoader {
         //The third instance of sharedpreferences is the particular pathway chosen.
         SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
-
+        //Initializing the database
+        dataBase = new PathwaysDBHelper(context);
+        DatabaseWrapper wrapper = new DatabaseWrapper();
 
 
         int pathway = -1;
@@ -59,10 +62,15 @@ public class CourseClassLoader {
         //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
         //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
 
+        //Database way MUST BE FIGURED OUT SOON.
+        courseLabels = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+        Log.e("TestDatabase", courseLabels[0]);
 
+        //Old way
         switch (pathway){
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
+
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);

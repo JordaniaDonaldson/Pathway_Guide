@@ -4,10 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by dorothy on 7/4/16.
- */
 public class DatabaseWrapper {
+
     protected static SQLiteDatabase db;
 
     public static final int NOT_A_CLASS = -2;

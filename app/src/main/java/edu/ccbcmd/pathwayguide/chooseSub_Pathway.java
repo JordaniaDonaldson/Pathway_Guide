@@ -47,12 +47,14 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                 switch (view.getId()) {
                     case 0: {
                         editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        break;
                     }
                     case 1: {
                         //TODO ADD THE REST OF THE SUBPATHS
                     }
                     default: {
                         editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                        break;
                     }
                 }
             }
@@ -60,21 +62,21 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
                 switch (view.getId()) {
                     case 0: {
                         editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        break;
                     }
                     case 1:{
                         //TODO PUT REST IN
                     }
                     default:{
                         editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                        break;
                     }
                 }
             }
         }
-
-
-                        final Intent intent = new Intent(this, (Class)chooseCompletedClasses.class);
-                        this.startActivity(intent);
-                        return;
+        final Intent intent = new Intent(this, (Class)chooseCompletedClasses.class);
+        this.startActivity(intent);
+        return;
 
 
 
