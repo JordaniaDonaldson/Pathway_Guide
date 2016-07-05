@@ -52,12 +52,12 @@ public class CourseClassLoader {
         if (pathwayPref.contains("PathwayChoice"))
         {
             pathway = pathwayPref.getInt("PathwayChoice", 100);
-            Log.e("CCL","TSM LOADING"+pathway);
         } else { pathway = 100;}
 
         //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
         //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
+        //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
 
 
         switch (pathway){
@@ -69,7 +69,7 @@ public class CourseClassLoader {
                 courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
                 break;
             }
-            case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT:
+            case CourseContract.TSM.TSM:
             {
                 Log.e("CCL","TSM LOADING");
                 courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
@@ -84,6 +84,7 @@ public class CourseClassLoader {
                 courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
                 courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
+                break;
             }
         }
 

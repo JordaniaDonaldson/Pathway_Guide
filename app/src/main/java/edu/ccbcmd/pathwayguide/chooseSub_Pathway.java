@@ -35,32 +35,48 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
     public SharedPreferences prefs;
 
-
-
     public void onClick(final View view) {
 
+        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
+        //for the courses that are done.
+        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
+        //The editor so we can save those preferences.
+        SharedPreferences.Editor editor = pathwayPref.edit();
+        switch (pathwayPref.getInt("PathwayChoice",100)) {
+            case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH: {
+                switch (view.getId()) {
+                    case 0: {
+                        editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                    }
+                    case 1: {
+                        //TODO ADD THE REST OF THE SUBPATHS
+                    }
+                    default: {
+                        editor.putInt("PathwaySubChoice", CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN);
+                    }
+                }
+            }
+            case CourseContract.TSM.TSM:{
+                switch (view.getId()) {
+                    case 0: {
+                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                    }
+                    case 1:{
+                        //TODO PUT REST IN
+                    }
+                    default:{
+                        editor.putInt("PathwaySubChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                    }
+                }
+            }
+        }
 
 
-                try {
-                    this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-                    final int pathID = this.prefs.getInt("pathwayID", -1);
-                    Log.w("pathwayID", String.valueOf(pathID));
-                    final int length = choosePathway.subpathwayCoursePath[0][view.getId()].length;
-                    this.prefs.edit().putInt("pathwaysubID", view.getId()).commit();
-                    if (this.prefs.getBoolean("firstrun", true)) {
                         final Intent intent = new Intent(this, (Class)chooseCompletedClasses.class);
-                        intent.putExtra("arrayID", String.valueOf(view.getId() - 1)); //figure out what this is used for and why subtract 1?
                         this.startActivity(intent);
                         return;
-                    }
-                    final Intent intent = new Intent(this, MainActivity.class);
-                    this.startActivity(intent);
-                }
-                catch (ArrayIndexOutOfBoundsException ex) {
-                    (this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0)).getInt("pathwayID", -1);
-                    Toast.makeText(this, "The Sub-Pathway you selected is not currently available in this app. Please visit ccbcmd.edu/pathways to view more info on this pathway.", Toast.LENGTH_LONG).show(); //1
 
-                }
+
 
 
     }
@@ -73,15 +89,42 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
             this.getSupportActionBar().show();
             this.getSupportActionBar().setTitle("Choose Your Pathway");
             this.getSupportActionBar().setHomeButtonEnabled(true);
+
             final Resources resources = this.getResources();
             this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header ))); //2130837594
-            this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-            final Integer pathID = this.prefs.getInt("pathwayID", 0);
+
+
             final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout4); //2131624035
-            for (int length = choosePathway.sub_pathwayName[pathID].length, i = 0; i < length; ++i) {
+
+        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
+        //for the courses that are done.
+        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
+
+        int pathway = pathwayPref.getInt("PathwayChoice",-1);
+
+        int length;
+        String[] courses;
+        switch(pathway){
+            case 100:{
+                courses = getResources().getStringArray(R.array.PathwayCategoryPRE);
+                length = courses.length;
+                break;
+            }
+            case 200:{
+                courses = getResources().getStringArray(R.array.PathwayCategoryTSM);
+                length = courses.length;
+                break;
+            }
+            default:{
+                courses = getResources().getStringArray(R.array.PathwayCategoryPRE);
+                length = courses.length;
+                break;
+            }
+        }
+            for (int i = 0; i < length; ++i) {
                 final Button button = new Button(this);
                 button.setOnClickListener(this);
-                button.setText(choosePathway.sub_pathwayName[pathID][i]);
+                button.setText(courses[i]);
                 final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
                 layoutParams.setMargins(5, 5, 5, 5);
                 button.setLayoutParams(layoutParams);

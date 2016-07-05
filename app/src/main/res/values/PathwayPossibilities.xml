@@ -34,4 +34,9 @@
         <item>Legal Studies</item>
     </string-array>
 
+    <string-array name="PathwayCategoryTSM">
+        <item>ComputerScience: IT</item>
+
+    </string-array>
+
 </resources>

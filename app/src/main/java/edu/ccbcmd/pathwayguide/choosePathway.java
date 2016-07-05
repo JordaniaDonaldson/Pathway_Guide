@@ -84,7 +84,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             }
             case 1: {
                 Log.e("ChooseP", "TSM");
-                editor.putInt("PathwayChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
                 editor.apply();
                 break;
             }
@@ -173,33 +173,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         return booleanValue;
     }
 
-    public boolean save2DArray(final String[][] array, final String s) {
 
-        final SharedPreferences.Editor edit = this.getSharedPreferences("preferencename", 0).edit();
-        edit.putInt(s + "_size", array.length);
-        for (int i = 0; i < array.length; ++i) {
-            edit.putInt(s + "_size_" + i, array[i].length);
-            for (int j = 0; j < array[i].length; ++j) {
-                edit.putString(s + "_" + i + "_" + j, array[i][j]);
-            }
-        }
-        Toast.makeText(this, "Array Has been saved", Toast.LENGTH_LONG).show(); //1
-        return edit.commit();
-    }
-
-    public boolean save2DArrayInt(final int[][] array, final String s) {
-
-        final SharedPreferences.Editor edit = this.getSharedPreferences("preferencename", 0).edit();
-        edit.putInt(s + "_size", array.length);
-        for (int i = 0; i < array.length; ++i) {
-            edit.putInt(s + "_size_" + i, array[i].length);
-            for (int j = 0; j < array[i].length; ++j) {
-                edit.putInt(s + "_" + i + "_" + j, array[i][j]);
-            }
-        }
-        Toast.makeText(this, "Array Has been saved", Toast.LENGTH_LONG).show(); //1
-        return edit.commit();
-    }
 
     public boolean saveArrayInt(final int[] array, final String s) {
 
@@ -211,37 +185,6 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
         return edit.commit();
     }
 
-
-    public String[][] load2DArray(String s) {
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        int int1 = sharedPreferences.getInt(s + "_size", 0);
-        String[][] array = new String[int1][];
-        for (int i = 0; i < int1; ++i) {
-            int int2 = sharedPreferences.getInt(s + "_size_" + i, 0);
-            Log.d("I Loop", String.valueOf(i));
-            String[] array2 = new String[int2];
-            for (int j = 0; j < int2; ++j) {
-                Log.d("T Loop", sharedPreferences.getString(s + "_" + i + "_" + j, "hi"));
-                array2[j] = sharedPreferences.getString(s + "_" + i + "_" + j, "hi");
-            }
-            array[i] = array2;
-        }
-        return array;
-    }
-
-    public int[] loadArrayInt(String s) {
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        int int1 = sharedPreferences.getInt(s + "_size", 0);
-        int[] array = new int[int1];
-
-        for (int i = 0; i < int1; ++i) {
-            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
-        }
-
-        return array;
-    }
 
 }
 

@@ -43,37 +43,6 @@ public class MainActivity extends Activity implements View.OnClickListener
     public static CourseClassLoader courseClassLoader;
     public List<CourseClass> coursesList;
 
-    public String[][] load2DArray(String s) {
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        int int1 = sharedPreferences.getInt(s + "_size", 0);
-        String[][] array = new String[int1][];
-        for (int i = 0; i < int1; ++i) {
-            int int2 = sharedPreferences.getInt(s + "_size_" + i, 0);
-            Log.d("I Loop", String.valueOf(i));
-            String[] array2 = new String[int2];
-            for (int j = 0; j < int2; ++j) {
-                Log.d("T Loop", sharedPreferences.getString(s + "_" + i + "_" + j, "hi"));
-                array2[j] = sharedPreferences.getString(s + "_" + i + "_" + j, "hi");
-            }
-            array[i] = array2;
-        }
-        return array;
-    }
-
-    public int[] loadArrayInt(String s) {
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        int int1 = sharedPreferences.getInt(s + "_size", 0);
-        int[] array = new int[int1];
-
-        for (int i = 0; i < int1; ++i) {
-            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
-        }
-
-        return array;
-    }
-
     public void onClick(View view) {
 
         Intent intent = new Intent(this, info.class);
@@ -107,16 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener
             this.startActivity(new Intent(this, (Class)choosePathway.class));
             return;
         }
-        this.load2DArray("courseName");
-        int[] _loadArrayInt = null;
 
-        if (prefs.getBoolean("firstrun", true)){  //// FIXME: 6/29/2016
-            _loadArrayInt =  new int[] {2,2,2,2,2,2,2,2,2,2};
-        } else {
-            _loadArrayInt = this.loadArrayInt("courseStat");
-        }
-        Integer.parseInt(this.prefs.getString("choosenID", "0"));
-        new RelativeLayout(this);
 
 
         LinearLayout linearLayout2 = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
@@ -186,15 +146,15 @@ public class MainActivity extends Activity implements View.OnClickListener
 
             button.setTextColor(Color.parseColor("#ffffff"));
            // Log.w("Status", String.valueOf(n10));
-            if (n10 == 0) {
-                button.setBackgroundColor(Color.parseColor("#159b8a")); //Green
+            if (curCourse.getDone()) {
+                button.setBackgroundColor(Color.parseColor("#159b8a")); //Green  DONE
             }
-            else if (n10 == 1 || n10 == 4) {
-                button.setBackgroundColor(Color.parseColor("#644181"));  //purple
+            else if (curCourse.getInProgress()) {
+                button.setBackgroundColor(Color.parseColor("#644181"));  //purple Currently taking
             }
-            else if (n10 == 3) {
+            else if (curCourse.getIsOpenForRegistration()) {
                 button.setTextColor(Color.parseColor("#000000"));
-                button.setBackgroundColor(Color.parseColor("#fcd054"));  //YelloW!
+                button.setBackgroundColor(Color.parseColor("#fcd054"));  //YelloW!  Available for register
             }
             else if (length == 0) {
                 button.setTextColor(Color.parseColor("#000000"));
@@ -202,21 +162,8 @@ public class MainActivity extends Activity implements View.OnClickListener
             //    Log.w("if/else", "=0");
             }
             else {
-              //  Log.w("if/else", "!=0");
-                int n11 = 1;
-                for (int j = 0; j < length; ++j) {
-                     int n12 = 1;//_loadArrayInt[choosePathway.coursePreRec[value][id][j]];
-                    if (n12 == 2 || n12 == 3) {
-                        n11 = 0;
-                    }
-                }
-                if (n11 == 1) {
-                    button.setTextColor(Color.parseColor("#000000"));
-                    button.setBackgroundColor(Color.parseColor("#fcd054"));
-                }
-                else {
-                    button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED
-                }
+
+                    button.setBackgroundColor(Color.parseColor("#893f4e"));  //RED  NEED PERMISSION
             }
             linearLayout2.addView(button);
              LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)button.getLayoutParams();

@@ -79,9 +79,6 @@ public class chooseCompletedClasses extends AppCompatActivity
             }
         }
 
-
-
-
         this.startActivity(new Intent(this, (Class)chooseCurrentClasses.class));
     }
 
