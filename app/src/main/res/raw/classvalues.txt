@@ -1,6 +1,6 @@
-ACDV101|Transitioning to College|This course may not be required for transfer students. Ask your adviser for more information.| | |
+ACDV101|Transitioning to College|This course may not be required for transfer students. Ask your adviser for more information.| |
 ENGL101|College Composition I| | |
-GEMATH|Gen. Ed. Math|Please meet with your advisor to find out what course(s) you need to take to meet this requirement.| |
+GEMATH|Gen. Ed. Math|Please meet with your adviser to find out what course(s) you need to take to meet this requirement.| |
 BIOL110|Biology I: Molecular and Cells| | |
 PSYC101|Intro to Psychology| | |
 BIOL220|Human Anatomy and Physiology I| |BIOL110|
