@@ -28,14 +28,6 @@ public class splash extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_splash); //2130968622
 
-        // set-up the database
-        Thread th = new Thread() {
-            public void run() {
-                DatabaseWrapper.db = new PathwaysDBHelper(splash.this).getWritableDatabase();
-            }
-        };
-        th.start();
-
         final AnimationDrawable animationDrawable = new AnimationDrawable();
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 2000); //2130837595
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1500); //2130837602
@@ -52,6 +44,15 @@ public class splash extends AppCompatActivity
             imageView.setImageDrawable(animationDrawable);
         }
         animationDrawable.start();
+
+        // set-up the database
+        Thread th = new Thread() {
+            public void run() {
+                DatabaseWrapper.db = new PathwaysDBHelper(splash.this).getWritableDatabase();
+            }
+        };
+        th.start();
+
         new Handler().postDelayed(new Runnable() {
 
 

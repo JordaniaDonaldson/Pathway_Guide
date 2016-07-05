@@ -33,19 +33,22 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
 
     public PathwaysDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        classes = context.getResources().openRawResource(R.raw.classvalues);
+        pathways = context.getResources().openRawResource(R.raw.pathwayvalues);
     }
 
     public PathwaysDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
                             int version, DatabaseErrorHandler errorHandler) {
         super(context, name, factory, version, errorHandler);
+        classes = context.getResources().openRawResource(R.raw.classvalues);
+        pathways = context.getResources().openRawResource(R.raw.pathwayvalues);
     }
 
     public void onCreate(SQLiteDatabase db) {
         Log.w("in", "oncreate");
         // create tables
-        db.execSQL("create table descriptions (id int auto_increment, description text unique)");
-        db.execSQL("create table classes (id text, name text, description int, prereqs text, status int, foreign key(description) references description(id))");
-        db.execSQL("create table subpathways  (id int auto_increment, name text, degree text, pathway text, classes text)");
+        db.execSQL("create table classes (id text primary key, name text, description text, prereqs text, status int)");
+        db.execSQL("create table subpathways  (name text, degree text, pathway text, classes text)");
 
         // populate all the classes from file
             BufferedReader rd = new BufferedReader(new InputStreamReader(classes));
@@ -55,25 +58,14 @@ public class PathwaysDBHelper extends SQLiteOpenHelper {
                     String[] values = line.split("\\|", 0);
                     ContentValues cv = new ContentValues();
 
-                    // indices 0: id 1: name 2: description 3: prereqs
-                    // take care of description - first check to see if in the table
-                    long id = -1;
-                    Cursor c = db.query(false, "descriptions", new String[]{"id"}, "description = ?", new String[]{values[2]}, null, null, null, null);
-                    if (c.getCount() == 0) { // it's not already in the table
-                        cv.put("description", values[2]);
-                        id = db.insert("descriptions", null, cv);
-                        cv.clear();
-                    } else {
-                        c.moveToNext();
-                        id = c.getInt(0);
-                    }
+                    // indices 0: id 1: name 2: description 3: prereqs\
 
                     // now the rest of the data
                     cv.put("id", values[0]);
                     cv.put("name", values[1]);
-                    cv.put("description", id);
+                    cv.put("description", values[2]);
                     cv.put("prereqs", values[3]);
-                    cv.put("status", -1);
+                    cv.put("status", DatabaseWrapper.NOT_COMPLETED);
                     db.insert("classes", null, cv);
 
                     line = rd.readLine();

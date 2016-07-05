@@ -3,6 +3,7 @@ package edu.ccbcmd.pathwayguide;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /**
  * Created by dorothy on 7/4/16.
@@ -10,8 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class DatabaseWrapper {
     protected static SQLiteDatabase db;
 
-    public static final int NOT_A_CLASS = -2;
-    public static final int NOT_AVAILABLE = -1;
+    public static final int NOT_A_CLASS = -1;
     public static final int NOT_COMPLETED = 0;
     public static final int IN_PROGRESS = 1;
     public static final int COMPLETED = 2;
@@ -44,7 +44,7 @@ public class DatabaseWrapper {
     }
 
     // returns the status of a particular class as an int
-    // if the class isn't valid, it returns NOT_A_CLASS (== -2)
+    // if the class isn't valid, it returns NOT_A_CLASS (== -1)
     // for a list of valid class ids, look at res/raw/classvalues.txt
     public static int getClassStatus(String classID) {
         Cursor c = db.query(true, "classes", new String[] {"status"}, "id = ?", new String[] {classID}, null, null, null, null);
@@ -81,14 +81,9 @@ public class DatabaseWrapper {
         String[] info = new String[5];
         info[0] = c.getString(c.getColumnIndex("id"));
         info[1] = c.getString(c.getColumnIndex("name"));
+        info[2] = c.getString(c.getColumnIndex("description"));
         info[3] = c.getString(c.getColumnIndex("prereqs"));
         info[4] = c.getString(c.getColumnIndex("status"));
-
-        // get the description from the descriptions table
-        int des = c.getInt(c.getColumnIndex("description"));
-        Cursor d = db.query(true, "descriptions", new String[] {"description"}, "id = ?", new String[] {((Integer) des).toString()}, null, null, null, null);
-        d.moveToNext(); // guaranteed at least one record because of foreign key constraint
-        info[2] = d.getString(d.getColumnIndex("description"));
 
         return info;
     }
@@ -99,7 +94,7 @@ public class DatabaseWrapper {
     // if the classID is invalid, it returns false
     // for a list of valid classIDs, see res/raw/classvalues.txt
     public static boolean writeClassStatus(String classID, int status) {
-        if (status < -1 || status > 2) throw new IllegalArgumentException("Not a valid class status");
+        if (status < 0 || status > 2) throw new IllegalArgumentException("Not a valid class status");
         ContentValues cv = new ContentValues();
         cv.put("status", status);
         if (db.update("classes", cv, "id = ?", new String[] {classID}) == 0) return false;
