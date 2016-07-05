@@ -33,8 +33,6 @@ import android.content.DialogInterface;
         import android.widget.TextView;
         import android.graphics.Point;
 
-        import android.graphics.drawable.Drawable;
-
         import android.view.MenuItem;
 
         import android.net.Uri;
@@ -80,7 +78,7 @@ public class info extends AppCompatActivity
     }
 
     public int[] loadArrayInt(final String s) {
-Log.w("loadArInt string", s);
+        Log.w("loadArInt string", s);
         final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
         final int int1 = 14; //sharedPreferences.getInt(s + "_size", 0);
         Log.w("loadArInt s+size", String.valueOf(int1));
@@ -99,150 +97,111 @@ Log.w("loadArInt string", s);
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final String string = this.prefs.getString("choosenID", "0");
-        this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
         final int int3 = Integer.parseInt(string);
+
+        this.mPbar = (ProgressBar)this.findViewById(R.id.progressBar2); //2131624040
+
         final CourseClass course = MainActivity.courseClassLoader.getXMLOrder(int3);
         ((TextView)this.findViewById(R.id.textView)).setText(course.getFullTitle()); //2131624036
         this.getSupportActionBar().setTitle(course.getTitle());
 
-        //This is where we are setting the color of the dialog box.
-        final int n =  int3; // choosePathway.subpathwayCoursePath[0][pathID][int3];
-        final int[] loadArrayInt = this.loadArrayInt("courseStat");
-        //final int length = choosePathway.coursePreRec[pathID][n].length;
-        //Log.w("Prereclength:", String.valueOf(length));
-        //Log.w("n value", String.valueOf(n));
-
-
-        final int n2 = loadArrayInt[n];
-        final int n3;
         if (course.getDone()) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#159b8a"))); //Green
-            n3 = 0;
+
         }
         else if (course.getInProgress()) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#644181"))); //Purple
-            n3 = 1;
+
         }
         else if (course.getIsOpenForRegistration()) {
             this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054"))); //Yellow
-            n3 = 2;
         }
-        //else if (length == 0) {
-        //    this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054"))); //Yello
-        //    n3 = 2;
-        //    Log.w("if/else", "=0");
-        //}
+
         else {
-            Log.w("if/else", "!=0");
-            int n4 = 1;
-            //for (int i = 0; i < length; ++i) {
-              //  final int n5 = loadArrayInt[choosePathway.coursePreRec[pathID][n][i]];
-               // if (n5 == 2 || n5 == 3) {
-                //    n4 = 0;
-                //}
-            //}
-            //if (n4 == 1) {
-            //    this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#fcd054")));
-            //    n3 = 2;
-            //}
-            //else {
-                this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#893f4e"))); //RED
-                n3 = 3;
-            //}
+            this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#893f4e"))); //RED
         }
+
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
+
+
         final Button button = (Button) findViewById(R.id.button); //2131624037
         if (course.getAnyPreReqs()) {
-            button.setText("Meet with an Adviser");
+            button.setText("Meet with an Adviser"); //WHY IS THIS BUTTON MEET WITH AN ADVISOR? MAYBE I"M NOT FOLLOWING.
         }
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(final View view) {
 
-                final String replace = MainActivity.courseClassLoader.loadClassObjects().get(int3).getTitle().replace(" ", "/");
+                final String replace = course.getTitle().replace(" ", "/");
 
-                if (choosePathway.pageSwitch[n] == 1) {
+                if (course.getMeetWithAdvisor()) {
                     info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
                     return;
                 }
                 info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Programs-and-Courses-Finder/course/" + replace)));
             }
         });
+
+
         final Button button2 = (Button)this.findViewById(R.id.colorChange); //2131624038
-        if (n3 == 0) {
+        if (course.getDone()) {
             button.setVisibility(View.INVISIBLE); //4
             button2.setText("I have not successfully completed this class");
-
         }
-        else if (n3 == 1) {
+        else if (course.getInProgress()) {
             button2.setText("Class End Results");
         }
-        else if (n3 == 2) {
+        else if (course.getIsOpenForRegistration()) {
             button2.setText("I am currently taking this class");
         }
-        else if (n3 == 3) {
+        else if (course.getAnyPreReqs()) {
             button2.setText("I have permission to take this class");
         }
+
+        //Getting a handle for the shared preference editor
+        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefIP = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editorDone = sharedPrefDone.edit();
+        final SharedPreferences.Editor editorIP = sharedPrefIP.edit();
+        final String[] courseLabels = MainActivity.courseClassLoader.getCourseLabels();
+
         button2.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(final View view) {
-            //TODO: PUT IN SAVE FUNCTIONALITY FOR MY DATA STRUCTURE!!!
-                if (n3 == 0) {
-                    info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 2).commit();
+
+                if (course.getDone()) {
+                    editorDone.putBoolean(courseLabels[int3], false);
+                    editorDone.apply();
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
-                if (n3 == 1) {
+
+                if (course.getInProgress()) {
                     info.this.startActivity(new Intent(info.this, (Class)alert.class));
                     return;
                 }
-                if (n3 == 1) {
-                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(info.this);
-                    alertDialogBuilder.setPositiveButton("Class Passed", new DialogInterface.OnClickListener() {
 
 
-                        public void onClick(final DialogInterface dialogInterface, final int n) {
-
-                            info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
-                            info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
-                        }
-                    });
-                    alertDialogBuilder.setNegativeButton("Class Failed", new DialogInterface.OnClickListener() {
 
 
-                        public void onClick(final DialogInterface dialogInterface, final int n) {
-
-                            final SharedPreferences.Editor edit = info.this.getSharedPreferences("preferencename", 0).edit();
-                            if (n2 == 4) {
-                                edit.putInt("courseStat_" + int3, 3).commit();
-                            }
-                            else {
-                                edit.putInt("courseStat_" + int3, 2).commit();
-                            }
-                            info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
-                        }
-                    });
-                    alertDialogBuilder.setMessage("How did you finish the class?").setTitle("Class Result");
-                    alertDialogBuilder.create().show();
-                    return;
-                }
-                if (n3 == 3) {
-                    info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 3).commit();
+                if (course.getIsOpenForRegistration()) {
+                    editorIP.putBoolean(courseLabels[int3],true);
+                    editorIP.apply();
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
                     return;
                 }
-                final SharedPreferences.Editor edit = info.this.getSharedPreferences("preferencename", 0).edit();
-                if (n2 == 3) {
-                    edit.putInt("courseStat_" + int3, 4).commit();
+
+                //TODO HOW TO HANDLE IF SOMEONE CAN TAKE THE COURSE WITHOUT PREREQ?
+                if (course.getAnyPreReqs()) {
+
                 }
-                else {
-                    edit.putInt("courseStat_" + int3, 1).commit();
-                }
+
                 info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
             }
         });
+
         final Calendar instance = Calendar.getInstance();
         int value = instance.get(Calendar.YEAR); //1
         int n6 = instance.get(Calendar.YEAR) % 100;

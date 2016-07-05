@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="AlliedHealthPathway">
-        <item>MATH 083</item>
+        <item>GEMATH</item>
         <item>ACDV 101</item>
         <item>ENGL 101</item>
         <item>BIOL 110</item>

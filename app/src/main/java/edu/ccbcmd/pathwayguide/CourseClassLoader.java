@@ -62,15 +62,16 @@ public class CourseClassLoader {
         //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
         //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
 
-        //Database way MUST BE FIGURED OUT SOON.
-        courseLabels = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
-        Log.e("TestDatabase", courseLabels[0]);
+
+
 
         //Old way
         switch (pathway){
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
-
+                //Database way
+                courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                //Old Way
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
@@ -79,15 +80,22 @@ public class CourseClassLoader {
             }
             case CourseContract.TSM.TSM:
             {
-                Log.e("CCL","TSM LOADING");
+                //DataBase Way
+                courseLabels = wrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
+
+                //OldWay
                 courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
-                coursePrereqs = context.getResources().getStringArray(R.array.TSMPrereqs);
+                coursePrereqs =  context.getResources().getStringArray(R.array.TSMPrereqs);
                 courseURLs = context.getResources().getStringArray(R.array.TSMURLS);
                 break;
             }
             default:
             {
+                //database way
+                courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+
+                //old way
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.AlliedHealthPrereqs);
@@ -137,6 +145,9 @@ public class CourseClassLoader {
                 if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
             }
 
+            boolean meet = false;
+            if (courseLabels[i].equals("GEMATH")){meet = true;}
+
             //After setting all of the appropriate flags,  The course object itself is instantiated.
             CourseClass course = new CourseClass(courseLabels[i],
                     courseFullTitles[i],
@@ -146,7 +157,8 @@ public class CourseClassLoader {
                     preReq,
                     coursePrereqs[i],
                     isCourseAvailableForRegistration,
-                    i);
+                    i,
+                    meet);
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container

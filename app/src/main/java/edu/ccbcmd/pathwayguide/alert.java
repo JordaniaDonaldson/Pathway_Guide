@@ -46,8 +46,7 @@ public class alert extends Activity
                 editorIP.apply();
 
 
-                //TODO: TAKE THIS OUT
-               // alert.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
+
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });
@@ -70,16 +69,6 @@ public class alert extends Activity
                 editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
                 editorIP.apply();
 
-                //TODO GET THIS OUT OF HERE!
-                //final SharedPreferences.Editor edit = alert.this.getSharedPreferences("preferencename", 0).edit();
-                //if (course.getDone()) {
-                    //What do we care?
-                ///    edit.putInt("courseStat_" + int3, 3).commit();
-                //}
-                //else {
-                //
-                //    edit.putInt("courseStat_" + int3, 2).commit();
-                //}
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });

@@ -82,6 +82,8 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.startActivity(new Intent(this, (Class)chooseCurrentClasses.class));
     }
 
+    //This is the access to the database
+    PathwaysDBHelper dataBase;
     static private int length_of_courses;
 
     @TargetApi(23)
@@ -96,8 +98,10 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
 
+        //Initializing the database
+        dataBase = new PathwaysDBHelper(getApplicationContext());
+        DatabaseWrapper wrapper = new DatabaseWrapper();
         CourseClassLoader loader = new CourseClassLoader(getApplicationContext());
-        List<CourseClass> courseList = loader.loadClassObjects();
         length_of_courses = loader.howManyCourses();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);

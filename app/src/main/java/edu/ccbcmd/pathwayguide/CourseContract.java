@@ -29,7 +29,7 @@ public class CourseContract {
 
 
     final public static class TSM {
-        final public static String TSM_NAME = "Technology, Science, and Mathematics";
+        final public static String TSM_NAME = "Technology, Science, & Math";
 
         final public static int TSM = 200;
 
@@ -37,7 +37,7 @@ public class CourseContract {
 
 
         final public static int TSM_COMPUTER_SCIENCE_IT = 211;
-        final public static String TSM_COMPUTER_SCIENCE_IT_NAME = "Computer Science: Information Technology";
+        final public static String TSM_COMPUTER_SCIENCE_IT_NAME = "Information Technology";
         public static final String TSM_COMPUTER_SCIENCE_IT_XML_COURSENAMES = "TSMPathway";
         public static final String TSM_COMPUTER_SCIENCE_IT_XML_PREREQS = "TSMPrereqs";
         public static final String TSM_COMPUTER_SCIENCE_IT_XML_URL = "TSMURLS";

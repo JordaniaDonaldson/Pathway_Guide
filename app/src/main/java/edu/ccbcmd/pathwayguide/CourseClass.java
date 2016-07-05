@@ -26,6 +26,9 @@ public class CourseClass {
     //This will store what position in the XML the course is
     private int position;
 
+    //This will store if the person needs to talk to their advisor about what math they need
+    private boolean meetWithAdvisor;
+
     public CourseClass()
     {
         //Null constructor.  DO NOT use.
@@ -38,9 +41,10 @@ public class CourseClass {
         anyPreReqs = false;
         preReqs = null;
         position = -1;
+        meetWithAdvisor = false;
     }
 
-    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position){
+    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position, boolean meet){
         super();
         //The proper constructor.
         this.title = title;
@@ -52,6 +56,7 @@ public class CourseClass {
         this.preReqs = preReqs;
         this.isOpenForRegistration = isOpenForRegistration;
         this.position = position;
+        this.meetWithAdvisor = meet;
 
     }
 
@@ -77,6 +82,7 @@ public class CourseClass {
     public String getFullTitle(){return fullTitle;}
     public boolean getIsOpenForRegistration() {return isOpenForRegistration;}
     public int getPosition(){return position;}
+    public boolean getMeetWithAdvisor(){return meetWithAdvisor;}
 
     public void setTitle(String title){
         this.title = title;
