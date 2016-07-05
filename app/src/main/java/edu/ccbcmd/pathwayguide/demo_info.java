@@ -182,7 +182,7 @@ public class demo_info extends AppCompatActivity
                 else {
                     --value;
                 }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int1].replace(" ", "&code="));
+                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + "ENGL 101".replace(" ", "&code="));
                 final Integer value3 = demo_info.this.prefs.getInt("internet", 1);
                 Toast.makeText(demo_info.this, String.valueOf(value3), Toast.LENGTH_LONG); //1
                 if (value3 != 1) {

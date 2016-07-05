@@ -95,8 +95,8 @@ Log.w("loadArInt string", s);
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_info); //2130968613
-        CourseClassLoader classLoader = new CourseClassLoader(getApplicationContext());
-        List<CourseClass> classesList = classLoader.loadClassObjects();
+
+        final List<CourseClass> classesList = MainActivity.courseClassLoader.loadClassObjects();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         final int pathID = this.prefs.getInt("pathwayID", -1);
@@ -163,7 +163,7 @@ Log.w("loadArInt string", s);
 
             public void onClick(final View view) {
 
-                final String replace = choosePathway.courseNum[pathSubID][int3].replace(" ", "/");
+                final String replace = MainActivity.courseClassLoader.loadClassObjects().get(int3).getTitle().replace(" ", "/");
 
                 if (choosePathway.pageSwitch[n] == 1) {
                     info.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://www.ccbcmd.edu/Resources-for-Students/Academic-Advisement.aspx")));
@@ -190,7 +190,7 @@ Log.w("loadArInt string", s);
         button2.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(final View view) {
-
+            //TODO: PUT IN SAVE FUNCTIONALITY FOR MY DATA STRUCTURE!!!
                 if (n3 == 0) {
                     info.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 2).commit();
                     info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
@@ -293,7 +293,7 @@ Log.w("loadArInt string", s);
                 else {
                     --value;
                 }
-                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + choosePathway.courseNum[pathSubID][int3].replace(" ", "&code="));
+                final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + classesList.get(int3).getTitle().replace(" ", "&code="));
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
                 Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG);
                 if (value3 != 1) {

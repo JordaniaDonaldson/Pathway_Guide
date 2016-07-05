@@ -40,6 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 {
 
     public SharedPreferences prefs;
+    public static CourseClassLoader courseClassLoader;
 
     public String[][] load2DArray(String s) {
 
@@ -86,7 +87,7 @@ public class MainActivity extends Activity implements View.OnClickListener
         this.setContentView(R.layout.activity_main); //2130968616
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        CourseClassLoader courseClassLoader = new CourseClassLoader(getApplicationContext());
+        courseClassLoader = new CourseClassLoader(getApplicationContext());
 
         List<CourseClass> coursesList = courseClassLoader.loadClassObjects();
 

@@ -18,8 +18,6 @@ import java.util.List;
 //This class ASSUMES that the setup has completed properly.
 public class CourseClassLoader {
 
-    //This list loads the courses (unsorted) from the booleans stored in shared preferences.
-    //private List<CourseClass> coursesObject;
 
     //This list allows the courses to be sorted according to their status as done, inprogress, available, and not able to take
     private List<CourseClass> sortedObject;
@@ -27,7 +25,7 @@ public class CourseClassLoader {
 
 
     //This variable will loaded from the vector of course labels the appropriate labels for the pathway
-    String[] courseLabels;
+    public  static String[] courseLabels;
     //This variable will load in the vector of course full labels.
     String[] courseFullTitles;
     //This variable will load in the prerequisites for the courses. Each position corresponds to the courseLabels position.
@@ -180,7 +178,7 @@ public class CourseClassLoader {
 
         }
 
-    }
+            }
 
     //TODO: What if the list is NULL?  No chance of that happening unless...?
     public List<CourseClass> loadClassObjects(){
@@ -188,4 +186,6 @@ public class CourseClassLoader {
     }
 
     public int howManyCourses(){return sortedObject.size();}
+
+    public String[] getCourseLabels(){return courseLabels;}
 }

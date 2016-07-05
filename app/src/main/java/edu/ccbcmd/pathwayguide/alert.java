@@ -42,13 +42,14 @@ public class alert extends Activity
         final int int1 = this.prefs.getInt("pathwayID", -1);
         final int int2 = this.prefs.getInt("pathwaysubID", -1);
         final int int3 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
-        final int n = this.loadArrayInt("courseStat")[choosePathway.subpathwayCoursePath[0][int1][int3]];
+
+        final CourseClass course = MainActivity.courseClassLoader.loadClassObjects().get(int3);
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
 
             public void onClick(final View view) {
-
+                //TODO GET THIS TO SET THE COURSE BACK TO SETTING state zero?
                 alert.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
@@ -59,10 +60,12 @@ public class alert extends Activity
             public void onClick(final View view) {
 
                 final SharedPreferences.Editor edit = alert.this.getSharedPreferences("preferencename", 0).edit();
-                if (n == 4) {
+                if (course.getDone()) {
+                    //What do we care?
                     edit.putInt("courseStat_" + int3, 3).commit();
                 }
                 else {
+                    //TODO STORE THE chANGE!!!!
                     edit.putInt("courseStat_" + int3, 2).commit();
                 }
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));

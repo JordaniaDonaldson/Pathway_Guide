@@ -33,7 +33,7 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
     public static final String[] courseInfo;
     public static final String[][] courseName;
-    public static final String[][] courseNum;
+    //public static final String[][] courseNum;
     public static final int[][][] coursePreRec;
     public static final int[] pageSwitch;
     public static final String[] pathwayName;
@@ -43,8 +43,8 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
     public SharedPreferences prefs;
 
     static {
-        courseNum = new String[][]{{"ACDV 101", "ENGL 101", "Gen. Ed. MATH", "BIOL 110", "PSYC 101", "BIOL 220", "PSYC 103", "CMNS 101", "SOCL 101", "BIOL 230"},
-                {"CSIT 101", "CSIT 111", "CSIT 121", "ENGL 101", "Gen. Ed. MATH", "CSIT 142", "CSIT 154", "CSIT 210", "CSIT 161", "CSIT 166", "DCOM 101/142"}};
+        //courseNum = new String[][]{{"ACDV 101", "ENGL 101", "Gen. Ed. MATH", "BIOL 110", "PSYC 101", "BIOL 220", "PSYC 103", "CMNS 101", "SOCL 101", "BIOL 230"},
+         //       {"CSIT 101", "CSIT 111", "CSIT 121", "ENGL 101", "Gen. Ed. MATH", "CSIT 142", "CSIT 154", "CSIT 210", "CSIT 161", "CSIT 166", "DCOM 101/142"}};
         courseName = new String[][]{{"Transitioning to college", "English 101", "Gen. Ed. MATH", "Biology I: Molecular and Cells", "Introduction to Psychology", "Human Anatomy and Physiology I", "Principles of Human Growth and Development", "Fundamentals of Communication", "Introduction to Sociology", "Microbiology"},
                 {"Technology and Information Systems", "Logic and OO Design", "Web Standards", "College Composition 1", "Gen. Ed. Math", "Introduction to MIS", "Database Concepts", "Introduction to Programming", "Introduction to Information Assurance", "Introduction to Mobile Applications Development", "DCOM Option"}};
 
