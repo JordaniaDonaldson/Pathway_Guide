@@ -1,12 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
-
-
 import android.annotation.TargetApi;
 import android.content.res.Resources;
 
@@ -45,8 +38,6 @@ public class chooseCurrentClasses extends AppCompatActivity
     public SharedPreferences prefs;
 
 
-
-
     public static int getColor(final Context context, final int n) {
 
         if (Build.VERSION.SDK_INT >= 23) {
@@ -57,74 +48,33 @@ public class chooseCurrentClasses extends AppCompatActivity
 
     private void loopQuestions(final ViewGroup viewGroup) {
 
-        final int length = choosePathway.subpathwayCoursePath[0][this.prefs.getInt("pathwayID", 0)].length;
-        int n = 0;
-        Label_0170_Outer:
-        while (n < length-1) {
-            Label_0182: {
-                if (n>length-2){  break Label_0170_Outer;}
-                while (n < length) {
 
-                    try {
-                        final CheckBox checkBox = (CheckBox) viewGroup.getChildAt(n);
-                        int n2;
-                        if (checkBox.isChecked()) {
-                            n2 = 1;
-                        } else {
-                            n2 = 0;
-                        }
-                        final int id = checkBox.getId();
-                        if (n2 == 1) {
-                            this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + id, 1).commit();
-                        }
-                        n++;
-                        continue Label_0170_Outer;
-                    } catch (NullPointerException e) {
-                        // it's probably the checkBox
-                        // for right now, I'm just going to increase n -- Dorothy
-                        n++;
-                    } catch (Exception ex) {
-                        System.err.println(ex); // at least for debugging, let's see what the error is
-                        continue;
-                    }
-                }
-                break;
-            }
-
-        }
-
-        //Getting a handle for the shared preference editor
-        SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPrefDone.edit();
-
-        String[] courseLabels = getResources().getStringArray(R.array.AlliedHealthPathway);
+        String[] courseLabels = MainActivity.courseClassLoader.getCourseLabels();
         List<CheckBox> checkBoxesInProgress = new ArrayList<CheckBox>();
         for (int i = 0; i<viewGroup.getChildCount(); i++){
             checkBoxesInProgress.add((CheckBox) viewGroup.getChildAt(i));
         }
 
-
-        //My code
         SharedPreferences sharedPrefInProgress = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
 
-        //In this for loop you will find it saving the state of the check box to the shared preferences.
-        int counter = 0;
+        //To ensure no stragglers have it set to true without permission.
+        for (int i = 0; i < MainActivity.courseClassLoader.howManyCourses(); i++)
+        {
+            editorIP.putBoolean(courseLabels[i], false);
+            editorIP.apply();
+        }
 
-        //TODO FIX THIS SO IT COUNTS THE COURSES RIGHT!
-        //I"M LEAVING IT BROKEN SO I CAN FIX OTHER PARTS OF THE PROJECT
+        //Here's where we actually set up the checkboxes
         for (int i = 0; i < checkBoxesInProgress.size(); i++) {
 
-                CheckBox box = checkBoxesInProgress.get(counter);
-                counter++;
+                CheckBox box = checkBoxesInProgress.get(i);
+                int id = box.getId();
+
                 if (box.isChecked()) {
-                    editorIP.putBoolean(courseLabels[i], true);
+                    editorIP.putBoolean(courseLabels[id], true);
 
-                    editorIP.commit();
-                } else {
-                    editorIP.putBoolean(courseLabels[i], false);
-
-                    editorIP.commit();
+                    editorIP.apply();
                 }
         }
 
@@ -136,17 +86,6 @@ public class chooseCurrentClasses extends AppCompatActivity
         this.startActivity(new Intent(this, (Class)MainActivity.class));
     }
 
-    public int[] loadArrayInt(final String s) {
-
-        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        final int int1 = sharedPreferences.getInt(s + "_size", 0);
-        final int[] array = new int[int1];
-        for (int i = 0; i < int1; ++i) {
-            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
-        }
-        return array;
-    }
-
     private static int length_of_classes;
 
     @TargetApi(23)
@@ -155,9 +94,9 @@ public class chooseCurrentClasses extends AppCompatActivity
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_choose_current_classes); //2130968605
 
-        CourseClassLoader courseClassLoader = new CourseClassLoader(getApplicationContext());
-        List<CourseClass> courseList = courseClassLoader.loadClassObjects();
-        length_of_classes = courseClassLoader.howManyCourses();
+
+        List<CourseClass> courseList = MainActivity.courseClassLoader.loadClassObjects();
+        length_of_classes = MainActivity.courseClassLoader.howManyCourses();
 
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Choose Classes");
@@ -167,19 +106,17 @@ public class chooseCurrentClasses extends AppCompatActivity
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.getResources();
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final int[] loadArrayInt = this.loadArrayInt("courseStat");
-        final Integer pathID = this.prefs.getInt("pathwayID", 0);
-        final Integer pathSubID = this.prefs.getInt("pathwaysubID", 0);
+
         new RelativeLayout(this);
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout16); //2131624032
         int length = length_of_classes;
         for (int i = 0; i < length; ++i) {
             CourseClass course = courseList.get(i);
-            final int id = i;
+
             if (!course.getDone() && !course.getPreReqs().equals("PERMISSION")) {
                 final CheckBox checkBox = new CheckBox(this);
                 checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
-                checkBox.setId(id);
+                checkBox.setId(course.getPosition());
                 checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
                 linearLayout.addView(checkBox);
             }

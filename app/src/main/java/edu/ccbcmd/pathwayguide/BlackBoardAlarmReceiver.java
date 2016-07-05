@@ -25,7 +25,7 @@ public class BlackBoardAlarmReceiver extends BroadcastReceiver
         create.addNextIntent(intent);
         final PendingIntent pendingIntent = create.getPendingIntent(0, 134217728);
         final Notification.Builder notificationBuilder = new Notification.Builder(context);
-        notificationBuilder.setVibrate(new long[] { 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L, 1000L });
+        notificationBuilder.setVibrate(new long[] { 1000L, 1000L});
         notificationBuilder.setLights(256, 3000, 3000); //color changed from -256
         notificationBuilder.setAutoCancel(true);
         notificationBuilder.setStyle(new Notification.BigTextStyle().bigText("Remember to check blackboard for newly posted information and events."));

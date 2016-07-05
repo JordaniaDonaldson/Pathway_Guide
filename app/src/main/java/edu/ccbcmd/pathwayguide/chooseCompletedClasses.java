@@ -1,10 +1,5 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
-
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -33,10 +28,6 @@ public class chooseCompletedClasses extends AppCompatActivity
 {
     public SharedPreferences prefs;
 
-
-
-
-
     public static /* synthetic */ void access$000(final chooseCompletedClasses chooseCompletedClasses, final ViewGroup viewGroup) {
 
        chooseCompletedClasses.loopQuestions(viewGroup);
@@ -52,36 +43,25 @@ public class chooseCompletedClasses extends AppCompatActivity
     }
 
     private void loopQuestions(final ViewGroup viewGroup) {
-        //Nick's Code
-        for (int i = 0; i < viewGroup.getChildCount(); ++i) {
-            final CheckBox checkBox = (CheckBox)viewGroup.getChildAt(i);
-            int n;
-            if (checkBox.isChecked()) {
-                n = 1;
-            }
-            else {
-                n = 0;
-            }
-            checkBox.getId();
-            if (n == 1) {
-                this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + i, 0).commit();
-            }
-        }
+
 
         //Getting a handle for the shared preference editor
         SharedPreferences sharedPrefDone = getSharedPreferences("courses", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPrefDone.edit();
 
-        String[] courseLabels = getResources().getStringArray(R.array.AlliedHealthPathway);
+        String[] courseLabels = MainActivity.courseClassLoader.getCourseLabels();
         List<CheckBox> checkBoxesDone = new ArrayList<CheckBox>();
+
         for (int i = 0; i<viewGroup.getChildCount(); i++){
             checkBoxesDone.add((CheckBox) viewGroup.getChildAt(i));
         }
-        //My code
-        int offset = 2;
+        for (int i = 0; i< courseLabels.length; i++){
+            editor.putBoolean(courseLabels[i], false);
+            editor.apply();
+        }
 
         int counter = 0;
-        for (int i = offset; i < viewGroup.getChildCount(); i++) {
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
 
             if (checkBoxesDone.size()>0&& checkBoxesDone.size()>counter) {
                 CheckBox box = checkBoxesDone.get(counter);
@@ -119,27 +99,30 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
 
-        CourseClassLoader courseClassLoader = new CourseClassLoader(getApplicationContext());
-        List<CourseClass> courseList = courseClassLoader.loadClassObjects();
-        length_of_courses = courseClassLoader.howManyCourses();
+
+        List<CourseClass> courseList = MainActivity.courseClassLoader.loadClassObjects();
+        length_of_courses = MainActivity.courseClassLoader.howManyCourses();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
-        final Integer pathID = this.prefs.getInt("pathwayID", 0);
-        final Integer pathSubID = this.prefs.getInt("pathwaysubID", 0);
+
         new RelativeLayout(this);
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout15); //2131624031
 
-        int length = courseClassLoader.howManyCourses();//choosePathway.subpathwayCoursePath[0][pathID].length;
+        int length = length_of_courses;
         for ( int i = 0; i < length; ++i) {
-            /*why not just use loop counter?*/
-            CourseClass course = courseList.get(i);
+
+            CourseClass course = MainActivity.courseClassLoader.getXMLOrder(i);
             if (!course.getPreReqs().equals("PERMISSION")) {
 
-                //final int id = choosePathway.subpathwayCoursePath[0][pathID][i];
+                final int id = course.getPosition();
                 final CheckBox checkBox = new CheckBox(this);
                 checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
-                checkBox.setId(i);
+                checkBox.setId(id);
+
+                if (course.getDone()){
+                    checkBox.setChecked(true);
+                }
                 if (Build.VERSION.SDK_INT >= 16) {
                     checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
                 }

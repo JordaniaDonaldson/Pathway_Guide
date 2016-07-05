@@ -1,30 +1,23 @@
 package edu.ccbcmd.pathwayguide;
 
-/**
- * Created by dixo8 on 6/24/2016.
- */
 
 
+import android.support.annotation.Nullable;
+import android.support.annotation.LayoutRes;
+import android.support.v7.app.ActionBar;
+import android.view.MenuInflater;
 
-        import android.support.annotation.Nullable;
-        import android.support.annotation.LayoutRes;
-        import android.support.v7.app.ActionBar;
-        import android.view.MenuInflater;
-        import android.support.v7.app.AppCompatCallback;
+import android.view.ViewGroup;
 
-        import android.view.ViewGroup;
+import android.content.res.Configuration;
 
-        import android.content.res.Configuration;
+import android.view.View;
 
-        import android.app.Activity;
+import android.os.Bundle;
 
-        import android.view.View;
+import android.support.v7.app.AppCompatDelegate;
 
-        import android.os.Bundle;
-
-        import android.support.v7.app.AppCompatDelegate;
-
-        import android.preference.PreferenceActivity;
+import android.preference.PreferenceActivity;
 
 public abstract class AppCompatPreferenceActivity extends PreferenceActivity
 {
