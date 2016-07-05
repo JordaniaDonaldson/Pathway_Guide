@@ -19,7 +19,6 @@ package edu.ccbcmd.pathwayguide;
 
         import android.content.BroadcastReceiver;
 
-        import fd.IncrementalChange;
 
 public class AlarmReceiver extends BroadcastReceiver
 {

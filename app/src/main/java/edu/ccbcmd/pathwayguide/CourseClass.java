@@ -23,6 +23,9 @@ public class CourseClass {
     //This will store the name of the prerequisite course (if there is one, else it will be "NONE")
     private String preReqs;
 
+    //This will store what position in the XML the course is
+    private int position;
+
     public CourseClass()
     {
         //Null constructor.  DO NOT use.
@@ -34,9 +37,10 @@ public class CourseClass {
         inProgress = false;
         anyPreReqs = false;
         preReqs = null;
+        position = -1;
     }
 
-    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration){
+    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position){
         super();
         //The proper constructor.
         this.title = title;
@@ -47,6 +51,7 @@ public class CourseClass {
         this.anyPreReqs = anyPreReqs;
         this.preReqs = preReqs;
         this.isOpenForRegistration = isOpenForRegistration;
+        this.position = position;
 
     }
 
@@ -71,6 +76,7 @@ public class CourseClass {
     }
     public String getFullTitle(){return fullTitle;}
     public boolean getIsOpenForRegistration() {return isOpenForRegistration;}
+    public int getPosition(){return position;}
 
     public void setTitle(String title){
         this.title = title;

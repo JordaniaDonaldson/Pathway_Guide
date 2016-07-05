@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
     public SharedPreferences prefs;
     public static CourseClassLoader courseClassLoader;
+    public List<CourseClass> coursesList;
 
     public String[][] load2DArray(String s) {
 
@@ -76,7 +77,8 @@ public class MainActivity extends Activity implements View.OnClickListener
     public void onClick(View view) {
 
         Intent intent = new Intent(this, info.class);
-        this.prefs.edit().putString("choosenID", String.valueOf(view.getId())).commit();
+        int position = coursesList.get(view.getId()).getPosition();
+        this.prefs.edit().putString("choosenID", String.valueOf(position)).commit();
         this.startActivity(intent);
     }
 
@@ -89,7 +91,7 @@ public class MainActivity extends Activity implements View.OnClickListener
 
         courseClassLoader = new CourseClassLoader(getApplicationContext());
 
-        List<CourseClass> coursesList = courseClassLoader.loadClassObjects();
+        coursesList = courseClassLoader.loadClassObjects();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putInt("zoom", 0).commit();

@@ -35,8 +35,6 @@ package edu.ccbcmd.pathwayguide;
 
         import android.support.v7.app.AppCompatActivity;
 
-        import fd.IncrementalChange;
-
 public class NotificationActivity extends AppCompatActivity
 {
 

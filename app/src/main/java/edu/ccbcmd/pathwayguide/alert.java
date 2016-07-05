@@ -23,51 +23,68 @@ public class alert extends Activity
 
     public SharedPreferences prefs;
 
-    public int[] loadArrayInt(final String s) {
 
-        final SharedPreferences sharedPreferences = this.getSharedPreferences("preferencename", 0);
-        final int int1 = sharedPreferences.getInt(s + "_size", 0);
-        final int[] array = new int[int1];
-        for (int i = 0; i < int1; ++i) {
-            array[i] = sharedPreferences.getInt(s + "_" + i, 1);
-        }
-        return array;
-    }
 
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_alert); //2130968601
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final int int1 = this.prefs.getInt("pathwayID", -1);
-        final int int2 = this.prefs.getInt("pathwaysubID", -1);
+
         final int int3 = Integer.parseInt(this.prefs.getString("choosenID", "0"));
 
-        final CourseClass course = MainActivity.courseClassLoader.loadClassObjects().get(int3);
+        final CourseClass course = MainActivity.courseClassLoader.getXMLOrder(int3);
         final Button button = (Button)this.findViewById(R.id.buttonCollect); //2131624021
         this.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() { //2131624022
 
-
             public void onClick(final View view) {
-                //TODO GET THIS TO SET THE COURSE BACK TO SETTING state zero?
-                alert.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
+                Context context = getApplicationContext();
+                //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
+                //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
+                SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorDone = sharedPrefDone.edit();
+                editorDone.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], true);
+                editorDone.apply();
+                SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
+                editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3],false);
+                editorIP.apply();
+
+
+                //TODO: TAKE THIS OUT
+               // alert.this.getSharedPreferences("preferencename", 0).edit().putInt("courseStat_" + int3, 0).commit();
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });
+
+
         button.setOnClickListener(new View.OnClickListener() {
 
 
             public void onClick(final View view) {
 
-                final SharedPreferences.Editor edit = alert.this.getSharedPreferences("preferencename", 0).edit();
-                if (course.getDone()) {
+                Context context = getApplicationContext();
+                //We need to load in three separate instances of the sharedpreferences as each of the first two instances only contains one vector
+                //Each vector of data stores booleans.  These booleans indicate whether a course is done or inprogress.
+                SharedPreferences sharedPrefDone = context.getSharedPreferences("courses", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorDone = sharedPrefDone.edit();
+                editorDone.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
+                editorDone.apply();
+                SharedPreferences sharedPrefInProgress = context.getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
+                editorIP.putBoolean(MainActivity.courseClassLoader.getCourseLabels()[int3], false);
+                editorIP.apply();
+
+                //TODO GET THIS OUT OF HERE!
+                //final SharedPreferences.Editor edit = alert.this.getSharedPreferences("preferencename", 0).edit();
+                //if (course.getDone()) {
                     //What do we care?
-                    edit.putInt("courseStat_" + int3, 3).commit();
-                }
-                else {
-                    //TODO STORE THE chANGE!!!!
-                    edit.putInt("courseStat_" + int3, 2).commit();
-                }
+                ///    edit.putInt("courseStat_" + int3, 3).commit();
+                //}
+                //else {
+                //
+                //    edit.putInt("courseStat_" + int3, 2).commit();
+                //}
                 alert.this.startActivity(new Intent(alert.this, (Class)MainActivity.class));
             }
         });

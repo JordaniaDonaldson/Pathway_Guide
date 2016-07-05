@@ -136,7 +136,8 @@ public class CourseClassLoader {
                     inProgress,
                     preReq,
                     coursePrereqs[i],
-                    isCourseAvailableForRegistration);
+                    isCourseAvailableForRegistration,
+                    i);
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container
@@ -188,4 +189,14 @@ public class CourseClassLoader {
     public int howManyCourses(){return sortedObject.size();}
 
     public String[] getCourseLabels(){return courseLabels;}
+
+    public CourseClass getXMLOrder(int order){
+        for (CourseClass course : sortedObject){
+            if (course.getPosition()==order)
+            {
+                return course;
+            }
+        }
+        return null;
+    }
 }

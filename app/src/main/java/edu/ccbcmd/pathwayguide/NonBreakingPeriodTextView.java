@@ -18,7 +18,6 @@ package edu.ccbcmd.pathwayguide;
 
         import android.widget.TextView;
 
-        import fd.IncrementalChange;
 
 public class NonBreakingPeriodTextView extends TextView
 {
