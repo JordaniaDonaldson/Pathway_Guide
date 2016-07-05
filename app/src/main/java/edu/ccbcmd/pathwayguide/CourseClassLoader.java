@@ -48,15 +48,20 @@ public class CourseClassLoader {
         SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
 
-        int pathway;
+
+
+        int pathway = -1;
         if (pathwayPref.contains("PathwayChoice"))
         {
             pathway = pathwayPref.getInt("PathwayChoice", 100);
+            Log.e("CCL","TSM LOADING"+pathway);
         } else { pathway = 100;}
 
         //Once the pathway choice is memorialized as an integer, the switch case statement here will load in the appropriate
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
         //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
+
+
         switch (pathway){
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
@@ -66,8 +71,9 @@ public class CourseClassLoader {
                 courseURLs = context.getResources().getStringArray(R.array.AlliedHealthURLS);
                 break;
             }
-            case CourseContract.TSM.TSM:
+            case CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT:
             {
+                Log.e("CCL","TSM LOADING");
                 courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
                 coursePrereqs = context.getResources().getStringArray(R.array.TSMPrereqs);
@@ -180,4 +186,6 @@ public class CourseClassLoader {
     public List<CourseClass> loadClassObjects(){
         return sortedObject;
     }
+
+    public int howManyCourses(){return sortedObject.size();}
 }

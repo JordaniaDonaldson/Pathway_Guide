@@ -78,8 +78,10 @@ public class chooseCompletedClasses extends AppCompatActivity
             checkBoxesDone.add((CheckBox) viewGroup.getChildAt(i));
         }
         //My code
+        int offset = 2;
+
         int counter = 0;
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+        for (int i = offset; i < viewGroup.getChildCount(); i++) {
 
             if (checkBoxesDone.size()>0&& checkBoxesDone.size()>counter) {
                 CheckBox box = checkBoxesDone.get(counter);
@@ -103,6 +105,8 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.startActivity(new Intent(this, (Class)chooseCurrentClasses.class));
     }
 
+    static private int length_of_courses;
+
     @TargetApi(23)
     public void onCreate(final Bundle bundle) {
 
@@ -114,23 +118,33 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setBackgroundDrawable(new BitmapDrawable(resources, BitmapFactory.decodeResource(resources, R.drawable.header))); //2130837594
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
-        this.getResources();
+
+        CourseClassLoader courseClassLoader = new CourseClassLoader(getApplicationContext());
+        List<CourseClass> courseList = courseClassLoader.loadClassObjects();
+        length_of_courses = courseClassLoader.howManyCourses();
+
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
         final Integer pathID = this.prefs.getInt("pathwayID", 0);
         final Integer pathSubID = this.prefs.getInt("pathwaysubID", 0);
         new RelativeLayout(this);
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout15); //2131624031
-        for (int length = choosePathway.subpathwayCoursePath[0][pathID].length, i = 0; i < length; ++i) {
+
+        int length = courseClassLoader.howManyCourses();//choosePathway.subpathwayCoursePath[0][pathID].length;
+        for ( int i = 0; i < length; ++i) {
             /*why not just use loop counter?*/
-            final int id = choosePathway.subpathwayCoursePath[0][pathID][i];
-            final CheckBox checkBox = new CheckBox(this);
-            checkBox.setText((choosePathway.courseNum[pathSubID][id] + ": " + choosePathway.courseName[pathSubID][id]));
-            checkBox.setId(id);
-            if (Build.VERSION.SDK_INT >= 16) {
-                checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
+            CourseClass course = courseList.get(i);
+            if (!course.getPreReqs().equals("PERMISSION")) {
+
+                //final int id = choosePathway.subpathwayCoursePath[0][pathID][i];
+                final CheckBox checkBox = new CheckBox(this);
+                checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
+                checkBox.setId(i);
+                if (Build.VERSION.SDK_INT >= 16) {
+                    checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
+                }
+                linearLayout.addView(checkBox);
             }
-            linearLayout.addView(checkBox);
         }
         new MaterialShowcaseView.Builder(this).setTarget(new View(this)).setDismissText("Okay").setTitleText("Please select the courses that you have completed").withRectangleShape().setMaskColour(Color.parseColor("#F1335075")).setContentText("Please select the courses that you are sure you have successfully completed. If you are a transfer student, talk with your advisor to determine what courses will transfer.").setDelay(100).show();
         this.findViewById(R.id.completed).setOnClickListener(new View.OnClickListener() { //2131624030

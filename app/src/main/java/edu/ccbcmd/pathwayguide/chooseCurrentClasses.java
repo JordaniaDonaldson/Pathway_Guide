@@ -102,12 +102,17 @@ public class chooseCurrentClasses extends AppCompatActivity
         for (int i = 0; i<viewGroup.getChildCount(); i++){
             checkBoxesInProgress.add((CheckBox) viewGroup.getChildAt(i));
         }
+
+
         //My code
         SharedPreferences sharedPrefInProgress = getSharedPreferences("coursesInProgress", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorIP = sharedPrefInProgress.edit();
 
         //In this for loop you will find it saving the state of the check box to the shared preferences.
         int counter = 0;
+
+        //TODO FIX THIS SO IT COUNTS THE COURSES RIGHT!
+        //I"M LEAVING IT BROKEN SO I CAN FIX OTHER PARTS OF THE PROJECT
         for (int i = 0; i < checkBoxesInProgress.size(); i++) {
 
                 CheckBox box = checkBoxesInProgress.get(counter);
@@ -142,11 +147,18 @@ public class chooseCurrentClasses extends AppCompatActivity
         return array;
     }
 
+    private static int length_of_classes;
+
     @TargetApi(23)
     public void onCreate(final Bundle bundle) {
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_choose_current_classes); //2130968605
+
+        CourseClassLoader courseClassLoader = new CourseClassLoader(getApplicationContext());
+        List<CourseClass> courseList = courseClassLoader.loadClassObjects();
+        length_of_classes = courseClassLoader.howManyCourses();
+
         this.getSupportActionBar().show();
         this.getSupportActionBar().setTitle("Choose Classes");
         final Resources resources = this.getResources();
@@ -160,11 +172,13 @@ public class chooseCurrentClasses extends AppCompatActivity
         final Integer pathSubID = this.prefs.getInt("pathwaysubID", 0);
         new RelativeLayout(this);
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout16); //2131624032
-        for (int length = choosePathway.subpathwayCoursePath[0][pathID].length, i = 0; i < length; ++i) {
-            final int id = choosePathway.subpathwayCoursePath[0][pathID][i];
-            if (loadArrayInt[i] == 2) {
+        int length = length_of_classes;
+        for (int i = 0; i < length; ++i) {
+            CourseClass course = courseList.get(i);
+            final int id = i;
+            if (!course.getDone() && !course.getPreReqs().equals("PERMISSION")) {
                 final CheckBox checkBox = new CheckBox(this);
-                checkBox.setText((choosePathway.courseNum[pathSubID][id] + ": " + choosePathway.courseName[pathSubID][id]));
+                checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
                 checkBox.setId(id);
                 checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
                 linearLayout.addView(checkBox);

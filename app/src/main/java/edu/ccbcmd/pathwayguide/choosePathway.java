@@ -67,13 +67,43 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
 
     public void onClick(final View view) {
 
+        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
+        //for the courses that are done.
+        SharedPreferences pathwayPref = getApplicationContext().getSharedPreferences("pathway", Context.MODE_PRIVATE);
+        //The editor so we can save those preferences.
+        SharedPreferences.Editor editor = pathwayPref.edit();
+
+
+
+        switch (view.getId()){
+            case 0: {
+                Log.e("ChooseP","alliedHealth");
+                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                editor.apply();
+                break;
+            }
+            case 1: {
+                Log.e("ChooseP", "TSM");
+                editor.putInt("PathwayChoice", CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT);
+                editor.apply();
+                break;
+            }
+            default: {
+                Log.e("ChooseP","DEFAULT!!!");
+                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
+                editor.apply();
+                break;
+            }
+        }
+
+
         try {
             Log.w("pathID", String.valueOf(view.getId()));
 
             final int length = choosePathway.sub_pathwayName[view.getId()].length;
             this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
             this.prefs.edit().putInt("pathwayID", view.getId()).commit();
-          //  this.prefs.edit();
+
             final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
             intent.putExtra("arrayID", String.valueOf(view.getId()));
             this.startActivity(intent);
@@ -129,32 +159,6 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
     public boolean onOptionsItemSelected(final MenuItem menuItem) {
         boolean booleanValue = true;
 
-        //This shared preferences allows us to record the user choices. THIS shared preferences variable will be
-        //for the courses that are done.
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //The editor so we can save those preferences.
-        SharedPreferences.Editor editor =sharedPreferences.edit();
-
-        switch (menuItem.getOrder()){
-            case 0: {
-                Log.e("ChooseP","alliedHealth");
-                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                editor.apply();
-                break;
-            }
-            case 1: {
-                Log.e("ChooseP", "TSM");
-                editor.putInt("PathwayChoice", CourseContract.TSM.TSM);
-                editor.apply();
-                break;
-            }
-            default: {
-                Log.e("ChooseP","DEFAULT!!!");
-                editor.putInt("PathwayChoice", CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH);
-                editor.apply();
-                break;
-            }
-        }
 
 
 
