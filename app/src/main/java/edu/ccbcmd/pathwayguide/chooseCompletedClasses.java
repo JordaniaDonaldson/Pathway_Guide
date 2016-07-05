@@ -99,9 +99,9 @@ public class chooseCompletedClasses extends AppCompatActivity
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setHomeButtonEnabled(true);
 
-
-        List<CourseClass> courseList = MainActivity.courseClassLoader.loadClassObjects();
-        length_of_courses = MainActivity.courseClassLoader.howManyCourses();
+        CourseClassLoader loader = new CourseClassLoader(getApplicationContext());
+        List<CourseClass> courseList = loader.loadClassObjects();
+        length_of_courses = loader.howManyCourses();
 
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
         this.prefs.edit().putBoolean("firstrun", false).commit();
@@ -112,7 +112,7 @@ public class chooseCompletedClasses extends AppCompatActivity
         int length = length_of_courses;
         for ( int i = 0; i < length; ++i) {
 
-            CourseClass course = MainActivity.courseClassLoader.getXMLOrder(i);
+            CourseClass course = loader.getXMLOrder(i);
             if (!course.getPreReqs().equals("PERMISSION")) {
 
                 final int id = course.getPosition();

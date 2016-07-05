@@ -96,20 +96,10 @@ public class choosePathway extends AppCompatActivity implements View.OnClickList
             }
         }
 
+        final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
+        intent.putExtra("arrayID", String.valueOf(view.getId()));
+        this.startActivity(intent);
 
-        try {
-            Log.w("pathID", String.valueOf(view.getId()));
-
-            final int length = choosePathway.sub_pathwayName[view.getId()].length;
-            this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-            this.prefs.edit().putInt("pathwayID", view.getId()).commit();
-
-            final Intent intent = new Intent(this, (Class) chooseSub_Pathway.class);
-            intent.putExtra("arrayID", String.valueOf(view.getId()));
-            this.startActivity(intent);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            Toast.makeText(this, "The Pathway you selected is not currently available in this app. Please visit ccbcmd.edu/pathways to view this pathway.", Toast.LENGTH_LONG).show(); //1
-        }
     }
 
     public void onCreate(final Bundle bundle) {

@@ -78,11 +78,6 @@ public class chooseCurrentClasses extends AppCompatActivity
                 }
         }
 
-
-
-
-
-
         this.startActivity(new Intent(this, (Class)MainActivity.class));
     }
 
