@@ -30,6 +30,20 @@ public class DatabaseWrapper {
         }
     }
 
+    // returns the printed name of the subpathway (like Nursing A.S.N.)
+    // if the subpathway name is invalid, returns an empty string
+    // for a list of valid subpathway names, look in res/raw/pathwayvalues.txt
+    public static String getSubPathwayName(String subpathway) {
+        Cursor c = db.query(true, "subpathways", new String[] {"degree"}, "name = ?", new String[] {subpathway}, null, null, null, null);
+        if (c.getCount() == 0) return "";
+        else {
+            c.moveToNext();
+            String name = subpathway + " " + c.getString(c.getColumnIndex("degree"));
+            c.close();
+            return name;
+        }
+    }
+
     // returns the subpathways in a pathway as a string array
     // if the pathway doesn't exist, it returns a string array of length 0
     // for a list of valid pathway names, look in res/raw/pathwayvalues.txt
