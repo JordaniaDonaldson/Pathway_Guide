@@ -8,6 +8,8 @@ package edu.ccbcmd.pathwayguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,15 @@ public class splash extends AppCompatActivity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_splash); //2130968622
+
+        // set-up the database
+        Thread th = new Thread() {
+            public void run() {
+                DatabaseWrapper.db = new PathwaysDBHelper(splash.this).getWritableDatabase();
+            }
+        };
+        th.start();
+
         final AnimationDrawable animationDrawable = new AnimationDrawable();
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 500); //2130837595
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 500); //2130837602
