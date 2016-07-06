@@ -3,7 +3,7 @@ package edu.ccbcmd.pathwayguide;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+import java.util.HashSet;
 
 public class DatabaseWrapper {
 
@@ -78,6 +78,20 @@ public class DatabaseWrapper {
         String[] prereqs = c.getString(c.getColumnIndex("prereqs")).split(" ");
         c.close();
         return prereqs;
+    }
+
+    // returns all unique prereqs for all classes
+    public static String[] getAllPrereqs() {
+        Cursor c = db.query(true, "classes", new String[] {"prereqs"}, null, null, null, null, null, null);
+        HashSet<String> set = new HashSet<String>();
+        while(c.moveToNext()) {
+            String[] prs = c.getString(c.getColumnIndex("prereqs")).split(" ");
+            for (String pr : prs) {
+                if (!pr.equals(""))
+                    set.add(pr);
+            }
+        }
+        return (String[])set.toArray();
     }
 
     // returns all of the class's info as a string array
