@@ -34,6 +34,9 @@ public class CourseClassLoader {
     //This variable will load in the urls for the courses. Each position corresponds to the courseLabels position
     String[] courseURLs;
 
+    //This will store the pathway name
+    String pathwayText;
+
 
 
     CourseClassLoader(Context context){
@@ -74,6 +77,7 @@ public class CourseClassLoader {
             {
                 //Database way
                 courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 //Old Way
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
@@ -85,7 +89,7 @@ public class CourseClassLoader {
             {
                 //DataBase Way
                 courseLabels = wrapper.getSubPathwayClasses(CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME);
-
+                pathwayText = CourseContract.TSM.TSM_COMPUTER_SCIENCE_IT_NAME;
                 //OldWay
                 courseLabels = context.getResources().getStringArray(R.array.TSMPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.TSMPathwayFullTitles);
@@ -97,7 +101,7 @@ public class CourseClassLoader {
             {
                 //database way
                 courseLabels = wrapper.getSubPathwayClasses(CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME);
-
+                pathwayText = CourseContract.PRE_ALLIED_HEALTH.ALLIED_HEALTH_NURSING_ASN_NAME;
                 //old way
                 courseLabels = context.getResources().getStringArray(R.array.AlliedHealthPathway);
                 courseFullTitles = context.getResources().getStringArray(R.array.AlliedHealthPathwayFullTitles);
@@ -226,4 +230,6 @@ public class CourseClassLoader {
         }
         return null;
     }
+
+    public String getPathway() {return pathwayText;}
 }

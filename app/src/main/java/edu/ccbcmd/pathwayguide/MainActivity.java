@@ -174,7 +174,11 @@ public class MainActivity extends Activity implements View.OnClickListener
          int n13 = (int)(13 * density2);
          int n14 = (int)(2.2 * density2);
          NonBreakingPeriodTextView nonBreakingPeriodTextView = new NonBreakingPeriodTextView(this);
-        nonBreakingPeriodTextView.setText((choosePathway.sub_pathwayName[value][value2] + "\nPathway"), TextView.BufferType.EDITABLE);
+
+
+
+
+        nonBreakingPeriodTextView.setText((courseClassLoader.getPathway()+ "\nPathway"), TextView.BufferType.EDITABLE);
          LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
         nonBreakingPeriodTextView.setPadding(n13, n13, n13, n13);
         nonBreakingPeriodTextView.setGravity(16);
