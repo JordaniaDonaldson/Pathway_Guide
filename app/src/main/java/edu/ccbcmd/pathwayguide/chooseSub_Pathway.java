@@ -33,6 +33,9 @@ import android.support.v7.app.AppCompatActivity;
 public class chooseSub_Pathway extends AppCompatActivity implements View.OnClickListener
 {
 
+    //This is the access to the database
+    PathwaysDBHelper dataBase;
+
     public SharedPreferences prefs;
 
     public void onClick(final View view) {
@@ -104,29 +107,44 @@ public class chooseSub_Pathway extends AppCompatActivity implements View.OnClick
 
         int pathway = pathwayPref.getInt("PathwayChoice",-1);
 
+        //Initializing the database
+        dataBase = new PathwaysDBHelper(getApplicationContext());
+        DatabaseWrapper wrapper = new DatabaseWrapper();
+
         int length;
-        String[] courses;
+        String[] subPath;
         switch(pathway){
             case 100:{
-                courses = getResources().getStringArray(R.array.PathwayCategoryPRE);
-                length = courses.length;
+                //Databaseway
+                subPath = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
+
+                //Old Way
+                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
+                length = subPath.length;
                 break;
             }
             case 200:{
-                courses = getResources().getStringArray(R.array.PathwayCategoryTSM);
-                length = courses.length;
+                subPath = wrapper.getSubPathways(CourseContract.TSM.TSM_NAME);
+
+                //Old Way
+                //subPath = getResources().getStringArray(R.array.PathwayCategoryTSM);
+                length = subPath.length;
                 break;
             }
             default:{
-                courses = getResources().getStringArray(R.array.PathwayCategoryPRE);
-                length = courses.length;
+                //Databaseway
+                subPath = wrapper.getSubPathways(CourseContract.PRE_ALLIED_HEALTH.PRE_ALLIED_HEALTH_NAME);
+
+                //Old Way
+                //subPath = getResources().getStringArray(R.array.PathwayCategoryPRE);
+                length = subPath.length;
                 break;
             }
         }
             for (int i = 0; i < length; ++i) {
                 final Button button = new Button(this);
                 button.setOnClickListener(this);
-                button.setText(courses[i]);
+                button.setText(subPath[i]);
                 final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-2, -2);
                 layoutParams.setMargins(5, 5, 5, 5);
                 button.setLayoutParams(layoutParams);

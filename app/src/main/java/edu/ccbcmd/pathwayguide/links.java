@@ -38,7 +38,7 @@ public class links extends AppCompatActivity
         this.getSupportActionBar().setHomeButtonEnabled(true);
         this.findViewById(R.id.settings).setVisibility(View.INVISIBLE); //2131624052, 4
         this.prefs = this.getSharedPreferences("com.mycompany.CCBCPathway", 0);
-        final String s = choosePathway.sub_pathwayName[this.prefs.getInt("pathwayID", 0)][this.prefs.getInt("pathwaysubID", 0)];
+
         final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.activity_settings, R.id.settings, new String[] { "CCBC", "Blackboard", "My CCBC", "Simon", "Book Store", "Meet With An Advisor", "Resources For Students", "Course Catalog", "Flex-Reg", "Tutoring and Academic Coaching", "Disability Programs and Services" }); //2130968621, 2131624052
         final ListView listView = (ListView)this.findViewById(R.id.settingslist); //2131624050
         listView.setAdapter(adapter);

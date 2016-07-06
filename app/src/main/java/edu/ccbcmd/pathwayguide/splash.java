@@ -29,11 +29,11 @@ public class splash extends AppCompatActivity
         this.setContentView(R.layout.activity_splash); //2130968622
 
         final AnimationDrawable animationDrawable = new AnimationDrawable();
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 500); //2130837595
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 500); //2130837602
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 500); //2130837583
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 500); //2130837600
-        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 500); //2130837580
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.health), 1000); //2130837595
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.tech), 1000); //2130837602
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.business), 1000); //2130837583
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.social), 1000); //2130837600
+        animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.arts), 1000); //2130837580
         animationDrawable.addFrame(this.getResources().getDrawable(R.drawable.splash), 1000); //2130837601
         animationDrawable.setOneShot(true);
         final ImageView imageView = (ImageView)this.findViewById(R.id.imageView); //2131624058
@@ -71,6 +71,6 @@ public class splash extends AppCompatActivity
                 }
                 splash.this.finish();
             }
-        }, 10500L);
+        }, 6000L);
     }
 }
