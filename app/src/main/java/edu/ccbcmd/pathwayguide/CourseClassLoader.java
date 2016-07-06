@@ -46,6 +46,9 @@ public class CourseClassLoader {
         //The third instance of sharedpreferences is the particular pathway chosen.
         SharedPreferences pathwayPref = context.getSharedPreferences("pathway", Context.MODE_PRIVATE);
 
+        //The fourth instance of sharedpreferences is to get the permission of a course
+        SharedPreferences pathwayPermission = context.getSharedPreferences("permission",Context.MODE_PRIVATE);
+
         //Initializing the database
         dataBase = new PathwaysDBHelper(context);
         DatabaseWrapper wrapper = new DatabaseWrapper();
@@ -115,7 +118,7 @@ public class CourseClassLoader {
         List<CourseClass> courseInProgress = new ArrayList<CourseClass>();
         List<CourseClass> courseTop = new ArrayList<CourseClass>();
         List<CourseClass> courseAvailable = new ArrayList<CourseClass>();
-
+        boolean canJump = false;
         //This Loop determines what category each of the courses is in.
         for (int i = courseLabels.length-1; i>=0; i--)
         {
@@ -142,6 +145,8 @@ public class CourseClassLoader {
                         isCourseAvailableForRegistration = true;
                     }
                 }
+                canJump = pathwayPermission.getBoolean("permission"+courseLabels[i],false);
+                if (!isCourseAvailableForRegistration && !done && !inProgress && preReq && canJump){ isCourseAvailableForRegistration = true;}
                 if (!isCourseAvailableForRegistration && !done && !inProgress &&!preReq){isCourseAvailableForRegistration = true;}
             }
 
@@ -158,7 +163,8 @@ public class CourseClassLoader {
                     coursePrereqs[i],
                     isCourseAvailableForRegistration,
                     i,
-                    meet);
+                    meet,
+                    canJump);
 
 
             //This section of code adds the course to the particular container, that is, done, inprogress, etc. container

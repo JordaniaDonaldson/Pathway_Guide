@@ -110,8 +110,16 @@ public class chooseCompletedClasses extends AppCompatActivity
         new RelativeLayout(this);
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout15); //2131624031
 
-        int length = length_of_courses;
-        for ( int i = 0; i < length; ++i) {
+        //Resetting the permission flags
+        SharedPreferences pathwayPermission = getApplicationContext().getSharedPreferences("permission",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pathwayPermission.edit();
+        String[] courseNames = loader.getCourseLabels();
+        for (int i = 0; i< length_of_courses; i++){
+            editor.putBoolean("permission"+courseNames[i],false);
+            editor.apply();
+        }
+
+        for ( int i = 0; i < length_of_courses; ++i) {
 
             CourseClass course = loader.getXMLOrder(i);
             if (!course.getPreReqs().equals("PERMISSION")) {

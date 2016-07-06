@@ -29,6 +29,9 @@ public class CourseClass {
     //This will store if the person needs to talk to their advisor about what math they need
     private boolean meetWithAdvisor;
 
+    //This will store if the student can get around prereq issues.
+    private boolean canTakeWOPrereq;
+
     public CourseClass()
     {
         //Null constructor.  DO NOT use.
@@ -42,9 +45,10 @@ public class CourseClass {
         preReqs = null;
         position = -1;
         meetWithAdvisor = false;
+        canTakeWOPrereq = false;
     }
 
-    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position, boolean meet){
+    public CourseClass(String title, String fullTitle, String url, boolean done, boolean inProgress, boolean anyPreReqs, String preReqs, boolean isOpenForRegistration, int position, boolean meet, boolean jumpTheLine){
         super();
         //The proper constructor.
         this.title = title;
@@ -57,7 +61,7 @@ public class CourseClass {
         this.isOpenForRegistration = isOpenForRegistration;
         this.position = position;
         this.meetWithAdvisor = meet;
-
+        this.canTakeWOPrereq = jumpTheLine;
     }
 
     //The getters and setters.
@@ -83,6 +87,7 @@ public class CourseClass {
     public boolean getIsOpenForRegistration() {return isOpenForRegistration;}
     public int getPosition(){return position;}
     public boolean getMeetWithAdvisor(){return meetWithAdvisor;}
+    public boolean getCanTakeWOPrereq(){return canTakeWOPrereq;}
 
     public void setTitle(String title){
         this.title = title;
@@ -101,6 +106,7 @@ public class CourseClass {
         this.anyPreReqs = anyPreReqs;
     }
     public  void setPreReqs(String preReqs){this.preReqs = preReqs; }
+    public void setCanTakeWOPrereq(boolean canJump){this.canTakeWOPrereq = canJump;}
 
     public void setIsOpenForRegistaration(boolean is) {this.isOpenForRegistration = is;}
 

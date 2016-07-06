@@ -195,7 +195,12 @@ public class info extends AppCompatActivity
 
                 //TODO HOW TO HANDLE IF SOMEONE CAN TAKE THE COURSE WITHOUT PREREQ?
                 if (course.getAnyPreReqs()) {
-
+                    SharedPreferences pathwayPermission = getApplicationContext().getSharedPreferences("permission",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pathwayPermission.edit();
+                    editor.putBoolean("permission"+course.getTitle(),true);
+                    editor.apply();
+                    info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
+                    return;
                 }
 
                 info.this.startActivity(new Intent(info.this, (Class)MainActivity.class));
