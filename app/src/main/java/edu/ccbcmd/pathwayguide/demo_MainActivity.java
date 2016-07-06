@@ -10,6 +10,7 @@ package edu.ccbcmd.pathwayguide;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -75,6 +76,8 @@ public class demo_MainActivity extends Activity
 
         super.onCreate(bundle);
         this.setContentView(R.layout.activity_main_demo); //2130968618
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         final Resources resources = this.getResources();
         final LinearLayout linearLayout = (LinearLayout)this.findViewById(R.id.linearLayout2); //2131624046
         final float density = this.getResources().getDisplayMetrics().density;

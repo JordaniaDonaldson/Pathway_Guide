@@ -96,7 +96,7 @@ public class DatabaseWrapper {
         info[2] = c.getString(c.getColumnIndex("description"));
         info[3] = c.getString(c.getColumnIndex("prereqs"));
         info[4] = c.getString(c.getColumnIndex("status"));
-
+        c.close();
         return info;
     }
 

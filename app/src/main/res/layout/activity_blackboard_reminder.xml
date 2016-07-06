@@ -64,6 +64,6 @@
             android:text="Check Blackboard"
             android:layout_weight="1.0"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true" />'
+            android:layout_alignParentBottom="true" />
     </LinearLayout>
 </RelativeLayout>

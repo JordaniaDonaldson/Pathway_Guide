@@ -257,7 +257,7 @@ public class info extends AppCompatActivity
                 }
                 final String value2 = String.valueOf("http://catalog.ccbcmd.edu/preview_course_incoming.php?catname=Catalog%20" + value + "-" + n + "&prefix=" + course.getTitle().replace(" ", "&code="));
                 final Integer value3 = info.this.prefs.getInt("internet", 1);
-                Toast.makeText(info.this, String.valueOf(value3), Toast.LENGTH_LONG);
+
                 if (value3 != 1) {
                     webView.loadData("<h1 >Internet Use Disabled</h1><h3>You have disabled internet. To view course descriptions, go to internet settings found in the menu.</h3>", "text/html", "utf-8");
                     return true;

@@ -67,11 +67,6 @@ public class CourseClassLoader {
         // vectors into the courseLabels and coursePrereqs and courseURLs variables.
         //TODO: FIX THIS SWITCH STATEMENT TO ENCOMPASS ALL OF THE PATHWAYS.
         //TODO: INCLUDE THE SUBPATHWAY STATMENTS AS WELL!
-
-
-
-
-        //Old way
         switch (pathway){
             case CourseContract.PRE_ALLIED_HEALTH._PRE_ALLIED_HEALTH:
             {
@@ -210,9 +205,9 @@ public class CourseClassLoader {
 
         }
 
-            }
+    }
 
-    //TODO: What if the list is NULL?  No chance of that happening unless...?
+
     public List<CourseClass> loadClassObjects(){
         return sortedObject;
     }

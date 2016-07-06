@@ -111,6 +111,9 @@ public class chooseCurrentClasses extends AppCompatActivity
             if (!course.getDone() && !course.getPreReqs().equals("PERMISSION")) {
                 final CheckBox checkBox = new CheckBox(this);
                 checkBox.setText((course.getTitle() + ": " + course.getFullTitle()));
+                if (course.getInProgress()){
+                    checkBox.setChecked(true);
+                }
                 checkBox.setId(course.getPosition());
                 checkBox.setButtonTintList(ColorStateList.valueOf(getColor(this, R.color.pathwayblue))); //2131558446
                 linearLayout.addView(checkBox);
